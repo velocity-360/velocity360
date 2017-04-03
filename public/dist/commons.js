@@ -33135,7 +33135,7 @@ exports.default = function (props) {
 		{ className: props.className },
 		_react2.default.createElement(
 			"div",
-			{ className: "feature-box fbox-center fbox-bg fbox-effect" },
+			{ className: "feature-box fbox-center fbox-bg fbox-effect", style: { height: 320 } },
 			_react2.default.createElement(
 				"div",
 				{ className: "fbox-icon" },

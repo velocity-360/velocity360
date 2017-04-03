@@ -5,7 +5,7 @@ export default (props) => {
 	const tutorial = props
 	return (
 		<div className={props.className}>
-			<div className="feature-box fbox-center fbox-bg fbox-effect">
+			<div className="feature-box fbox-center fbox-bg fbox-effect" style={{height:320}}>
 				<div className="fbox-icon">
 					<a href={'/tutorial/'+tutorial.slug}>
 						<img src={'https://media-service.appspot.com/site/images/'+tutorial.image+'?crop=120'} alt={tutorial.title} />

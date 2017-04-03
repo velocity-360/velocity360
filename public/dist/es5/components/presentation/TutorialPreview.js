@@ -14,7 +14,7 @@ module.exports = function (props) {
 		{ className: props.className },
 		React.createElement(
 			"div",
-			{ className: "feature-box fbox-center fbox-bg fbox-effect" },
+			{ className: "feature-box fbox-center fbox-bg fbox-effect", style: { height: 320 } },
 			React.createElement(
 				"div",
 				{ className: "fbox-icon" },
