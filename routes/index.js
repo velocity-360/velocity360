@@ -55,22 +55,25 @@ router.get('/:page', function(req, res, next) {
 })
 
 router.get('/:page/:slug', function(req, res, next) {
-	if (req.params.page == 'api'){
+	var page = req.params.page
+	if (page == 'api'){
 		next()
 		return
 	}
 
-	if (staticPages[req.params.page] != null){
-	    res.render(staticPages[req.params.page], null)
+	if (staticPages[page] != null){
+	    res.render(staticPages[page], null)
 		return
 	}
 
+	var controller = controllers[page] // check for null
+
 	var initialData = {}
-	controllers.tutorial
+	controller
 	.find({slug: req.params.slug})
-	.then(function(tutorials){
+	.then(function(entities){
 		var tutorialReducer = {
-			all: tutorials
+			all: entities
 		}
 
 		initialData['tutorial'] = tutorialReducer
@@ -84,7 +87,7 @@ router.get('/:page/:slug', function(req, res, next) {
 	    res.render('index', {
 	    	react: ReactDOMServer.renderToString(provider),
 	    	initial: JSON.stringify(initialState.getState()),
-	    	bundle: 'tutorial'
+	    	bundle: page
 	    })
 	})
 	.catch(function(err){

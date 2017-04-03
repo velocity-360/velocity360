@@ -12,29 +12,10 @@ router.get('/:resource', function(req, res, next){
 
 	var controller = controllers[resource]
 	if (controller == null){
-		if (microserviceResources[resource] == null){
-			res.json({
-				confirmation:'fail',
-				message: 'Invalid Resource'
-			})
-			return
-		}
-
-		// this resource is manages on the microservice:
-		utils.Microservice({site_id:process.env.SITE_ID}).fetch('post', {type:'original'})
-		.then(function(results){
-			res.json({
-				confirmation:'success',
-				results: results
-			})
+		res.json({
+			confirmation:'fail',
+			message: 'Invalid Resource'
 		})
-		.catch(function(err){
-			res.json({
-				confirmation:'fail',
-				message: err.message
-			})
-		})
-
 		return
 	}
 
@@ -64,31 +45,11 @@ router.get('/:resource/:id', function(req, res, next){
 
 	var controller = controllers[resource]
 	if (controller == null){
-		if (microserviceResources[resource] == null){
-			res.json({
-				confirmation:'fail',
-				message: 'Invalid Resource'
-			})
-			return
-		}
-
-		// this resource is manages on the microservice:
-		utils.Microservice({site_id:process.env.SITE_ID}).fetchOne('post', id)
-		.then(function(result){
-			res.json({
-				confirmation:'success',
-				result: result
-			})
+		res.json({
+			confirmation:'fail',
+			message: 'Invalid Resource'
 		})
-		.catch(function(err){
-			res.json({
-				confirmation:'fail',
-				message: err.message
-			})
-		})
-
 		return
-
 	}
 
 	controller
