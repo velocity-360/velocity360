@@ -12,6 +12,11 @@ var staticPages = {
 	about: 'about'
 }
 
+var reactApps = {
+	tutorial: apps.Tutorial,
+	post: apps.Post
+}
+
 router.get('/', function(req, res, next) {
 
 	var initialData = {}
@@ -72,17 +77,22 @@ router.get('/:page/:slug', function(req, res, next) {
 	controller
 	.find({slug: req.params.slug})
 	.then(function(entities){
-		var tutorialReducer = {
-			all: entities
+		var reducer = {
+			// all: entities
 		}
 
-		initialData['tutorial'] = tutorialReducer
+		entities.forEach(function(entity, i){
+			reducer[entity.slug] = entity
+			// reducer[entity.id] = entity
+		})
+
+		initialData[page] = reducer
 
 		var initialState = store.configureStore(initialData)
 		// console.log('INITIAL: '+JSON.stringify(initialState.getState()))
 
-		var tutorial = React.createElement(apps.Tutorial)
-		var provider = React.createElement(apps.ServerEntry, {component:tutorial, store:initialState})
+		var component = React.createElement(reactApps[page])
+		var provider = React.createElement(apps.ServerEntry, {component:component, store:initialState})
 
 	    res.render('index', {
 	    	react: ReactDOMServer.renderToString(provider),

@@ -1,3 +1,4 @@
 /node_modules/
 /public/theme/
+/public/dist/
 .env
