@@ -5,6 +5,7 @@
   "scripts": {
     "clean": "rm -rf ./public/dist",
     "build": "npm run clean && NODE_ENV=production webpack && gulp prod",
+    "postinstall": "npm run build",
     "start": "node ./bin/www"
   },
   "dependencies": {
