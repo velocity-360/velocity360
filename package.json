@@ -37,9 +37,7 @@
     "serve-favicon": "~2.3.0",
     "stripe": "^4.17.0",
     "superagent": "^3.5.2",
-    "webpack": "^2.3.2"
-  },
-  "devDependencies": {
+    "webpack": "^2.3.2",
     "gulp": "^3.9.1",
     "gulp-6to5": "^3.0.0",
     "gulp-autoprefixer": "^3.1.1",
