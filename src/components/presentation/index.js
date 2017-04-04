@@ -4,6 +4,7 @@ import Sidebar from './Sidebar'
 import Membership from './Membership'
 import TutorialPreview from './TutorialPreview'
 import PostPreview from './PostPreview'
+import Detail from './Detail'
 
 export {
 
@@ -12,6 +13,7 @@ export {
 	Sidebar,
 	Membership,
 	TutorialPreview,
-	PostPreview
+	PostPreview,
+	Detail
 	
 }

@@ -1,13 +1,18 @@
 import constants from '../constants'
 
 var initialState = {
-	selectedMenuItem: 'home',
+	// selectedMenuItem: 'home',
 	page: 'home',
 	home: {
 		selected: 'tutorials'
 	},
 	tutorial: {
-		selected: 'overview'
+		selected: 'overview',
+		slug: ''
+	},
+	post: {
+		selected: 'overview',
+		slug: ''
 	}
 }
 

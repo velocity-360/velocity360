@@ -73,7 +73,20 @@ router.get('/:page/:slug', function(req, res, next) {
 
 	var controller = controllers[page] // check for null
 
-	var initialData = {}
+	var initialData = {
+		session:{
+			page:page,
+			post: {
+				selected:'overview',
+				slug: req.params.slug
+			},
+			tutorial: {
+				selected:'overview',
+				slug: req.params.slug
+			}
+		},
+	}
+
 	controller
 	.find({slug: req.params.slug})
 	.then(function(entities){
@@ -91,7 +104,7 @@ router.get('/:page/:slug', function(req, res, next) {
 		var initialState = store.configureStore(initialData)
 		// console.log('INITIAL: '+JSON.stringify(initialState.getState()))
 
-		var component = React.createElement(reactApps[page])
+		var component = React.createElement(reactApps[page], {slug: req.params.slug})
 		var provider = React.createElement(apps.ServerEntry, {component:component, store:initialState})
 
 	    res.render('index', {

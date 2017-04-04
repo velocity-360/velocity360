@@ -6,24 +6,21 @@ var initialState = {
 
 export default (state = initialState, action) => {
 	let newState = Object.assign({}, state)
-	let updatedList = (state.all) ? Object.assign([], state.all) : []
+	// let updatedList = (state.all) ? Object.assign([], state.all) : []
 
 	switch (action.type) {
 		case constants.TUTORIALS_RECEIVED:
-//			console.log('TUTORIALS_RECEIVED: '+JSON.stringify(action.tutorials))
-			action.tutorials.forEach((tutorial, i) => {
-				if (newState[tutorial.id] == null){
-					newState[tutorial.id] = tutorial
-					newState[tutorial.slug] = tutorial
-					updatedList.push(tutorial)
+			// console.log('TUTORIALS_RECEIVED: '+JSON.stringify(action.data))
+			newState['all'] = action.data
 
-					let list = (newState[tutorial.category]) ? Object.assign([], newState[tutorial.category]) : []
-					list.push(tutorial)
-					newState[tutorial.category] = list
-				}
+			action.data.forEach((tutorial, i) => {
+				// if (newState[tutorial.id] == null){
+				// 	newState[tutorial.id] = tutorial
+				// 	newState[tutorial.slug] = tutorial
+				// 	updatedList.push(tutorial)
+				// }
 			})
 
-			newState['all'] = updatedList
 			return newState
 
 		case constants.TUTORIAL_UPDATED:

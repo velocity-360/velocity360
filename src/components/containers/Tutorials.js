@@ -1,21 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { TutorialPreview } from '../presentation'
+import BaseContainer from './BaseContainer'
 
 class Tutorials extends Component {
 
 	componentDidMount(){
-		// console.log('componentDidMount: '+JSON.stringify(this.props.tutorials.all))
+		if (this.props.tutorials.all != null)
+			return
+
+		this.props.fetchData('tutorial', {limit: 6})
 	}
 
 	render(){
+		const list = this.props.tutorials.all || []
 		return (
 			<div className="container clearfix">
 				<div className="heading-block center">
 					<h1 style={{fontFamily:'Pathway Gothic One'}}>Tutorials</h1>
 				</div>
 
-				{ this.props.tutorials.all.map((tutorial, i) => {
+				{ list.map((tutorial, i) => {
 						const index = i+1
 						const className = (index%3 == 0) ? 'col_one_third col_last' : 'col_one_third'
 						return (
@@ -34,4 +39,4 @@ const stateToProps = (state) => {
 	}
 }
 
-export default connect(stateToProps)(Tutorials)
+export default connect(stateToProps)(BaseContainer(Tutorials))

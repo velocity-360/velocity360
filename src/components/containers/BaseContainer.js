@@ -165,6 +165,10 @@ const BaseContainer = (Container) => {
 				this.props.fetchPosts(params)
 			}
 
+			if (resource == 'tutorial'){
+				this.props.fetchTutorials(params)
+			}
+
 		}
 
 		render(){
@@ -195,6 +199,7 @@ const BaseContainer = (Container) => {
 
 	const dispatchToProps = (dispatch) => {
 		return {
+			fetchTutorials: (params) => dispatch(actions.fetchTutorials(params)),
 			fetchPosts: (params) => dispatch(actions.fetchPosts(params)),
 			selectMenuItem: (item) => dispatch(actions.selectMenuItem(item)),
 	        submitStripeCard: (token) => dispatch(actions.submitStripeCard(token)),
