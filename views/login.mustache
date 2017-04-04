@@ -25,16 +25,16 @@
 									<h3>Login to your Account</h3>
 									<div class="col_full">
 										<label for="login-form-username">Email:</label>
-										<input type="text" name="email" class="form-control not-dark" />
+										<input onChange="updateVisitor('email', event)" type="text" name="email" class="form-control not-dark" />
 									</div>
 
 									<div class="col_full">
 										<label for="login-form-password">Password:</label>
-										<input type="password" name="password" class="form-control not-dark" />
+										<input onChange="updateVisitor('password', event)" type="password" name="password" class="form-control not-dark" />
 									</div>
 
 									<div class="col_full nobottommargin">
-										<button class="button button-3d button-black nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
+										<button onClick="login(event)" class="button button-3d button-black nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
 									</div>
 								</form>
 								<div class="line line-sm"></div>

@@ -52,7 +52,7 @@ router.post('/:action', function(req, res, next) {
 		.catch(function(err){
 			res.json({
 				confirmation: 'fail',
-				message: err
+				message: err.message
 			})
 		})
 
