@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
 
 	switch (action.type) {
 		case constants.POSTS_RECEIVED:
-			console.log('POSTS_RECEIVED: '+JSON.stringify(action.data))
+			// console.log('POSTS_RECEIVED: '+JSON.stringify(action.data))
 			newState['all'] = action.data			
 			return newState
 

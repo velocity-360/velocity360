@@ -8,11 +8,22 @@ class Recent extends Component {
 		if (this.props.posts.all != null)
 			return
 
-		this.props.fetchData('post', {limit:3})
+		this.props
+		.fetchData('post', {limit:3})
+		.then(response => {
+			return this.props.fetchData('tutorial', {limit:3})
+		})
+		.then(response => {
+
+		})
+		.catch(err => {
+
+		})
 	}
 
 	render(){
-		const list = this.props.posts.all || []
+		const recentPosts = this.props.posts.all || []
+		const tutorials = this.props.tutorials.all || []
 		
 		return (
 			<div className="sidebar nobottommargin col_last clearfix" style={{background:'#fff'}}>
@@ -20,37 +31,49 @@ class Recent extends Component {
 					<div className="widget clearfix">
 
 						<h4 style={{marginBottom:10}}>Recent Posts</h4>
-						<div className="tabs nobottommargin clearfix" id="sidebar-tabs">
-
-							<div className="tab-container">
-								<div className="tab-content clearfix" id="tabs-1">
-									<div id="popular-post-list-sidebar">
-
-										{ list.map((post, i) => {
-												return (
-													<div key={post.id} className="spost clearfix">
-														<div className="entry-image">
-															<a href={'/post/'+post.slug} className="nobg">
-																<img src={post.image+'=s64-c'} alt={post.title+' | Velocity 360'} />
-															</a>
-														</div>
-														<div className="entry-c">
-															<div className="entry-title">
-																<h4><a href={'/post/'+post.slug}>{post.title}</a></h4>
-															</div>
-															<ul className="entry-meta">
-																<li>{post.dateString}</li>
-															</ul>
-														</div>
-													</div>
-												)
-											})
-										}
-
+						{ recentPosts.map((post, i) => {
+								return (
+									<div key={post.id} className="spost clearfix">
+										<div className="entry-image">
+											<a href={'/post/'+post.slug} className="nobg">
+												<img src={post.image+'=s64-c'} alt={post.title+' | Velocity 360'} />
+											</a>
+										</div>
+										<div className="entry-c">
+											<div className="entry-title">
+												<h4><a href={'/post/'+post.slug}>{post.title}</a></h4>
+											</div>
+											<ul className="entry-meta">
+												<li>{post.dateString}</li>
+											</ul>
+										</div>
 									</div>
-								</div>
-							</div>
-						</div>
+								)
+							})
+						}
+
+						<h4 style={{marginBottom:10, marginTop:64}}>Featured Tutorials</h4>
+						{ tutorials.map((tutorial, i) => {
+								return (
+									<div key={tutorial.id} className="spost clearfix">
+										<div className="entry-image">
+											<a href={'/tutorial/'+tutorial.slug} className="nobg">
+												<img src={'https://media-service.appspot.com/site/images/'+tutorial.image+'?crop=120'} alt={tutorial.title+' | Velocity 360'} />
+											</a>
+										</div>
+										<div className="entry-c">
+											<div className="entry-title">
+												<h4><a href={'/tutorial/'+tutorial.slug}>{tutorial.title}</a></h4>
+											</div>
+											<ul className="entry-meta">
+												<li>{tutorial.category}</li>
+											</ul>
+										</div>
+									</div>
+								)
+							})
+						}
+
 					</div>
 
 				</div>
@@ -62,8 +85,8 @@ class Recent extends Component {
 
 const stateToProps = (state) => {
 	return {
-		posts: state.post
-
+		posts: state.post,
+		tutorials: state.tutorial
 	}
 }
 

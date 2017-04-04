@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { Nav, Sidebar, Membership, Detail, Footer } from '../components/presentation'
-import { BaseContainer, Tutorials, Posts } from '../components/containers'
+import { BaseContainer, Tutorials, Posts, Recent } from '../components/containers'
 
 class Tutorial extends Component {
 	componentWillMount(){
@@ -29,7 +29,7 @@ class Tutorial extends Component {
 						<div className="content-wrap">
 							<div className="container clearfix">
 								<Detail {...tutorial} />
-						
+								<Recent />
 							</div>
 						</div>
 					</section>

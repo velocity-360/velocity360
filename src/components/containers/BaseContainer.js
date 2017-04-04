@@ -162,11 +162,11 @@ const BaseContainer = (Container) => {
 				event.preventDefault()
 
 			if (resource == 'post'){
-				this.props.fetchPosts(params)
+				return this.props.fetchPosts(params)
 			}
 
 			if (resource == 'tutorial'){
-				this.props.fetchTutorials(params)
+				return this.props.fetchTutorials(params)
 			}
 
 		}
