@@ -71,7 +71,7 @@ gulp.task('js', function(){
                 './public/js/plugins.js',
                 './public/js/components/bs-datatable.js',
                 './public/js/functions.js',
-                './public/js/social-share-kit/social-share-kit.min.js',
+                './public/js/social-share-kit.min.js',
                 './public/js/custom.js'
             ]
         )
