@@ -64,9 +64,6 @@ export default (props) => {
 
 const localStyle = {
     youtube: {
-        background:'#fff',
-        padding:3,
-        border:'1px solid #ddd',
         width: 220,
         height: 180,
         margin:'4px auto'
