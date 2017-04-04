@@ -10,8 +10,8 @@ module.exports = {
 		tutorial: './src/apps/client/Tutorial.js'
 	},
 	output: {
-		filename: 'public/dist/[name].js',
-        sourceMapFilename: 'public/dist/[name].map'
+		filename: 'public/dist/app/[name].js',
+        sourceMapFilename: 'public/dist/app/[name].map'
 	},
 	devtool: '#source-map',	
 	plugins: process.env.NODE_ENV === 'production' ? [

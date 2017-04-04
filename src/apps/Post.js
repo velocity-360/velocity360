@@ -9,6 +9,10 @@ class Post extends Component {
 
 	}
 
+	componentDidMount(){
+
+	}
+
 	render(){
 //		console.log('SLUG: '+this.props.session.post.slug)
 		const SidebarContainer = BaseContainer(Sidebar)
