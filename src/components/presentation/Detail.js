@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { TextUtils } from '../../utils'
 
 export default (props) => {
 
@@ -6,6 +7,24 @@ export default (props) => {
 	const description = props.text || props.description
 	const image = (props.image.indexOf('http') > -1) ? props.image : 'https://media-service.appspot.com/site/images/'+props.image
 	const units = props.posts || []
+
+	let detail = null
+	if (props.schema == 'post'){
+		detail = (
+			<ul className="entry-meta clearfix">
+				<li>{props.dateString}</li>
+				<li><a href="#">{props.author || 'Admin'}</a></li>
+			</ul>
+		)
+	}
+	if (props.schema == 'tutorial'){
+		detail = (
+			<ul className="entry-meta clearfix">
+				<li>{TextUtils.capitalize(props.category)}</li>
+				<li><a href="#">{ (props.price==0) ? 'Free' : '$'+props.price}</a></li>
+			</ul>
+		)
+	}
 
 	return (
 		<div className="col_two_third postcontent nobottommargin clearfix">
@@ -20,10 +39,7 @@ export default (props) => {
 					    <a href="#" className="ssk ssk-twitter"></a>
 					    <a href="#" className="ssk ssk-email"></a>
 					</div>
-					<ul className="entry-meta clearfix">
-						<li>{props.dateString}</li>
-						<li><a href="#">Admin</a></li>
-					</ul>
+					{detail}
 
 					<img style={{marginBottom:24,width:60+'%',maxWidth:360,minWidth:300}} src={image} alt={'The Daily Slate | '+props.title} />
 					<div dangerouslySetInnerHTML={{ __html:description }} className="entry-content description"></div>

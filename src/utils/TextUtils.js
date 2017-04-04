@@ -11,8 +11,9 @@ export default {
 		if (str.length == 1)
 			return str.toUpperCase()
 
-		var firstLetter = str.substring(0, 1)
-		return firstLetter.toUpperCase() + str.substring(1)
+	    return str.replace(/\w\S*/g, (txt) => {
+	        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+	    })
 	},
 
 	convertToHtml: (str) => {
