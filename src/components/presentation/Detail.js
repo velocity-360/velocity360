@@ -21,6 +21,7 @@ export default (props) => {
 		detail = (
 			<ul className="entry-meta clearfix">
 				<li>{TextUtils.capitalize(props.category)}</li>
+				<li>{props.posts.length} Units</li>
 				<li><a href="#">{ (props.price==0) ? 'Free' : '$'+props.price}</a></li>
 			</ul>
 		)
