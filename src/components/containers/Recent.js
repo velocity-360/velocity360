@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { PostPreview } from '../presentation'
+import { PostPreview, Slack } from '../presentation'
 import BaseContainer from './BaseContainer'
 
 class Recent extends Component {
@@ -74,12 +74,32 @@ class Recent extends Component {
 							})
 						}
 
+						<div style={{marginTop:64}}>
+							<Slack />
+						</div>
+
 					</div>
 
 				</div>
 			</div>
 
 		)
+	}
+}
+
+const localStyle = {
+	input: {
+		background: '#f9f9f9',
+		border: 'none',
+		borderBottom:'1px solid #ddd',
+		marginBottom: 12,
+		width: 100+'%',
+		height: 28
+	},
+	slack: {
+		background: '#f9f9f9',
+		borderRadius: 2,
+		padding: 16
 	}
 }
 

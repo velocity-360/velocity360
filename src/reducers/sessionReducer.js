@@ -12,6 +12,9 @@ var initialState = {
 	post: {
 		selected: 'overview',
 		slug: ''
+	},
+	account: {
+		selected: 'overview'
 	}
 }
 

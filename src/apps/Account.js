@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { Nav, Sidebar, Footer, Detail } from '../components/presentation'
-import { BaseContainer, Tutorials, Posts, Recent } from '../components/containers'
+import { BaseContainer, Tutorials } from '../components/containers'
 
-class Post extends Component {
+class Account extends Component {
 	componentWillMount(){
 
 	}
@@ -16,13 +16,12 @@ class Post extends Component {
 	render(){
 //		console.log('SLUG: '+this.props.session.post.slug)
 		const SidebarContainer = BaseContainer(Sidebar)
-		const selected = this.props.session.post.selected
+		const selected = this.props.session.account.selected
 		const menuItems = [
-			{name:'overview', page:'post', selected:(selected=='overview')},
-			{name:'comments', page:'post', selected:(selected=='comments')}
+			{name:'overview', page:'account', selected:(selected=='overview')},
+			{name:'comments', page:'account', selected:(selected=='comments')}
 		]
 
-		const post = this.props.posts[this.props.session.post.slug]
 		// console.log('RENDER: '+JSON.stringify(post))
 
 		return (
@@ -34,15 +33,14 @@ class Post extends Component {
 					<section id="content">
 						<div className="content-wrap">
 							<div className="container clearfix">
-								<Detail {...post} />
-								<Recent />
+								Account Page
 							</div>
 						</div>
 					</section>
 
 					<section id="content" style={{background:'#f9f9f9'}}>
 						<div className="content-wrap">
-							<Tutorials />						
+							<Tutorials />
 						</div>
 					</section>
 
@@ -60,4 +58,4 @@ const stateToProps = (state) => {
 	}
 }
 
-export default connect(stateToProps)(Post)
+export default connect(stateToProps)(Account)

@@ -23,7 +23,7 @@ class Tutorial extends Component {
 			<div>
 				<Nav />
 				<div id="wrapper" className="clearfix">
-					<SidebarContainer items={menuItems} />
+					<SidebarContainer withSlack={false} items={menuItems} />
 
 					<section id="content">
 						<div className="content-wrap">
@@ -36,7 +36,7 @@ class Tutorial extends Component {
 
 					<section id="content" style={{background:'#f9f9f9'}}>
 						<div className="content-wrap">
-							<Membership />						
+							<Membership />
 						</div>
 					</section>
 

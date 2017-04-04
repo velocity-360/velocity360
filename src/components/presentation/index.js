@@ -5,6 +5,7 @@ import Membership from './Membership'
 import TutorialPreview from './TutorialPreview'
 import PostPreview from './PostPreview'
 import Detail from './Detail'
+import Slack from './Slack'
 
 export {
 
@@ -14,6 +15,7 @@ export {
 	Membership,
 	TutorialPreview,
 	PostPreview,
-	Detail
+	Detail,
+	Slack
 	
 }

@@ -7,7 +7,8 @@ module.exports = {
 	entry: {
 		home: './src/apps/client/Home.js',
 		post: './src/apps/client/Post.js',
-		tutorial: './src/apps/client/Tutorial.js'
+		tutorial: './src/apps/client/Tutorial.js',
+		account: './src/apps/client/Account.js'
 	},
 	output: {
 		filename: 'public/dist/app/[name].js',
@@ -17,7 +18,7 @@ module.exports = {
 	plugins: process.env.NODE_ENV === 'production' ? [
 		new CommonsChunkPlugin({
 			name: 'commons',
-			chunks: ['home', 'post', 'tutorial']
+			chunks: ['home', 'post', 'tutorial', 'account']
 		}),
 	    new webpack.DefinePlugin({
 	        'process.env': {
@@ -34,7 +35,7 @@ module.exports = {
 	] : [
 		new CommonsChunkPlugin({
 			name: 'commons',
-			chunks: ['home', 'post', 'tutorial']
+			chunks: ['home', 'post', 'tutorial', 'account']
 		})
 	],	
 	module: {

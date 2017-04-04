@@ -14,7 +14,8 @@ var staticPages = {
 
 var reactApps = {
 	tutorial: apps.Tutorial,
-	post: apps.Post
+	post: apps.Post,
+	account: apps.Account
 }
 
 router.get('/', function(req, res, next) {
@@ -47,6 +48,44 @@ router.get('/', function(req, res, next) {
 			message: err.message
 		})
 	})
+})
+
+router.get('/account', function(req, res, next) {
+	var initialData = {
+		session:{
+			page:'account',
+			account: {
+				selected:'overview'
+			}
+		}
+	}	
+
+	controllers.account
+	.currentUser(req)
+	.then(function(user){
+		var reducer = {
+			currentUser: user
+		}
+
+		initialData['account'] = reducer
+		var initialState = store.configureStore(initialData)
+
+		var component = React.createElement(reactApps['account'])
+		var provider = React.createElement(apps.ServerEntry, {component:component, store:initialState})
+
+	    res.render('index', {
+	    	react: ReactDOMServer.renderToString(provider),
+	    	initial: JSON.stringify(initialState.getState()),
+	    	bundle: 'account'
+	    })
+	})
+	.catch(function(err){
+		res.json({
+			confirmation: 'fail',
+			message: err.message
+		})
+	})
+
 })
 
 router.get('/:page', function(req, res, next) {

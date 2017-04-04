@@ -29,7 +29,7 @@ class Home extends Component {
 			<div>
 				<Nav />
 				<div id="wrapper" className="clearfix">
-					<SidebarContainer items={menuItems} />
+					<SidebarContainer withSlack={true} items={menuItems} />
 
 					<section id="content">
 						<div className="content-wrap">
