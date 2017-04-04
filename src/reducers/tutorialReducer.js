@@ -6,7 +6,6 @@ var initialState = {
 
 export default (state = initialState, action) => {
 	let newState = Object.assign({}, state)
-	// let updatedList = (state.all) ? Object.assign([], state.all) : []
 
 	switch (action.type) {
 		case constants.TUTORIALS_RECEIVED:
@@ -23,20 +22,20 @@ export default (state = initialState, action) => {
 
 			return newState
 
-		case constants.TUTORIAL_UPDATED:
-			newState[action.tutorial.id] = action.tutorial
-			newState[action.tutorial.slug] = action.tutorial
+		// case constants.TUTORIAL_UPDATED:
+		// 	newState[action.tutorial.id] = action.tutorial
+		// 	newState[action.tutorial.slug] = action.tutorial
 
-			let array = []
-			updatedList.forEach((tutorial, i) => {
-				if (tutorial.id == action.tutorial.id) // replace old with new
-					array.push(action.tutorial)
-				else
-					array.push(tutorial)
-			})
+		// 	let array = []
+		// 	updatedList.forEach((tutorial, i) => {
+		// 		if (tutorial.id == action.tutorial.id) // replace old with new
+		// 			array.push(action.tutorial)
+		// 		else
+		// 			array.push(tutorial)
+		// 	})
 
-			newState['all'] = array
-			return newState
+		// 	newState['all'] = array
+		// 	return newState
 
 		default:
 			return state

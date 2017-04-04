@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import { Nav, Sidebar, Membership, Footer } from '../components/presentation'
+import { Nav, Sidebar, Membership, Detail, Footer } from '../components/presentation'
 import { BaseContainer, Tutorials, Posts } from '../components/containers'
 
 class Tutorial extends Component {
 	componentWillMount(){
-		// console.log('HOME: componentWillMount = '+JSON.stringify(this.props))
+		// console.log('Tutorial: componentWillMount = '+JSON.stringify(this.props))
 	}
 
 	render(){
@@ -18,6 +18,9 @@ class Tutorial extends Component {
 			{name:'community', page:'tutorial', selected:false}
 		]
 
+		const tutorial = this.props.tutorials[this.props.session.tutorial.slug]
+		// console.log('RENDER: '+JSON.stringify(tutorial))
+
 		return (
 			<div>
 				<Nav />
@@ -26,7 +29,10 @@ class Tutorial extends Component {
 
 					<section id="content">
 						<div className="content-wrap">
-							Tutorial PAGE
+							<div className="container clearfix">
+								<Detail {...tutorial} />
+						
+							</div>
 						</div>
 					</section>
 
@@ -45,7 +51,8 @@ class Tutorial extends Component {
 
 const stateToProps = (state) => {
 	return {
-		session: state.session
+		session: state.session,
+		tutorials: state.tutorial
 	}
 }
 

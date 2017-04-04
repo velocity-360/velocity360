@@ -28,7 +28,7 @@ class Recent extends Component {
 
 										{ list.map((post, i) => {
 												return (
-													<div className="spost clearfix">
+													<div key={post.id} className="spost clearfix">
 														<div className="entry-image">
 															<a href={'/post/'+post.slug} className="nobg">
 																<img src={post.image+'=s64-c'} alt={post.title+' | Velocity 360'} />
