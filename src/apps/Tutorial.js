@@ -11,15 +11,13 @@ class Tutorial extends Component {
 
 	render(){
 		const SidebarContainer = BaseContainer(Sidebar)
-		// const selected = this.props.session.home.selected
+		const selected = this.props.session.tutorial.selected
 		const menuItems = [
-			{name:'overview', page:'tutorial', selected:true},
-			{name:'units', page:'tutorial', selected:false},
-			{name:'community', page:'tutorial', selected:false}
+			{name:'overview', page:'tutorial', selected:(selected=='overview')},
+			{name:'comments', page:'tutorial', selected:(selected=='comments')}
 		]
 
 		const tutorial = this.props.tutorials[this.props.session.tutorial.slug]
-		// console.log('RENDER: '+JSON.stringify(tutorial))
 
 		return (
 			<div>
