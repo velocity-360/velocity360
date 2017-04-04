@@ -33,7 +33,7 @@ export default (props) => {
 						{ units.map((unit, i) => {
                                 let youtube = null
                                 if (unit.youtube != null)
-                                    youtube = (unit.youtube.length > 0) ? <div style={{height:200}}><object style={localStyle.youtube} data={'https://www.youtube.com/embed/'+unit.youtube}></object></div>
+                                    youtube = (unit.youtube.length > 0) ? <div style={{height:200}}><object style={localStyle.youtube} data={'https://www.youtube.com/embed/'+unit.youtube}></object></div> : null
 
 								return (
 									<div style={{marginBottom:24}} key={i}>
