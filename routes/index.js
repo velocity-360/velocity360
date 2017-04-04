@@ -18,7 +18,14 @@ var reactApps = {
 }
 
 router.get('/', function(req, res, next) {
-	var initialData = {}
+	var initialData = {
+		session:{
+			page: 'home',
+			home: {
+				selected: req.query.selected || 'tutorials'
+			}
+		}
+	}
 
 	controllers.account.currentUser(req)
 	.then(function(user){
