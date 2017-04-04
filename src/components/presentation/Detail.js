@@ -68,8 +68,6 @@ const localStyle = {
         border:'1px solid #ddd',
         width: 220,
         height: 180,
-        float:'none',
-        clear:'both',
         margin:'4px auto'
     }
 }
