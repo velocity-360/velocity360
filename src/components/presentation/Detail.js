@@ -36,7 +36,7 @@ export default (props) => {
 									<div style={{marginBottom:24}} key={i}>
 										<h4>{(i+1)+'. '+unit.title}</h4>
 										{unit.description}
-										{(youtube.length > 0) ? <div style={{height:200, marginTop:4}}><object style={localStyle.youtube} data={'https://www.youtube.com/embed/'+unit.youtube}></object></div> : null}
+										{(youtube.length > 0) ? <div style={{height:200, marginTop:12}}><object style={localStyle.youtube} data={'https://www.youtube.com/embed/'+unit.youtube}></object></div> : null}
 									</div>
 								)
 							})
