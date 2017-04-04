@@ -19,8 +19,12 @@ var reactApps = {
 
 router.get('/', function(req, res, next) {
 	var initialData = {}
-	controllers.tutorial
-	.find(null)
+
+	controllers.account.currentUser(req)
+	.then(function(user){
+		initialData['account'] = {currentUser: user}
+		return controllers.tutorial.find(null)
+	})
 	.then(function(tutorials){
 		var tutorialReducer = {
 			all: tutorials
@@ -58,8 +62,7 @@ router.get('/account', function(req, res, next) {
 		}
 	}	
 
-	controllers.account
-	.currentUser(req)
+	controllers.account.currentUser(req)
 	.then(function(user){
 		var reducer = {
 			currentUser: user
@@ -98,7 +101,7 @@ router.get('/:page', function(req, res, next) {
 
 router.get('/:page/:slug', function(req, res, next) {
 	var page = req.params.page
-	if (page == 'api'){
+	if (page == 'api' || page == 'auth'){
 		next()
 		return
 	}
@@ -124,8 +127,11 @@ router.get('/:page/:slug', function(req, res, next) {
 		},
 	}
 
-	controller
-	.find({slug: req.params.slug})
+	controllers.account.currentUser(req)
+	.then(function(user){
+		initialData['account'] = {currentUser: user}
+		return controller.find({slug: req.params.slug})
+	})
 	.then(function(entities){
 		var reducer = {
 			// all: entities

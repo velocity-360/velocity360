@@ -11,5 +11,4 @@ module.exports = {
 	TextUtils: TextUtils,
 	Request: Request,
 	Microservice: Microservice
-
 }
