@@ -13,9 +13,20 @@
 	font-size: 16px;
 }
 
-.description h3, h4 {
+.description h3 {
 	margin-bottom: 4px;
 	font-family: 'Pathway Gothic One'
+}
+
+.description h4 {
+	margin-top: 16px;
+	margin-bottom: 4px;
+	font-family: 'Pathway Gothic One'
+}
+
+.tutorial {
+	margin-top: 24px;
+	margin-bottom: 24px;
 }
 
 .entry-title h1 {
