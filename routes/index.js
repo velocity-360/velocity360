@@ -5,7 +5,6 @@ var React = require('react')
 var ReactDOMServer = require('react-dom/server')
 var apps = require('../public/dist/es5/apps')
 var store = require('../public/dist/es5/stores')
-
 var controllers = require('../controllers')
 
 var staticPages = {
@@ -19,7 +18,6 @@ var reactApps = {
 }
 
 router.get('/', function(req, res, next) {
-
 	var initialData = {}
 	controllers.tutorial
 	.find(null)
@@ -158,9 +156,7 @@ router.get('/:page/:slug', function(req, res, next) {
 			message: err.message
 		})
 	})
-
-//    res.render(req.params.page, null)
-    
 })
+
 
 module.exports = router

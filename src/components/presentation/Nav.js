@@ -14,7 +14,7 @@ export default (props) => {
 						<ul className="hidden-xs">
 							<li><a href="/"><div>Home</div></a></li>
 							<li><a href="/"><div>About</div></a></li>
-							<li><a href="#"><div>Login</div></a></li>
+							<li><a href="/login"><div>Login</div></a></li>
 						</ul>
 
 						<ul className="visible-xs" style={{background:'#000'}}>

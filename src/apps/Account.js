@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import { Nav, Sidebar, Footer, Detail } from '../components/presentation'
-import { BaseContainer, Tutorials } from '../components/containers'
+import { Nav, Sidebar, Footer } from '../components/presentation'
+import { BaseContainer } from '../components/containers'
 
 class Account extends Component {
 	componentWillMount(){
@@ -40,7 +40,7 @@ class Account extends Component {
 
 					<section id="content" style={{background:'#f9f9f9'}}>
 						<div className="content-wrap">
-							<Tutorials />
+
 						</div>
 					</section>
 
