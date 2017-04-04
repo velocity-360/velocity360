@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { TextUtils } from '../../utils'
 
 export default (props) => {
 
@@ -15,7 +16,7 @@ export default (props) => {
 							<li><a href="/"><div>Home</div></a></li>
 							<li><a href="/"><div>About</div></a></li>
 							<li>
-								{ (props.user) ? <a href="/account"><div>{props.user.firstName}</div></a> : <a href="/login"><div>Login</div></a> }
+								{ (props.user) ? <a href="/account"><div>{ TextUtils.capitalize(props.user.firstName) }</div></a> : <a href="/login"><div>Login</div></a> }
 							</li>
 							
 						</ul>

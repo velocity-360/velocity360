@@ -18,8 +18,8 @@ class Account extends Component {
 		const SidebarContainer = BaseContainer(Sidebar)
 		const selected = this.props.session.account.selected
 		const menuItems = [
-			{name:'overview', page:'account', selected:(selected=='overview')},
-			{name:'comments', page:'account', selected:(selected=='comments')}
+			{name:'tutorials', page:'account', selected:(selected=='tutorials')},
+			{name:'profile', page:'account', selected:(selected=='profile')}
 		]
 
 		// console.log('RENDER: '+JSON.stringify(post))

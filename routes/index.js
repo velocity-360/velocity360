@@ -57,7 +57,7 @@ router.get('/account', function(req, res, next) {
 		session:{
 			page:'account',
 			account: {
-				selected:'overview'
+				selected:'tutorials'
 			}
 		}
 	}	
