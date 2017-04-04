@@ -27,7 +27,7 @@ class Post extends Component {
 
 		return (
 			<div>
-				<Nav />
+				<Nav user={this.props.user} />
 				<div id="wrapper" className="clearfix">
 					<SidebarContainer withSlack={false} items={menuItems} />
 
@@ -55,9 +55,10 @@ class Post extends Component {
 
 const stateToProps = (state) => {
 	return {
+		account: state.account,
 		posts: state.post,
 		session: state.session
 	}
 }
 
-export default connect(stateToProps)(Post)
+export default connect(stateToProps)(BaseContainer(Post))

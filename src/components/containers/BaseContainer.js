@@ -175,6 +175,7 @@ const BaseContainer = (Container) => {
 			return (
 				<div>
 					<Container
+						user={this.props.account.currentUser}
 						fetchData={this.fetchData.bind(this)}
 						updateCredentials={this.updateCredentials.bind(this)}
 						register={this.register.bind(this)}

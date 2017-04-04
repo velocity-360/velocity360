@@ -27,7 +27,7 @@ class Home extends Component {
 
 		return (
 			<div>
-				<Nav />
+				<Nav user={this.props.user} />
 				<div id="wrapper" className="clearfix">
 					<SidebarContainer withSlack={true} items={menuItems} />
 
@@ -56,4 +56,4 @@ const stateToProps = (state) => {
 	}
 }
 
-export default connect(stateToProps)(Home)
+export default connect(stateToProps)(BaseContainer(Home))

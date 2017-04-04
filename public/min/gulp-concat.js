@@ -4511,8 +4511,6 @@ var login = function(event){
 		return
 	}
 
-	console.log('LOGIN: '+JSON.stringify(visitor))
-
     $.ajax({
         url: '/auth/login',
         type: 'POST',
@@ -4526,6 +4524,5 @@ var login = function(event){
 
 			alert(response.message)
         }
-    })	
-
+    })
 }

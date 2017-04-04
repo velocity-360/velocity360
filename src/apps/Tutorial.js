@@ -21,7 +21,7 @@ class Tutorial extends Component {
 
 		return (
 			<div>
-				<Nav />
+				<Nav user={this.props.user} />
 				<div id="wrapper" className="clearfix">
 					<SidebarContainer withSlack={false} items={menuItems} />
 
@@ -49,9 +49,10 @@ class Tutorial extends Component {
 
 const stateToProps = (state) => {
 	return {
+		account: state.account,
 		session: state.session,
 		tutorials: state.tutorial
 	}
 }
 
-export default connect(stateToProps)(Tutorial)
+export default connect(stateToProps)(BaseContainer(Tutorial))
