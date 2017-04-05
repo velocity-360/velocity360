@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import { Nav, Sidebar, Footer } from '../components/presentation'
+import { Nav, Sidebar, Footer, Preview } from '../components/presentation'
 import { BaseContainer } from '../components/containers'
 
 class Account extends Component {
@@ -10,7 +10,19 @@ class Account extends Component {
 	}
 
 	componentDidMount(){
+		if (this.props.user == null)
+			return
 
+		if (this.props.tutorials.all == null)
+			return
+
+		this.props.fetchData('tutorial', {subscribers:this.props.user.id})
+		.then(response => {
+			console.log('TUTORIALS: '+JSON.stringify(response))
+		})
+		.catch(err => {
+			console.log('ERROR: '+JSON.stringify(err))
+		})
 	}
 
 	render(){
@@ -23,6 +35,7 @@ class Account extends Component {
 		]
 
 		// console.log('RENDER: '+JSON.stringify(post))
+		const list = this.props.tutorials.all || []
 
 		return (
 			<div>
@@ -33,16 +46,26 @@ class Account extends Component {
 					<section id="content">
 						<div className="content-wrap">
 							<div className="container clearfix">
-								Account Page
+								<div className="col_two_third postcontent nobottommargin clearfix">
+									<div id="posts" className="events small-thumbs">
+
+										<div className="entry-title">
+											<h1>Tutorials</h1>
+										</div>
+										<hr />
+
+										{ list.map((tutorial, i) => {
+												<Preview key={tutorial.id} {...tutorial} />
+											})
+										}
+
+									</div>
+								</div>
 							</div>
 						</div>
+
 					</section>
 
-					<section id="content" style={{background:'#f9f9f9'}}>
-						<div className="content-wrap">
-
-						</div>
-					</section>
 
 					<Footer />
 				</div>
@@ -53,8 +76,8 @@ class Account extends Component {
 
 const stateToProps = (state) => {
 	return {
-		account: state.account,
-		posts: state.post,
+		// account: state.account,
+		tutorials: state.tutorial,
 		session: state.session
 	}
 }

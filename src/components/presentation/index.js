@@ -6,6 +6,7 @@ import TutorialPreview from './TutorialPreview'
 import PostPreview from './PostPreview'
 import Detail from './Detail'
 import Slack from './Slack'
+import Preview from './Preview'
 
 export {
 
@@ -16,6 +17,7 @@ export {
 	TutorialPreview,
 	PostPreview,
 	Detail,
-	Slack
+	Slack,
+	Preview
 	
 }

@@ -9,15 +9,16 @@ export default (state = initialState, action) => {
 
 	switch (action.type) {
 		case constants.TUTORIALS_RECEIVED:
-			// console.log('TUTORIALS_RECEIVED: '+JSON.stringify(action.data))
+			// {"type":"TUTORIALS_RECEIVED", "params":{"subscribers":"58ce633972c0ea1fce88e8ca"},"data":[]}
+			// console.log('TUTORIALS_RECEIVED: '+JSON.stringify(action))
 			newState['all'] = action.data
 
 			action.data.forEach((tutorial, i) => {
-				// if (newState[tutorial.id] == null){
-				// 	newState[tutorial.id] = tutorial
-				// 	newState[tutorial.slug] = tutorial
-				// 	updatedList.push(tutorial)
-				// }
+				if (newState[tutorial.id] == null){
+					newState[tutorial.id] = tutorial
+					newState[tutorial.slug] = tutorial
+					//updatedList.push(tutorial)
+				}
 			})
 
 			return newState
