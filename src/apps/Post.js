@@ -32,11 +32,30 @@ class Post extends Component {
 	}
 
 	submitComment(){
-		console.log('submitComment: '+JSON.stringify(this.state.comment))
 		if (this.state.comment.text.length == 0){
 			alert('Please enter a comment')
 			return
 		}
+
+		const post = this.props.posts[this.props.session.post.slug]
+
+		let comment = Object.assign({}, comment)
+		comment['thread'] = post.id
+		comment['source'] = {
+			id: this.props.user.id,
+			username: this.props.user.username,
+			image: this.props.user.image
+		}
+
+
+		console.log('submitComment: '+JSON.stringify(comment))
+		this.props.postData('comment', comment)
+		.then(response => {
+			console.log('RESPONSE: '+JSON.stringify(response))
+		})
+		.catch(err => {
+			console.log('ERROR: '+err.message)
+		})
 	}
 
 	render(){

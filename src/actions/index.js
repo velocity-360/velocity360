@@ -172,7 +172,14 @@ export default {
 		return dispatch => {
 			return dispatch(getData('/api/post', params, constants.POSTS_RECEIVED))
 		}
-	},	
+	},
+
+	submitComment: (params) => {
+		params['site'] = '58da2bc0d644e40011da467c'
+		return dispatch => {
+			return dispatch(postData('https://velocity-microservices.herokuapp.com/api/comment', params, constants.COMMENT_CREATED))
+		}
+	},
 
 	submitStripeCharge: (token, product) => {
 		return dispatch => {

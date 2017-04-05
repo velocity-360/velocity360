@@ -151,7 +151,15 @@ const BaseContainer = (Container) => {
 			if (resource == 'tutorial'){
 				return this.props.fetchTutorials(params)
 			}
+		}
 
+		postData(resource, params, event){
+			if (event)
+				event.preventDefault()
+
+			if (resource == 'comment'){
+				return this.props.submitComment(params)
+			}
 		}
 
 		updateData(resource, entity, params){ // 'entity' is the original object being updated, params is updates
@@ -175,6 +183,7 @@ const BaseContainer = (Container) => {
 					<Container
 						user={this.props.account.currentUser}
 						fetchData={this.fetchData.bind(this)}
+						postData={this.postData.bind(this)}
 						updateData={this.updateData.bind(this)}
 						updateCredentials={this.updateCredentials.bind(this)}
 						register={this.register.bind(this)}
@@ -200,6 +209,7 @@ const BaseContainer = (Container) => {
 		return {
 			fetchTutorials: (params) => dispatch(actions.fetchTutorials(params)),
 			fetchPosts: (params) => dispatch(actions.fetchPosts(params)),
+			submitComment: (params) => dispatch(actions.submitComment(params)),
 			selectMenuItem: (item) => dispatch(actions.selectMenuItem(item)),
 	        submitStripeCard: (token) => dispatch(actions.submitStripeCard(token)),
 	        submitStripeCharge: (token, product) => dispatch(actions.submitStripeCharge(token, product)),

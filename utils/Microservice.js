@@ -61,6 +61,7 @@ var instance = {
 	},
 
 	create: function(resource, params){
+		params['site'] = config.site_id
 		return new Promise(function(resolve, reject){
 
 		})
