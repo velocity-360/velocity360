@@ -16,8 +16,7 @@ class Account extends Component {
 		if (this.props.tutorials.all != null)
 			return
 
-//		this.props.fetchData('tutorial', {subscribers:this.props.user.id})
-		this.props.fetchData('tutorial', null)
+		this.props.fetchData('tutorial', {subscribers:this.props.user.id})
 		.then(response => {
 			// console.log('TUTORIALS: '+JSON.stringify(response))
 		})
