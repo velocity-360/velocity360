@@ -43,12 +43,10 @@ module.exports = {
 		return new Promise(function(resolve, reject){
 			Tutorial.findById(id, function(err, tutorial) {
 				if (err) {
-					console.log('TEST 1')
 					reject(err)
 					return
 				}
 				
-				console.log('TEST 2: '+JSON.stringify(tutorial))
 				if (isRaw)
 					resolve(tutorial)
 				else

@@ -45,7 +45,6 @@ router.get('/:resource/:id', function(req, res, next) {
 		}
 		
 		else if (currentUser.accountType == 'premium'){
-			console.log('TEST 5: '+entity.link)
 			res.redirect(entity.link)
 		}
 		
@@ -57,7 +56,7 @@ router.get('/:resource/:id', function(req, res, next) {
 			res.redirect(entity.link)		
 	})
 	.catch(function(err){
-		console.log('TEST ERROR: '+err.message)
+		console.log('ERROR: '+err.message)
 		res.redirect('/')
 	})
 })
