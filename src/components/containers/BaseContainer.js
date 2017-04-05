@@ -151,6 +151,10 @@ const BaseContainer = (Container) => {
 			if (resource == 'tutorial'){
 				return this.props.fetchTutorials(params)
 			}
+
+			if (resource == 'comment'){
+				return this.props.fetchComments(params)
+			}
 		}
 
 		postData(resource, params, event){
@@ -209,6 +213,7 @@ const BaseContainer = (Container) => {
 		return {
 			fetchTutorials: (params) => dispatch(actions.fetchTutorials(params)),
 			fetchPosts: (params) => dispatch(actions.fetchPosts(params)),
+			fetchComments: (params) => dispatch(actions.fetchComments(params)),
 			submitComment: (params) => dispatch(actions.submitComment(params)),
 			selectMenuItem: (item) => dispatch(actions.selectMenuItem(item)),
 	        submitStripeCard: (token) => dispatch(actions.submitStripeCard(token)),

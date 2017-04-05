@@ -8,7 +8,7 @@ const postData = (path, data, actionType, payloadKey) => {
 //			const result = response.result
 			dispatch({
 				type: actionType,
-				[payloadKey]: response[payloadKey]
+				data: response.result || response.results
 			})
 
 			return response
@@ -171,6 +171,13 @@ export default {
 	fetchPosts: (params) => {
 		return dispatch => {
 			return dispatch(getData('/api/post', params, constants.POSTS_RECEIVED))
+		}
+	},
+
+	fetchComments: (params) => {
+		params['site'] = '58da2bc0d644e40011da467c'
+		return dispatch => {
+			return dispatch(getData('https://velocity-microservices.herokuapp.com/api/comment', params, constants.COMMENTS_RECEIVED))
 		}
 	},
 

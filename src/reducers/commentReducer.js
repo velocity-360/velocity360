@@ -6,6 +6,7 @@ var initialState = {
 
 export default (state = initialState, action) => {
 	let newState = Object.assign({}, state)
+	let all = Object.assign([], newState.all)
 
 	switch (action.type) {
 		case constants.COMMENTS_RECEIVED:
@@ -15,7 +16,8 @@ export default (state = initialState, action) => {
 
 		case constants.COMMENT_CREATED:
 			console.log('COMMENT_CREATED: '+JSON.stringify(action.data))
-			// newState['all'] = action.data
+			all.unshift(action.data)
+			newState['all'] = all
 			return newState
 
 		default:
