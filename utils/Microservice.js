@@ -58,8 +58,20 @@ var instance = {
 				resolve(response.body.result)
 			})
 		})
-	}
+	},
 
+	create: function(resource, params){
+		return new Promise(function(resolve, reject){
+
+		})
+	},
+
+
+	update: function(resource, id, params){
+		return new Promise(function(resolve, reject){
+
+		})
+	}
 }
 
 module.exports = function(credentials){
