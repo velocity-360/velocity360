@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
 			return newState
 
 		case constants.PROFILE_UPDDATED:
-			newState['currentUser'] = action.profile
+			newState['currentUser'] = action.data
 			return newState
 
 		default:

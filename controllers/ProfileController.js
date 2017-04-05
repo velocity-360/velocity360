@@ -213,16 +213,17 @@ module.exports = {
 	// },
 
 
-	put: function(id, params, completion){
-		Profile.findByIdAndUpdate(id, params, {new:true}, function(err, profile){
-			if (err){
-				completion({confirmation:'fail', message:err.message}, null);
-				return;
-			}
-			
-			completion(null, profile.summary());
-			return;
-		});		
+	put: function(id, params){
+		return new Promise(function(resolve, reject){
+			Profile.findByIdAndUpdate(id, params, {new:true}, function(err, profile){
+				if (err){
+					reject(err)
+					return
+				}
+
+				resolve(profile.summary())
+			})
+		})
 	},
 
 	delete: function(){

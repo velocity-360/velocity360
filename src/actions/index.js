@@ -51,10 +51,10 @@ const putData = (path, data, actionType, payloadKey) => {
 	return (dispatch) => APIManager
 		.handlePut(path, data)
 		.then((response) => {
-//			console.log('RESPONSE: '+JSON.stringify(response[payloadKey]))
+			// console.log('PUT RESPONSE: '+JSON.stringify(response))
 			dispatch({
 				type: actionType,
-				[payloadKey]: response[payloadKey]
+				data: response.result || response.results
 			})
 
 			return response
@@ -65,7 +65,6 @@ const putData = (path, data, actionType, payloadKey) => {
 				isLoading: false
 			})
 			throw err
-			// alert('ERROR: '+JSON.stringify(err))
 		})
 }
 

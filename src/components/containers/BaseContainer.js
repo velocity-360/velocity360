@@ -130,23 +130,6 @@ const BaseContainer = (Container) => {
             Stripe.showModalWithText(product.title+' - $'+product.price)
 	    }
 
-
-		updateData(req, entity, params){
-			const user = this.props.account.currentUser // every update requires login
-			if (user == null){
-				alert('Please register or log in.')
-				// Alert.showAlert({
-				// 	title: 'Oops',
-				// 	text: 'Please register or log in.'
-				// })
-				return
-			}
-
-			console.log('updateData: '+req+' == '+JSON.stringify(params))
-			if (req == 'profile')
-				return this.props.updateProfile(entity, params)			
-		}
-
 		selectMenuItem(item, event){
 			if (event != null){
 				event.preventDefault()
@@ -171,18 +154,33 @@ const BaseContainer = (Container) => {
 
 		}
 
+		updateData(resource, entity, params){ // 'entity' is the original object being updated, params is updates
+			if (this.props.account.currentUser == null){ // every update requires login
+				alert('Please register or log in.')
+				// Alert.showAlert({
+				// 	title: 'Oops',
+				// 	text: 'Please register or log in.'
+				// })
+				return
+			}
+
+			// console.log('updateData: '+resource+' == '+JSON.stringify(params))
+			if (resource == 'profile')
+				return this.props.updateProfile(entity, params)
+		}		
+
 		render(){
 			return (
 				<div>
 					<Container
 						user={this.props.account.currentUser}
 						fetchData={this.fetchData.bind(this)}
+						updateData={this.updateData.bind(this)}
 						updateCredentials={this.updateCredentials.bind(this)}
 						register={this.register.bind(this)}
 						subscribe={this.subscribe.bind(this)}
 						followTutorial={this.followTutorial.bind(this)}
 						showStripeModal={this.showStripeModal.bind(this)} 
-						updateData={this.updateData.bind(this)}
 						selectItem={this.selectMenuItem.bind(this)}
 						{...this.props} />
 				</div>

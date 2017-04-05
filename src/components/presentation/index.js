@@ -5,8 +5,11 @@ import Membership from './Membership'
 import TutorialPreview from './TutorialPreview'
 import PostPreview from './PostPreview'
 import Detail from './Detail'
-import Slack from './Slack'
 import Preview from './Preview'
+
+// these are not theme specific:
+import Slack from './Slack'
+import AccountForm from './AccountForm'
 
 export {
 
@@ -18,6 +21,7 @@ export {
 	PostPreview,
 	Detail,
 	Slack,
-	Preview
+	Preview,
+	AccountForm
 	
 }
