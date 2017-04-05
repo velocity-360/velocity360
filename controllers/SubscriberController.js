@@ -175,36 +175,36 @@ module.exports = {
 
 			completion(null, null)
 		})
-	},
+	}
 
-	currentVisitor: function(req){
-	    return new Promise(function (resolve, reject){
-			if (req.session == null){
-				resolve(null)
-				return
-			}
+	// currentVisitor: function(req){
+	//     return new Promise(function (resolve, reject){
+	// 		if (req.session == null){
+	// 			resolve(null)
+	// 			return
+	// 		}
 
-			if (req.session.visitor == null){
-				resolve(null)
-				return
-			}
+	// 		if (req.session.visitor == null){
+	// 			resolve(null)
+	// 			return
+	// 		}
 
-			var subscriberId = req.session.visitor
-			Subscriber.findById(subscriberId, function(err, subscriber){
-				if (err){
-					resolve(null)
-					return
-				}
+	// 		var subscriberId = req.session.visitor
+	// 		Subscriber.findById(subscriberId, function(err, subscriber){
+	// 			if (err){
+	// 				resolve(null)
+	// 				return
+	// 			}
 				
-				if (subscriber == null){
-					resolve(null)
-					return
-				}
+	// 			if (subscriber == null){
+	// 				resolve(null)
+	// 				return
+	// 			}
 
-				resolve(subscriber.summary())
-			})
-	    })
-	}	
+	// 			resolve(subscriber.summary())
+	// 		})
+	//     })
+	// }	
 
 }
 
