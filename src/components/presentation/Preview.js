@@ -4,7 +4,7 @@ export default (props) => {
 
 	return (
 		<div className="entry clearfix" style={{border:'none'}}>
-			<div className="entry-image hidden-sm">
+			<div className="entry-image hidden-sm" style={{width:140}}>
 				<a href="#">
 					<img src={'https://media-service.appspot.com/site/images/'+props.image+'?crop=360'} alt={'Velocity 360 | '+props.title} />
 				</a>
@@ -18,7 +18,7 @@ export default (props) => {
 					<li><a href="#">{props.category}</a></li>
 				</ul>
 				<div className="entry-content">
-					<a href="#" className="btn btn-info">View</a>
+					<a target="_blank" href={'/premium/tutorial/'+props.id} className="btn btn-info">View Files</a>
 				</div>
 			</div>
 		</div>

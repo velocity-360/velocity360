@@ -16,9 +16,10 @@ class Account extends Component {
 		if (this.props.tutorials.all != null)
 			return
 
-		this.props.fetchData('tutorial', {subscribers:this.props.user.id})
+//		this.props.fetchData('tutorial', {subscribers:this.props.user.id})
+		this.props.fetchData('tutorial', null)
 		.then(response => {
-			console.log('TUTORIALS: '+JSON.stringify(response))
+			// console.log('TUTORIALS: '+JSON.stringify(response))
 		})
 		.catch(err => {
 			console.log('ERROR: '+JSON.stringify(err))
@@ -34,7 +35,7 @@ class Account extends Component {
 			{name:'profile', page:'account', selected:(selected=='profile')}
 		]
 
-		// console.log('RENDER: '+JSON.stringify(post))
+		console.log('RENDER: '+JSON.stringify(this.props.tutorials.all))
 		const list = this.props.tutorials.all || []
 
 		return (
@@ -55,7 +56,7 @@ class Account extends Component {
 										<hr />
 
 										{ list.map((tutorial, i) => {
-												<Preview key={tutorial.id} {...tutorial} />
+												return <Preview key={tutorial.id} {...tutorial} />
 											})
 										}
 
