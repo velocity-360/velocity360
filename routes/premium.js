@@ -28,23 +28,35 @@ router.get('/:resource/:id', function(req, res, next) {
 		}
 	})
 	.then(function(entity){
-		if (currentUser == null)
+		if (currentUser == null){
+			console.log('TEST 1')
 			res.redirect('/')
+		}
 		
-		else if (entity == null)
+		else if (entity == null){
+			console.log('TEST 2')
 			res.redirect('/')
+		}
 		
-		else if (entity.link == 0) // there is no link
+		else if (entity.link == 0){ // there is no link
+			console.log('TEST 3')
 			res.redirect('/')
+		}
 
-		else if (entity.price == 0) // it's free, everyone can download
+		else if (entity.price == 0){ // it's free, everyone can download
+			console.log('TEST 4')
 			res.redirect(entity.link)
+		}
 		
-		else if (currentUser.accountType == 'premium')
+		else if (currentUser.accountType == 'premium'){
+			console.log('TEST 5')
 			res.redirect(entity.link)
+		}
 		
-		else if (entity.subscribers.indexOf(currentUser.id) == -1)
+		else if (entity.subscribers.indexOf(currentUser.id) == -1){
+			console.log('TEST 6')
 			res.redirect('/')
+		}
 		
 		else 
 			res.redirect(entity.link)		
