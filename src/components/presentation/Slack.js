@@ -9,10 +9,10 @@ export default (props) => {
 				Join our Slack channel to ask questions about tutorials and 
 				discuss general programming and industry topics:
 			</p>
-			<input placeholder="Name" style={localStyle.input} type="text" />
+			<input onChange={props.updateCredentials.bind(this, 'name')} placeholder="Name" style={localStyle.input} type="text" />
 			<br />
-			<input placeholder="Email" style={localStyle.input} type="text" />
-			<a href="#" className="button button-small button-circle button-border button-aqua">Join</a>
+			<input onChange={props.updateCredentials.bind(this, 'email')} placeholder="Email" style={localStyle.input} type="text" />
+			<a onClick={props.subscribe.bind(this)} href="#" className="button button-small button-circle button-border button-aqua">Join</a>
 		</div>
 	)
 }

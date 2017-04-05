@@ -1,8 +1,9 @@
 var express = require('express')
 var router = express.Router()
 var controllers = require('../controllers')
-var profileController = require('../controllers/ProfileController')
-var subscriberController = require('../controllers/SubscriberController')
+// var profileController = require('../controllers/ProfileController')
+// var subscriberController = require('../controllers/SubscriberController')
+var utils = require('../utils')
 
 router.get('/:action', function(req, res, next) {
 	var action = req.params.action
@@ -60,14 +61,22 @@ router.post('/:action', function(req, res, next) {
 	}
 
 	if (action == 'register') {
-		profileController
+		controllers.profile
 		.create(req.body)
 		.then(function(profile){
 			req.session.user = profile.id // install cookie with profile id set to 'user'
 			// EmailManager.sendEmail(process.env.BASE_EMAIL, 'dkwon@velocity360.io', 'New Registration', JSON.stringify(req.body))
+			utils.Microservice({site_id:process.env.SITE_ID}).sendEmail({
+				content: JSON.stringify(req.body),
+				fromemail: process.env.BASE_EMAIL,
+				fromname: 'Velocity 360',
+				recipient: 'dkwon@velocity360.io',
+				subject: 'New Registration'
+			})
+
 			res.json({
 				confirmation: 'success',
-				profile: profile
+				user: profile
 			})
 		})
 		.catch(function(err){
@@ -81,18 +90,28 @@ router.post('/:action', function(req, res, next) {
 	}
 
 	if (action == 'subscribe'){
-		subscriberController.post(body, function(err, result){
-			if (err){
-				return
-			}
-
-			req.session.visitor = result.id
-			// EmailManager.sendEmail(process.env.BASE_EMAIL, 'dkwon@velocity360.io', 'Slack Invitation Request', JSON.stringify(body))
-			res.json({
-				confirmation: 'success'
+		controllers.subscriber.create(req.body)
+		.then(function(result){
+			// REQUIRED PARAMS: content, fromemail, fromname, recipient, subject
+			utils.Microservice({site_id:process.env.SITE_ID}).sendEmail({
+				content: JSON.stringify(req.body),
+				fromemail: process.env.BASE_EMAIL,
+				fromname: 'Velocity 360',
+				recipient: 'dkwon@velocity360.io',
+				subject: 'Slack Invitation Request'
 			})
 
-			return
+			res.json({
+				confirmation: 'success',
+				result: result
+			})
+		})
+		.catch(function(err){
+			console.log('ERROR: '+err.message)
+			res.json({
+				confirmation: 'fail',
+				message: err
+			})
 		})
 
 		return

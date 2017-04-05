@@ -75,7 +75,9 @@ class Recent extends Component {
 						}
 
 						<div style={{marginTop:64}}>
-							<Slack />
+							<Slack 
+								subscribe={this.props.subscribe.bind(this)} 
+								updateCredentials={this.props.updateCredentials.bind(this)} />
 						</div>
 
 					</div>

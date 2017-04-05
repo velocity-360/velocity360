@@ -22,7 +22,7 @@ export default (props) => {
 					<nav id="primary-menu">
 						<ul>{menu}</ul>
 					</nav>
-					{ (props.withSlack == true) ? <Slack /> : null }
+					{ (props.withSlack == true) ? <Slack subscribe={props.subscribe.bind(this)} updateCredentials={props.updateCredentials.bind(this)} /> : null }
 				</div>
 			</div>
 		</header>

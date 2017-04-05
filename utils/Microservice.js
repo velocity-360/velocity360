@@ -8,7 +8,6 @@ var config = {
 }
 
 var instance = {
-
 	fetch: function(resource, params){
 		// console.log('FETCH: '+config.site_id)
 		// console.log('Resource: '+resource)
@@ -72,6 +71,29 @@ var instance = {
 		return new Promise(function(resolve, reject){
 
 		})
+	},
+
+	sendEmail: function(params){ // REQUIRED PARAMS: content, fromemail, fromename, reqcipient, subject
+		params['site'] = config.site_id
+		return new Promise(function(resolve, reject){
+			superagent
+			.post(BASE_URL+'/email/send')
+			.send(params)
+			.set('Accept', 'application/json')
+			.end(function(err, response){
+				if (err){
+					reject(err)
+					return
+				}
+
+				if (response.body.confirmation == 'fail'){
+					reject(new Error(response.body.message))
+					return
+				}
+
+				resolve(response.body.result)
+			})
+		})
 	}
 }
 
@@ -79,10 +101,7 @@ module.exports = function(credentials){
 	// console.log('TEST: '+JSON.stringify(credentials))
 	config['site_id'] = credentials['site_id']
 
-	// var config = {
-	// 	site_id: credentials.id,
-	// 	fetch: instanceMethods.fetch
-	// }
+
 
 	return instance
 }

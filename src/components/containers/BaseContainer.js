@@ -17,16 +17,31 @@ const BaseContainer = (Container) => {
 			}
 		}
 
-		updateCredentials(event){
+		updateCredentials(field, event){
+			// console.log('updateCredentials: '+field+' == '+event.target.value)
 			let updated = Object.assign({}, this.state.credentials)
-			updated[event.target.id] = event.target.value
+			updated[field] = event.target.value
 			this.setState({
 				credentials: updated
 			})
 		}
 
 		subscribe(event){
-			APIManager.handlePost('/account/subscribe', this.state.credentials)
+			if (event)
+				event.preventDefault()
+
+			if (this.state.credentials.name.length == 0){
+				alert('Please enter your name.')
+				return
+			}
+
+			if (this.state.credentials.email.length == 0){
+				alert('Please enter your email.')
+				return
+			}
+
+			APIManager
+			.handlePost('/auth/subscribe', this.state.credentials)
 			.then(response => {
 				alert('Thanks for Subscribing! We will send you an email shortly with an invitation to our Slack Chanel!')
 			})
@@ -39,7 +54,7 @@ const BaseContainer = (Container) => {
 			const user = this.props.account.currentUser
 			if (user == null){ // register first THEN follow tutorial:
 				APIManager
-				.handlePost('/account/register', this.state.credentials)
+				.handlePost('/auth/register', this.state.credentials)
 				.then(response => {
 					const profile = response.profile
 			        let subscribers = Object.assign([], tutorial.subscribers)
@@ -98,7 +113,7 @@ const BaseContainer = (Container) => {
 		register(event){
 			console.log('register: '+JSON.stringify(this.state.credentials))
 			APIManager
-			.handlePost('/account/register', this.state.credentials)
+			.handlePost('/auth/register', this.state.credentials)
 			.then(response => {
 				window.location.href = '/account'
 			})
@@ -235,6 +250,7 @@ const BaseContainer = (Container) => {
 
 	const dispatchToProps = (dispatch) => {
 		return {
+			// subscribe: (params) => dispatch(actions.subscribe(params)),
 			fetchTutorials: (params) => dispatch(actions.fetchTutorials(params)),
 			fetchPosts: (params) => dispatch(actions.fetchPosts(params)),
 			fetchComments: (params) => dispatch(actions.fetchComments(params)),

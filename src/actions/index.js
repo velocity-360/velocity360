@@ -1,15 +1,17 @@
 import constants from '../constants'
 import { APIManager } from '../utils'
 
-const postData = (path, data, actionType, payloadKey) => {
+const postData = (path, data, actionType) => {
 	return (dispatch) => APIManager
 		.handlePost(path, data)
 		.then((response) => {
 //			const result = response.result
-			dispatch({
-				type: actionType,
-				data: response.result || response.results
-			})
+			if (actionType != null){
+				dispatch({
+					type: actionType,
+					data: response.result || response.results
+				})
+			}
 
 			return response
 		})
@@ -27,11 +29,13 @@ const getData = (path, params, actionType) => {
 	return (dispatch) => APIManager
 		.handleGet(path, params)
 		.then((response) => {
-			dispatch({
-				type: actionType,
-				params: params, // can be null
-				data: response.results || response.result
-			})
+			if (actionType != null){
+				dispatch({
+					type: actionType,
+					params: params, // can be null
+					data: response.results || response.result
+				})
+			}
 
 			return response
 		})
@@ -47,15 +51,17 @@ const getData = (path, params, actionType) => {
 		})
 }
 
-const putData = (path, data, actionType, payloadKey) => {
+const putData = (path, data, actionType) => {
 	return (dispatch) => APIManager
 		.handlePut(path, data)
 		.then((response) => {
 			// console.log('PUT RESPONSE: '+JSON.stringify(response))
-			dispatch({
-				type: actionType,
-				data: response.result || response.results
-			})
+			if (actionType != null){
+				dispatch({
+					type: actionType,
+					data: response.result || response.results
+				})
+			}
 
 			return response
 		})
@@ -206,4 +212,9 @@ export default {
 		}
 	}
 
+	// slackRequest: (params) => {
+	// 	return dispatch => {
+	// 		return dispatch(postData('/auth/subscribe', params, null))
+	// 	}
+	// }
 }
