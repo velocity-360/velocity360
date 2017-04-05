@@ -13,7 +13,7 @@ class Account extends Component {
 		if (this.props.user == null)
 			return
 
-		if (this.props.tutorials.all == null)
+		if (this.props.tutorials.all != null)
 			return
 
 		this.props.fetchData('tutorial', {subscribers:this.props.user.id})
