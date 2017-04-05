@@ -49,7 +49,7 @@ router.get('/:resource/:id', function(req, res, next) {
 		}
 		
 		else if (currentUser.accountType == 'premium'){
-			console.log('TEST 5')
+			console.log('TEST 5: '+entity.link)
 			res.redirect(entity.link)
 		}
 		
