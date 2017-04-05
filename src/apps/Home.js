@@ -24,6 +24,16 @@ class Home extends Component {
 		if (selected == 'blog')
 			content = <Posts />
 
+		if (selected == 'community')
+			content = (
+				<div className="container clearfix">
+					<div className="heading-block center">
+						<h1 style={{fontFamily:'Pathway Gothic One'}}>Community</h1>
+					</div>
+
+				</div>				
+			)
+
 		return (
 			<div>
 				<Nav user={this.props.user} />
