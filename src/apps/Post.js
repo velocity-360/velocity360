@@ -1,9 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Nav, Sidebar, Footer, Detail } from '../components/presentation'
+import { Nav, Sidebar, Footer, Detail, Comments } from '../components/presentation'
 import { BaseContainer, Tutorials, Posts, Recent } from '../components/containers'
 
 class Post extends Component {
+	constructor(){
+		super()
+		this.state = {
+			comment: {
+				text: ''
+			}
+		}
+	}
+
 	componentWillMount(){
 
 	}
@@ -12,8 +21,25 @@ class Post extends Component {
 
 	}
 
+	changeComment(field, event){
+//		console.log('changeComment: '+field+' == '+event.target.value)
+		let updated = Object.assign({}, this.state.comment)
+		updated[field] = event.target.value
+		this.setState({
+			comment: updated
+		})
+
+	}
+
+	submitComment(){
+		console.log('submitComment: '+JSON.stringify(this.state.comment))
+		if (this.state.comment.text.length == 0){
+			alert('Please enter a comment')
+			return
+		}
+	}
+
 	render(){
-//		console.log('SLUG: '+this.props.session.post.slug)
 		const SidebarContainer = BaseContainer(Sidebar)
 		const selected = this.props.session.post.selected
 		const menuItems = [
@@ -24,6 +50,23 @@ class Post extends Component {
 		const post = this.props.posts[this.props.session.post.slug]
 		// console.log('RENDER: '+JSON.stringify(post))
 
+		let content = null
+		if (selected == 'overview'){
+			content = (
+				<div className="container clearfix">
+					<Detail {...post} />
+					<Recent />
+				</div>
+			)
+		}
+		if (selected == 'comments'){
+			content = (
+				<Comments 
+					onChangeComment={this.changeComment.bind(this)}
+					onSubmit={this.submitComment.bind(this)} />
+			)			
+		}
+
 		return (
 			<div>
 				<Nav user={this.props.user} />
@@ -32,10 +75,7 @@ class Post extends Component {
 
 					<section id="content">
 						<div className="content-wrap">
-							<div className="container clearfix">
-								<Detail {...post} />
-								<Recent />
-							</div>
+							{content}
 						</div>
 					</section>
 

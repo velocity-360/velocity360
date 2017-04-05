@@ -6,6 +6,7 @@ import TutorialPreview from './TutorialPreview'
 import PostPreview from './PostPreview'
 import Detail from './Detail'
 import Preview from './Preview'
+import Comments from './Comments'
 
 // these are not theme specific:
 import Slack from './Slack'
@@ -22,6 +23,7 @@ export {
 	Detail,
 	Slack,
 	Preview,
-	AccountForm
+	AccountForm,
+	Comments
 	
 }
