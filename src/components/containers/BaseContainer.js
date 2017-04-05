@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions'
-import { TextUtils, Stripe, APIManager } from '../../utils'
+import { Stripe, APIManager } from '../../utils'
 
 const BaseContainer = (Container) => {
 
