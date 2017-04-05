@@ -24,7 +24,7 @@ router.get('/:resource/:id', function(req, res, next) {
 			return null
 		else {
 			currentUser = profile
-			return controller.find({id: resourceId})
+			return controller.findById(resourceId)
 		}
 	})
 	.then(function(entity){

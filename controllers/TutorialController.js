@@ -40,7 +40,16 @@ module.exports = {
 	},
 
 	findById: function(id){
-
+		return new Promise(function(resolve, reject){			
+			Tutorial.findById(id, function(err, tutorial) {
+				if (err) {
+					reject(err)
+					return
+				}
+				
+				resolve(convertToJson(tutorial))
+			})
+		})
 	},
 
 	create: function(params, completion){
