@@ -62,7 +62,7 @@ router.get('/:resource/:id', function(req, res, next) {
 			res.redirect(entity.link)		
 	})
 	.catch(function(err){
-		console.log('TEST ERROR')
+		console.log('TEST ERROR: '+err.message)
 		res.redirect('/')
 	})
 })
