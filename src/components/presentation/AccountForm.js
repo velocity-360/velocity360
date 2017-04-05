@@ -23,7 +23,7 @@ export default (props) => {
 								{ (initial.image.indexOf('http') > -1) ? <img style={{marginBottom:6}} src={initial.image+'=s120-c'} /> : null }
 								Profile Image
 							</div>
-							<a href="#" className="button button-mini button-circle button-red">Upload Image</a>
+							<button className="button button-mini button-circle button-red">Upload Image</button>
 						</Dropzone>
 					</div>
 				</div>
