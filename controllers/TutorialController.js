@@ -39,7 +39,7 @@ module.exports = {
 		})
 	},
 
-	findById: function(id){
+	findById: function(id, isRaw){
 		return new Promise(function(resolve, reject){
 			Tutorial.findById(id, function(err, tutorial) {
 				if (err) {
@@ -48,8 +48,11 @@ module.exports = {
 					return
 				}
 				
-				console.log('TEST 1'+JSON.stringify(tutorial))
-				resolve(tutorial.summary())
+				console.log('TEST 2: '+JSON.stringify(tutorial))
+				if (isRaw)
+					resolve(tutorial)
+				else
+					resolve(tutorial.summary())
 			})
 		})
 	},
