@@ -15,10 +15,6 @@ class Account extends Component {
 	}
 
 	componentWillMount(){
-
-	}
-
-	componentDidMount(){
 		if (this.props.user == null)
 			return
 
@@ -27,7 +23,9 @@ class Account extends Component {
 		this.setState({
 			updatedProfile: updated
 		})
+	}
 
+	componentDidMount(){
 		if (this.props.tutorials.all != null)
 			return
 
@@ -92,8 +90,8 @@ class Account extends Component {
 		const SidebarContainer = BaseContainer(Sidebar)
 		const selected = this.props.session.account.selected
 		const menuItems = [
-			{name:'tutorials', page:'account', selected:(selected=='tutorials')},
-			{name:'profile', page:'account', selected:(selected=='profile')}
+			{name:'profile', page:'account', selected:(selected=='profile')},
+			{name:'tutorials', page:'account', selected:(selected=='tutorials')}
 		]
 
 		// console.log('RENDER: '+JSON.stringify(this.props.tutorials.all))

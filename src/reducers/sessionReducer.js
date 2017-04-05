@@ -14,7 +14,7 @@ var initialState = {
 		slug: ''
 	},
 	account: {
-		selected: 'tutorials'
+		selected: 'profile'
 	}
 }
 
