@@ -61,7 +61,7 @@ class Account extends Component {
 
 		this.props.updateData('profile', this.props.user, updated)
 		.then(response => {
-			alert('Profile Updated')
+			// alert('Profile Updated')
 		})
 		.catch(err => {
 			alert('Error: '+err.message)
@@ -69,10 +69,9 @@ class Account extends Component {
 	}
 
 	uploadImage(files){
-		console.log('uploadImage: '+files[0].name)
 		APIManager.upload(files[0], (err, response) => {
 			if (err){
-				console.log('error: '+err.message)
+				alert(err.message)
 				return
 			}
 
