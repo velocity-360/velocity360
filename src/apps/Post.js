@@ -32,35 +32,11 @@ class Post extends Component {
 	}
 
 	submitComment(){
-		if (this.props.user == null){
-			alert('Please login or register to submit comments.')
-			return
-		}
-
-		if (this.state.comment.text.length == 0){
-			alert('Please enter a comment')
-			return
-		}
-
 		const post = this.props.posts[this.props.session.post.slug]
 		if (post == null)
 			return
-		
-		let updated = Object.assign({}, this.state.comment)
-		updated['thread'] = post.id
-		updated['source'] = {
-			id: this.props.user.id,
-			username: this.props.user.username,
-			image: this.props.user.image
-		}
 
-		this.props.postData('comment', updated)
-		.then(response => {
-			// console.log('RESPONSE: '+JSON.stringify(response))
-		})
-		.catch(err => {
-			console.log('ERROR: '+err.message)
-		})
+		this.props.onSubmitComment(this.state.comment, post)
 	}
 
 	componentDidUpdate(){
@@ -76,7 +52,7 @@ class Post extends Component {
 		if (this.props.comments.all != null)
 			return
 
-		this.props.fetchData('comment', {thread:post.id})
+		this.props.fetchData('comment', {subject:post.id})
 	}
 
 	render(){

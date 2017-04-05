@@ -72,6 +72,29 @@ const BaseContainer = (Container) => {
 	        })
 		}
 
+		submitComment(comment, subject){
+			const user = this.props.account.currentUser
+			if (user == null){
+				alert('Please login or register to submit comments.')
+				return
+			}
+
+			if (comment.text.length == 0){
+				alert('Please enter a comment')
+				return
+			}
+			
+			let updated = Object.assign({}, comment)
+			updated['subject'] = subject.id
+			updated['source'] = {
+				id: user.id,
+				username: user.username,
+				image: user.image
+			}
+
+			this.postData('comment', updated)
+		}
+
 		register(event){
 			console.log('register: '+JSON.stringify(this.state.credentials))
 			APIManager
@@ -189,6 +212,7 @@ const BaseContainer = (Container) => {
 						fetchData={this.fetchData.bind(this)}
 						postData={this.postData.bind(this)}
 						updateData={this.updateData.bind(this)}
+						onSubmitComment={this.submitComment.bind(this)}
 						updateCredentials={this.updateCredentials.bind(this)}
 						register={this.register.bind(this)}
 						subscribe={this.subscribe.bind(this)}

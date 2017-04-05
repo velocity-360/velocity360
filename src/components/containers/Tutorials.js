@@ -4,7 +4,6 @@ import { TutorialPreview } from '../presentation'
 import BaseContainer from './BaseContainer'
 
 class Tutorials extends Component {
-
 	componentDidMount(){
 		if (this.props.tutorials.all != null)
 			return
