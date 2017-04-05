@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { Nav, Sidebar, Membership, Footer } from '../components/presentation'
 import { BaseContainer, Tutorials, Posts } from '../components/containers'

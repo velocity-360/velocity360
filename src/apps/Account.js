@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { Nav, Sidebar, Footer, Preview } from '../components/presentation'
 import { BaseContainer } from '../components/containers'
@@ -34,7 +33,7 @@ class Account extends Component {
 			{name:'profile', page:'account', selected:(selected=='profile')}
 		]
 
-		console.log('RENDER: '+JSON.stringify(this.props.tutorials.all))
+		// console.log('RENDER: '+JSON.stringify(this.props.tutorials.all))
 		const list = this.props.tutorials.all || []
 
 		return (
