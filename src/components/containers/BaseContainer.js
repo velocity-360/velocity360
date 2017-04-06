@@ -203,6 +203,10 @@ const BaseContainer = (Container) => {
 			if (event)
 				event.preventDefault()
 
+			if (resource == 'profile'){
+				return this.props.fetchProfiles(params)
+			}
+
 			if (resource == 'post'){
 				return this.props.fetchPosts(params)
 			}
@@ -271,6 +275,7 @@ const BaseContainer = (Container) => {
 
 	const dispatchToProps = (dispatch) => {
 		return {
+			fetchProfiles: (params) => dispatch(actions.fetchProfiles(params)),
 			fetchTutorials: (params) => dispatch(actions.fetchTutorials(params)),
 			fetchPosts: (params) => dispatch(actions.fetchPosts(params)),
 			fetchComments: (params) => dispatch(actions.fetchComments(params)),

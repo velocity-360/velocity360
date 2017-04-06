@@ -19,8 +19,10 @@ class Home extends Component {
 		// console.log('FETCH COMMENTS: ')
 		this.props.fetchData('comment', {limit:3})
 		.then(response => {
+			return this.props.fetchData('profile', {limit:3}) // fetch featured members
+		})
+		.then(response => {
 			console.log('RESPONSE: '+JSON.stringify(response))
-			// fetch featured members
 		})
 		.catch(err => {
 			console.log('ERROR: '+err.message)
@@ -44,6 +46,7 @@ class Home extends Component {
 			content = <Posts />
 
 		const comments = this.props.comments.all || []
+		const members = this.props.profiles.all || []
 
 		if (selected == 'community'){
 			content = (
@@ -88,37 +91,26 @@ class Home extends Component {
 							</div>
 
 							<div id="home-recent-news">
+
+								{ members.map((member, i) => {
+										return (
+											<div key={member.id} className="spost clearfix">
+												<div className="entry-image">
+													<a href="#"><img src={(member.image.length < 10) ? '/images/usericon.png' : member.image+'=s72-c'} alt={'Velocity 360 | '+member.username} /></a>
+												</div>
+												<div className="entry-c">
+													<div className="entry-title">
+														<h4><a href="#">{member.username}</a></h4>
+													</div>
+													<ul className="entry-meta">
+														<li>10th July 2014</li>
+													</ul>
+												</div>
+											</div>
+										)
+									})
+								}							
 							
-								<div className="spost clearfix">
-									<div className="entry-image">
-										<a href="#"><img src="images/magazine/small/5.jpg" alt="" /></a>
-									</div>
-									<div className="entry-c">
-										<div className="entry-title">
-											<h4><a href="#">Planes: Fire And Rescue</a></h4>
-										</div>
-										<ul className="entry-meta">
-											<li><i className="icon-calendar3"></i> 10th July 2014</li>
-											<li><a href="#"><i className="icon-comments"></i> 43</a></li>
-										</ul>
-									</div>
-								</div>
-
-								<div className="spost clearfix">
-									<div className="entry-image">
-										<a href="#"><img src="images/magazine/small/6.jpg" alt="" /></a>
-									</div>
-									<div className="entry-c">
-										<div className="entry-title">
-											<h4><a href="#">Planes: Fire And Rescue</a></h4>
-										</div>
-										<ul className="entry-meta">
-											<li><i className="icon-calendar3"></i> 10th July 2014</li>
-											<li><a href="#"><i className="icon-comments"></i> 43</a></li>
-										</ul>
-									</div>
-								</div>
-
 							</div>
 						</div>
 					</div>
@@ -155,6 +147,7 @@ class Home extends Component {
 
 const stateToProps = (state) => {
 	return {
+		profiles: state.profile,
 		comments: state.comment,
 		session: state.session
 	}

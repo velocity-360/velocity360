@@ -174,6 +174,12 @@ export default {
 		}
 	},
 	
+	fetchProfiles: (params) => {
+		return dispatch => {
+			return dispatch(getData('/api/profile', params, constants.PROFILES_RECEIVED))
+		}
+	},
+
 	updateProfile: (profile, params) => {
 		return dispatch => {
 			return dispatch(putData('/api/profile/'+profile.id, params, constants.PROFILE_UPDDATED, 'profile'))

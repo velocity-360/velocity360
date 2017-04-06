@@ -4,6 +4,7 @@ import courseReducer from './courseReducer'
 import tutorialReducer from './tutorialReducer'
 import postReducer from './postReducer'
 import commentReducer from './commentReducer'
+import profileReducer from './profileReducer'
 
 export {
 
@@ -12,6 +13,7 @@ export {
 	courseReducer,
 	tutorialReducer,
 	postReducer,
-	commentReducer
+	commentReducer,
+	profileReducer
 	
 }
