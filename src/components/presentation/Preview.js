@@ -14,7 +14,7 @@ export default (props) => {
 					<h2><a href={'/'+props.schema+'/'+props.slug}>{props.title}</a></h2>
 				</div>
 				<ul className="entry-meta clearfix">
-					<li><a href="#">11:00 - 19:00</a></li>
+					<li><a href="#">{props.posts.length} Units</a></li>
 					<li><a href="#">{props.category}</a></li>
 				</ul>
 				<div className="entry-content">
