@@ -1,5 +1,23 @@
 import constants from '../constants'
 import { APIManager } from '../utils'
+import Microservice from 'microservice-client'
+
+const sendMicroservice = (resource, params, actionType) => {
+	return dispatch => Microservice({site_id:'58da2bc0d644e40011da467c'}).create(resource, params)
+		.then(response => {
+			// console.log('Microservice RESPONSE: '+JSON.stringify(response))
+			if (actionType != null){
+				dispatch({
+					type: actionType,
+					data: response.result || response.results
+				})
+			}
+		})
+		.catch(err => {
+			console.log('Microservice ERROR: '+err.message)
+			throw err
+		})
+}
 
 const postData = (path, data, actionType) => {
 	return (dispatch) => APIManager
@@ -188,9 +206,9 @@ export default {
 	},
 
 	submitComment: (params) => {
-		params['site'] = '58da2bc0d644e40011da467c'
 		return dispatch => {
-			return dispatch(postData('https://velocity-microservices.herokuapp.com/api/comment', params, constants.COMMENT_CREATED))
+			// return dispatch(postData('https://velocity-microservices.herokuapp.com/api/comment', params, constants.COMMENT_CREATED))
+			return dispatch(sendMicroservice('comment', params, constants.COMMENT_CREATED))
 		}
 	},
 

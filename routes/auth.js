@@ -1,8 +1,7 @@
 var express = require('express')
 var router = express.Router()
+var Microservice = require('microservice-client')({site_id:process.env.SITE_ID})
 var controllers = require('../controllers')
-// var profileController = require('../controllers/ProfileController')
-// var subscriberController = require('../controllers/SubscriberController')
 var utils = require('../utils')
 
 router.get('/:action', function(req, res, next) {
@@ -21,7 +20,6 @@ router.get('/:action', function(req, res, next) {
 				confirmation: 'fail',
 				message: err.message
 			})
-
 		})
 		return
 	}
@@ -66,7 +64,7 @@ router.post('/:action', function(req, res, next) {
 		.then(function(profile){
 			req.session.user = profile.id // install cookie with profile id set to 'user'
 			// EmailManager.sendEmail(process.env.BASE_EMAIL, 'dkwon@velocity360.io', 'New Registration', JSON.stringify(req.body))
-			utils.Microservice({site_id:process.env.SITE_ID}).sendEmail({
+			Microservice.sendEmail({
 				content: JSON.stringify(req.body),
 				fromemail: process.env.BASE_EMAIL,
 				fromname: 'Velocity 360',
@@ -93,7 +91,7 @@ router.post('/:action', function(req, res, next) {
 		controllers.subscriber.create(req.body)
 		.then(function(result){
 			// REQUIRED PARAMS: content, fromemail, fromname, recipient, subject
-			utils.Microservice({site_id:process.env.SITE_ID}).sendEmail({
+			Microservice.sendEmail({
 				content: JSON.stringify(req.body),
 				fromemail: process.env.BASE_EMAIL,
 				fromname: 'Velocity 360',

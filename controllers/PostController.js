@@ -1,5 +1,5 @@
-var Microservice = require('../utils/Microservice')
-
+//var Microservice = require('../utils/Microservice')
+var Microservice = require('microservice-client')
 
 module.exports = {
 	find: function(params, token){
