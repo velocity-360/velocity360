@@ -51,7 +51,10 @@ const BaseContainer = (Container) => {
 			})
 		}
 
-		followTutorial(tutorial){
+		followTutorial(tutorial, event){
+			if (event)
+				event.preventDefault()
+
 			const user = this.props.account.currentUser
 			if (user == null){ // register first THEN follow tutorial:
 				APIManager

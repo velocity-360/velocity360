@@ -117,8 +117,11 @@ router.put('/:resource/:id', function(req, res, next){
 		return
 	}
 
+	console.log('PUT: '+id+', '+JSON.stringify(req.body))
+
 	controller
-	.put(id, req.body, req.session.token)
+//	.put(id, req.body, req.session.token)
+	.put(id, req.body, null)
 	.then(function(result){
 		res.json({
 			confirmation: 'success',
@@ -128,6 +131,7 @@ router.put('/:resource/:id', function(req, res, next){
 		return
 	})
 	.catch(function(err){
+		console.log('ERROR: '+err.message)
 		res.json({
 			confirmation: 'fail',
 			message: err

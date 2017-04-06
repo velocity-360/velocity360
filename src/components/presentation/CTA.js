@@ -7,7 +7,7 @@ export default (props) => {
 			${props.price+'.00'}
 			<hr />
 			<p style={{marginBottom:0}}>Purchase this tutorial for ${props.price} and receive all videos, code samples and access to the forum where people post questions and answers.</p>
-			<a style={{marginTop:12}} href="#" className="button button-circle button-dark">Purchase, ${props.price}</a>
+			<a onClick={props.onSubmit.bind(this, props)} style={{marginTop:12}} href="#" className="button button-circle button-dark">Purchase, ${props.price}</a>
 		</div>
 	)
 
@@ -16,7 +16,7 @@ export default (props) => {
 			<h3>Subscribed</h3>
 			<hr />
 			<p style={{marginBottom:0}}>You are subscribed to this tutorial. To access, click the link below:</p>
-			<a style={{marginTop:12}} href="#" className="button button-circle button-dark">Access Tutorial</a>
+			<a style={{marginTop:12}} href={'/premium/tutorial/'+props.id} className="button button-circle button-dark">Access Tutorial</a>
 		</div>
 	)
 
@@ -25,7 +25,7 @@ export default (props) => {
 			<h3>Premium Access</h3>
 			<hr />
 			<p style={{marginBottom:0}}>As a premium member, you can subscribe to this tutorial by clicking the link below:</p>
-			<a style={{marginTop:12}} href="#" className="button button-circle button-dark">Subscribe</a>
+			<a onClick={props.onSubmit.bind(this, props)} style={{marginTop:12}} href="#" className="button button-circle button-dark">Subscribe</a>
 		</div>
 	)
 
@@ -34,7 +34,7 @@ export default (props) => {
 			<h3>Subscribe</h3>
 			<hr />
 			<p style={{marginBottom:0}}>To subscribe to this tutorial, click the link below:</p>
-			<a style={{marginTop:12}} href="#" className="button button-circle button-dark">Subscribe</a>
+			<a onClick={props.onSubmit.bind(this, props)} style={{marginTop:12}} href="#" className="button button-circle button-dark">Subscribe</a>
 		</div>
 	)
 

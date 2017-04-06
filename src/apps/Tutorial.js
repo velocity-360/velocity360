@@ -50,6 +50,11 @@ class Tutorial extends Component {
 		this.props.fetchData('comment', {subject:tutorial.id})
 	}
 
+	purchaseTutorial(event){
+		event.preventDefault()
+		console.log('purchaseTutorial')
+	}
+
 	renderCta(){
 		const user = this.props.user // can be null
 		const tutorial = this.props.tutorials[this.props.session.tutorial.slug]
@@ -57,7 +62,7 @@ class Tutorial extends Component {
 			return null
 
 		if (user == null) // not logged in
-			return (tutorial.price == 0) ? null : <CTA layout="purchase" {...tutorial} /> 
+			return (tutorial.price == 0) ? null : <CTA onSubmit={this.purchaseTutorial.bind(this)} layout="purchase" {...tutorial} /> 
 
 		// User logged in:
 		if (tutorial.subscribers.indexOf(user.id) > -1) // already subscribed
@@ -65,12 +70,12 @@ class Tutorial extends Component {
 
 		// Not subscribed:
 		if (user.accountType == 'premium')
-			return <CTA layout="premium" {...tutorial} />
+			return <CTA onSubmit={this.props.followTutorial.bind(this)} layout="premium" {...tutorial} />
 		
 		if (tutorial.price == 0)
-			return <CTA layout="subscribe" {...tutorial} />
+			return <CTA onSubmit={this.props.followTutorial.bind(this)} layout="subscribe" {...tutorial} />
 
-		return <CTA layout="purchase" {...tutorial} />
+		return <CTA onSubmit={this.purchaseTutorial.bind(this)} layout="purchase" {...tutorial} />
 	}
 
 	render(){

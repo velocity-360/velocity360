@@ -68,18 +68,20 @@ module.exports = {
 		})
 	},
 
-	put: function(id, params, completion){
+	put: function(id, params, token){
 		if (params.title != null)
 			params['slug'] = TextUtils.slugVersion(params.title)
 
-		Tutorial.findByIdAndUpdate(id, params, {new:true}, function(err, tutorial){
-			if (err){
-				completion({confirmation:'fail', message:err.message}, null)
+		return new Promise(function(resolve, reject){
+			Tutorial.findByIdAndUpdate(id, params, {new:true}, function(err, tutorial){
+				if (err){
+					reject(err)
+					return
+				}
+				
+				resolve(tutorial.summary())
 				return
-			}
-			
-			completion(null, tutorial.summary())
-			return
+			})
 		})
 	},
 
