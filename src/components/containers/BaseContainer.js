@@ -12,13 +12,14 @@ const BaseContainer = (Container) => {
 				credentials: {
 					name: '',
 					email: '',
+					username: '',
 					password: ''
 				}
 			}
 		}
 
 		updateCredentials(field, event){
-			// console.log('updateCredentials: '+field+' == '+event.target.value)
+			console.log('updateCredentials: '+field+' == '+event.target.value)
 			let updated = Object.assign({}, this.state.credentials)
 			updated[field] = event.target.value
 			this.setState({
@@ -117,18 +118,19 @@ const BaseContainer = (Container) => {
 		}
 
 		register(event){
-			console.log('register: '+JSON.stringify(this.state.credentials))
+			if (event)
+				event.preventDefault()
+
 			APIManager
 			.handlePost('/auth/register', this.state.credentials)
 			.then(response => {
+				// console.log('register: '+JSON.stringify(response))
 				window.location.href = '/account'
 			})
 			.catch(err => {
 				alert('ERROR: '+err)
-
 			})
 		}
-
 
 	    showStripeModal(product, event){
 	        event.preventDefault()
@@ -256,7 +258,6 @@ const BaseContainer = (Container) => {
 
 	const dispatchToProps = (dispatch) => {
 		return {
-			// subscribe: (params) => dispatch(actions.subscribe(params)),
 			fetchTutorials: (params) => dispatch(actions.fetchTutorials(params)),
 			fetchPosts: (params) => dispatch(actions.fetchPosts(params)),
 			fetchComments: (params) => dispatch(actions.fetchComments(params)),

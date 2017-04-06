@@ -44,7 +44,7 @@ class Home extends Component {
 
 		const comments = this.props.comments.all || []
 
-		if (selected == 'community')
+		if (selected == 'community'){
 			content = (
 				<div className="container clearfix">
 					<div className="heading-block center">
@@ -122,6 +122,9 @@ class Home extends Component {
 					</div>
 				</div>				
 			)
+		}
+
+		const MembershipHOC = BaseContainer(Membership)
 
 		return (
 			<div>
@@ -137,7 +140,7 @@ class Home extends Component {
 
 					<section id="content" style={{background:'#f9f9f9'}}>
 						<div className="content-wrap">
-							<Membership />						
+							<MembershipHOC />						
 						</div>
 					</section>
 

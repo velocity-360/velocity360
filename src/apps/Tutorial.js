@@ -73,6 +73,7 @@ class Tutorial extends Component {
 			)			
 		}
 
+		const MembershipHOC = BaseContainer(Membership)
 		return (
 			<div>
 				<Nav user={this.props.user} />
@@ -90,7 +91,7 @@ class Tutorial extends Component {
 
 					<section id="content" style={{background:'#f9f9f9'}}>
 						<div className="content-wrap">
-							<Membership />
+							<MembershipHOC />
 						</div>
 					</section>
 

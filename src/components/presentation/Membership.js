@@ -31,9 +31,9 @@ export default (props) => {
 						Free
 						<hr />
 						<p>Join as a basic member to gain access to the free tutorials, get notifications when new tutorials and courses are published, and participate in the Q&amp;A forums.</p>
-						<input type="text" style={{border:'none',borderBottom:'1px solid #eee',width:100+'%',marginBottom:16}} placeholder="Username" /><br />
-						<input type="text" style={{border:'none',borderBottom:'1px solid #eee',width:100+'%',marginBottom:16}} placeholder="Email" /><br />
-						<a href="#" className="button button-border button-circle button-dark">Join</a>
+						<input onChange={props.updateCredentials.bind(this, 'username')} type="text" style={{border:'none',borderBottom:'1px solid #eee',width:100+'%',marginBottom:16}} placeholder="Username" /><br />
+						<input onChange={props.updateCredentials.bind(this, 'email')} type="text" style={{border:'none',borderBottom:'1px solid #eee',width:100+'%',marginBottom:16}} placeholder="Email" /><br />
+						<a onClick={props.register.bind(this)} href="#" className="button button-border button-circle button-dark">Join</a>
 					</div>
 				</div>
 			</div>
