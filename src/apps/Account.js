@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Modal } from 'react-bootstrap'
 import { Nav, Sidebar, Footer, Preview, AccountForm } from '../components/presentation'
 import { BaseContainer } from '../components/containers'
 import { TextUtils, APIManager } from '../utils'
@@ -8,6 +9,8 @@ class Account extends Component {
 	constructor(){
 		super()
 		this.state = {
+            showModal: false,
+            passwords: {},
 			updatedProfile: {
 
 			}
@@ -29,6 +32,15 @@ class Account extends Component {
 		if (this.props.tutorials.all != null)
 			return
 
+        if (this.props.user.confirmed != 'yes'){
+            setTimeout(() => {
+                this.setState({
+                    showModal: true
+                })
+            }, 750)
+        }
+
+
 		this.props.fetchData('tutorial', {subscribers:this.props.user.id})
 		.then(response => {
 			// console.log('TUTORIALS: '+JSON.stringify(response))
@@ -37,6 +49,60 @@ class Account extends Component {
 			console.log('ERROR: '+JSON.stringify(err))
 		})
 	}
+
+    toggleModal(){
+        this.setState({
+            showModal: !this.state.showModal
+        })
+    }
+
+    updatePassword(event){
+        let updated = Object.assign({}, this.state.passwords)
+        updated[event.target.id] = event.target.value
+        this.setState({
+            passwords: updated
+        })    	
+    }
+
+    submitPassword(event){
+        event.preventDefault()
+        // console.log('submitPassword: '+JSON.stringify(this.state.passwords))
+
+        let passwords = this.state.passwords
+        if (passwords.password1 == null){
+            alert('Please complete both fields.')
+            return
+        }
+
+        if (passwords.password2 == null){
+            alert('Please complete both fields.')
+            return
+        }
+
+        if (passwords.password1 !== passwords.password2){
+            alert('Passwords do not match.')
+            return
+        }
+
+        const user = this.props.user
+        if (user == null)
+            return
+
+        const params = {
+            password: passwords.password1,
+            confirmed: 'yes'
+        }
+
+        this.setState({showModal: false})
+        this.props.updateData('profile', user, params)
+        .then(result => {
+            alert('Your password has been updated. Thanks!')
+            return result
+        })
+        .catch(err => {
+            alert(err)
+        })
+    }
 
 	onChangeProfile(field, event){
 		let updated = Object.assign({}, this.state.updatedProfile)
@@ -145,8 +211,51 @@ class Account extends Component {
 					</section>
 					<Footer />
 				</div>
+
+
+                <Modal bsSize="sm" show={this.state.showModal} onHide={this.toggleModal.bind(this)}>
+                    <Modal.Body style={localStyle.modal}>
+                        <div style={{textAlign:'center'}}>
+                            <img style={localStyle.logo} src='/images/logo-dark.png' />
+                            <hr />
+                            <h4>Set Password</h4>
+                        </div>
+
+                        <input id="password1" onChange={this.updatePassword.bind(this)} className={localStyle.textField.className} style={localStyle.textField} type="password" placeholder="Password" />
+                        <input id="password2" onChange={this.updatePassword.bind(this)} className={localStyle.textField.className} style={localStyle.textField} type="password" placeholder="Repeat Password" />
+                        <div style={localStyle.btnLoginContainer}>
+                            <a href="#" onClick={this.submitPassword.bind(this)} className={localStyle.btnLogin.className}><i className="icon-lock3"></i>Update Password</a>
+                        </div>
+                    </Modal.Body>
+                </Modal>				
 			</div>
 		)
+	}
+}
+
+const localStyle = {
+	title: {
+		color:'#fff',
+		fontFamily: 'Pathway Gothic One',
+		fontWeight: 200,
+		fontSize: 30
+	},
+	modal: {
+		background:'#f9f9f9',
+		padding:24,
+		borderRadius:3,
+		minHeight: 370
+	},
+	textField: {
+		marginBottom:12,
+		className: 'form-control'
+	},
+	btnLoginContainer: {
+		textAlign:'center',
+		marginTop:24
+	},
+	btnLogin: {
+		className: 'button button-circle button-blue'
 	}
 }
 

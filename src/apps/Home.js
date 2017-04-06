@@ -20,6 +20,7 @@ class Home extends Component {
 		this.props.fetchData('comment', {limit:3})
 		.then(response => {
 			console.log('RESPONSE: '+JSON.stringify(response))
+			// fetch featured members
 		})
 		.catch(err => {
 			console.log('ERROR: '+err.message)
@@ -83,10 +84,11 @@ class Home extends Component {
 
 						<div className="col-md-6 col-sm-6 bottommargin">
 							<div className="fancy-title title-border">
-								<h4>Members</h4>
+								<h4>Featured Members</h4>
 							</div>
 
 							<div id="home-recent-news">
+							
 								<div className="spost clearfix">
 									<div className="entry-image">
 										<a href="#"><img src="images/magazine/small/5.jpg" alt="" /></a>

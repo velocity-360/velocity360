@@ -37,6 +37,7 @@
     "mongoose": "^4.9.2",
     "morgan": "~1.7.0",
     "react": "^15.4.2",
+    "react-bootstrap": "^0.30.8",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.12.2",
     "react-redux": "^5.0.3",
