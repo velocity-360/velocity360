@@ -3,6 +3,7 @@ var mongoose = require('mongoose')
 var ProfileSchema = new mongoose.Schema({
 	firstName: {type:String, trim:true, lowercase:true, default:''},
 	lastName: {type:String, trim:true, lowercase:true, default:''},
+	featured: {type:String, default:'no'},
 	confirmed: {type:String, default:'no'},
 	promoCode: {type:String, trim:true, lowercase:true, default:''},
 	email: {type:String, trim:true, lowercase:true, default:''},
@@ -26,26 +27,27 @@ var ProfileSchema = new mongoose.Schema({
 
 ProfileSchema.methods.summary = function() {
 	var summary = {
-		'firstName':this.firstName,
-		'lastName':this.lastName,
-		'confirmed':this.confirmed,
-		'promoCode':this.promoCode,
-		'githubId':this.githubId,
-		'accountType':this.accountType,
+		firstName: this.firstName,
+		lastName: this.lastName,
+		featured: this.featured,
+		confirmed: this.confirmed,
+		promoCode: this.promoCode,
+		githubId: this.githubId,
+		accountType: this.accountType,
 //		'stripeId':this.stripeId,
-		'email':this.email,
-		'city':this.city,
-		'about':this.about,
-		'tags':this.tags,
-		'resume':this.resume,
-		'bio':this.bio,
-		'username':this.username,
-		'credits':this.credits,
-		'monthlyRate':this.monthlyRate,
-		'image':this.image,
-		'timestamp':this.timestamp,
-		'isAdmin':this.isAdmin,
-		'id':this._id.toString()
+		email: this.email,
+		city: this.city,
+		about: this.about,
+		tags: this.tags,
+		resume: this.resume,
+		bio: this.bio,
+		username: this.username,
+		credits: this.credits,
+		monthlyRate: this.monthlyRate,
+		image: this.image,
+		timestamp: this.timestamp,
+		isAdmin: this.isAdmin,
+		id: this._id.toString()
 	}
 	
 	return summary
