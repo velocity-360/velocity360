@@ -100,7 +100,7 @@ class Home extends Component {
 												</div>
 												<div className="entry-c">
 													<div className="entry-title">
-														<h4><a href="#">{member.username}</a></h4>
+														<h4><a href="#">{(member.username.length > 0) ? member.username : member.firstName+' '+member.lastName}</a></h4>
 													</div>
 													<ul className="entry-meta">
 														<li>10th July 2014</li>
