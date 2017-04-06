@@ -7,6 +7,7 @@ import PostPreview from './PostPreview'
 import Detail from './Detail'
 import Preview from './Preview'
 import Comments from './Comments'
+import CTA from './CTA'
 
 // these are not theme specific:
 import Slack from './Slack'
@@ -24,6 +25,6 @@ export {
 	Slack,
 	Preview,
 	AccountForm,
-	Comments
-	
+	Comments,
+	CTA
 }

@@ -30,7 +30,8 @@
 .description h4 {
 	margin-top: 16px;
 	margin-bottom: 4px;
-	font-family: 'Pathway Gothic One'
+	font-family: 'Pathway Gothic One';
+	font-weight: 200;
 }
 
 .tutorial {

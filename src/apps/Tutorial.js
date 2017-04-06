@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Nav, Sidebar, Membership, Detail, Comments, Footer } from '../components/presentation'
+import { Nav, Sidebar, Membership, Detail, CTA, Comments, Footer } from '../components/presentation'
 import { BaseContainer, Tutorials, Recent } from '../components/containers'
 
 class Tutorial extends Component {
@@ -50,7 +50,31 @@ class Tutorial extends Component {
 		this.props.fetchData('comment', {subject:tutorial.id})
 	}
 
+	renderCta(){
+		const user = this.props.user // can be null
+		const tutorial = this.props.tutorials[this.props.session.tutorial.slug]
+		if (tutorial == null)
+			return null
+
+		if (user == null) // not logged in
+			return (tutorial.price == 0) ? null : <CTA layout="purchase" {...tutorial} /> 
+
+		// User logged in:
+		if (tutorial.subscribers.indexOf(user.id) > -1) // already subscribed
+			return <CTA layout="subscribed" {...tutorial} />
+
+		// Not subscribed:
+		if (user.accountType == 'premium')
+			return <CTA layout="premium" {...tutorial} />
+		
+		if (tutorial.price == 0)
+			return <CTA layout="subscribe" {...tutorial} />
+
+		return <CTA layout="purchase" {...tutorial} />
+	}
+
 	render(){
+		const user = this.props.user
 		const SidebarContainer = BaseContainer(Sidebar)
 		const selected = this.props.session.tutorial.selected
 		const menuItems = [
@@ -73,6 +97,9 @@ class Tutorial extends Component {
 			)			
 		}
 
+		let cta = (selected == 'overview') ? this.renderCta() : null
+
+
 		const MembershipHOC = BaseContainer(Membership)
 		return (
 			<div>
@@ -85,16 +112,7 @@ class Tutorial extends Component {
 							<div className="container clearfix">
 								<div className="col_two_third postcontent nobottommargin clearfix">
 									{content}
-									{ (tutorial.price == 0) ? null : (
-											<div className="promo promo-border promo-mini" style={{background:'#f9f9f9', border:'1px solid #ddd'}}>
-												<h3>Purchase</h3>
-												${tutorial.price+'.00'}
-												<hr />
-												<p style={{marginBottom:0}}>Purchase this tutorial for ${tutorial.price} and receive all videos, code samples and access to the forum where people post questions and answers.</p>
-												<a onClick={this.props.showStripeModal.bind(this, tutorial)} style={{marginTop:12}} href="#" className="button button-circle button-dark">Purchase, ${tutorial.price}</a>
-											</div>
-										)
-									}
+									{cta}
 								</div>
 								<Recent />
 							</div>
