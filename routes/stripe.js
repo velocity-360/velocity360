@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var Promise = require('bluebird')
-// var EmailManager = require('../managers/EmailManager')
+var Microservice = require('velocity-microservice')({site_id:process.env.SITE_ID})
 var controllers = require('../controllers')
 
 function createStripeAccount(profile, stripeToken){ // amount can be null
@@ -115,6 +115,13 @@ router.post('/:resource', function(req, res, next) {
 		.then(function(profiles){
 			var text = customerName + ' purchased ' + prod.title
 			// EmailManager.sendEmails(process.env.BASE_EMAIL, ['dkwon@velocity360.io'], type.toUpperCase()+' Purchase', text)
+			Microservice.sendEmail({
+				content: text,
+				fromemail: process.env.BASE_EMAIL,
+				fromname: 'Velocity 360',
+				recipient: 'dkwon@velocity360.io',
+				subject: type.toUpperCase()+' Purchase'
+			})			
 
 			if (profiles != null){ // can be null
 				if (profiles.length > 0) // registered user
@@ -193,6 +200,14 @@ router.post('/:resource', function(req, res, next) {
 			res.json({confirmation:'success', profile:profile.summary()})
 
 			// EmailManager.sendEmail(process.env.BASE_EMAIL, 'dkwon@velocity360.io', 'New Premium Subscriber', JSON.stringify(profile.summary()))
+			Microservice.sendEmail({
+				content: JSON.stringify(profile.summary()),
+				fromemail: process.env.BASE_EMAIL,
+				fromname: 'Velocity 360',
+				recipient: 'dkwon@velocity360.io',
+				subject: 'New Premium Subscriber'
+			})
+
  			profile.save()
 		})
 		.catch(function(err){
