@@ -12,6 +12,7 @@ var routes = require('./routes/index')
 var api = require('./routes/api')
 var auth = require('./routes/auth')
 var premium = require('./routes/premium')
+var stripe = require('./routes/stripe')
 
 mongoose.connect(process.env.MONGOLAB_URI, function (err, res) {
   if (err)
@@ -45,6 +46,7 @@ app.use('/', routes)
 app.use('/api', api)
 app.use('/auth', auth)
 app.use('/premium', premium)
+app.use('/stripe', stripe)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

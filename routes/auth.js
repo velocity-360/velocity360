@@ -63,7 +63,6 @@ router.post('/:action', function(req, res, next) {
 		.create(req.body)
 		.then(function(profile){
 			req.session.user = profile.id // install cookie with profile id set to 'user'
-			// EmailManager.sendEmail(process.env.BASE_EMAIL, 'dkwon@velocity360.io', 'New Registration', JSON.stringify(req.body))
 			Microservice.sendEmail({
 				content: JSON.stringify(req.body),
 				fromemail: process.env.BASE_EMAIL,
@@ -116,18 +115,18 @@ router.post('/:action', function(req, res, next) {
 	}
 
 
-	var emailList = ['dkwon@velocity360.io', 'katrina@velocity360.io']
-	var actions = ['application', 'proposal', 'freesession']
+	// var emailList = ['dkwon@velocity360.io', 'katrina@velocity360.io']
+	// var actions = ['application', 'proposal', 'freesession']
 
-	if (actions.indexOf(action) != -1){
-		// EmailManager.sendEmails(process.env.BASE_EMAIL, emailList, body.subject, JSON.stringify(body))
-		res.json({
-			confirmation:'success', 
-			message: body.confirmation
-		})
+	// if (actions.indexOf(action) != -1){
+	// 	// EmailManager.sendEmails(process.env.BASE_EMAIL, emailList, body.subject, JSON.stringify(body))
+	// 	res.json({
+	// 		confirmation:'success', 
+	// 		message: body.confirmation
+	// 	})
 
-		return
-	}
+	// 	return
+	// }
 
 	// if (action == 'syllabus'){
 	// 	var course = body.course.toLowerCase()
