@@ -61,7 +61,7 @@ class Account extends Component {
 
 		this.props.updateData('profile', this.props.user, updated)
 		.then(response => {
-			// alert('Profile Updated')
+			alert('Profile Updated')
 		})
 		.catch(err => {
 			alert('Error: '+err.message)
