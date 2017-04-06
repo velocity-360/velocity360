@@ -19,7 +19,7 @@ const BaseContainer = (Container) => {
 		}
 
 		updateCredentials(field, event){
-			console.log('updateCredentials: '+field+' == '+event.target.value)
+			// console.log('updateCredentials: '+field+' == '+event.target.value)
 			let updated = Object.assign({}, this.state.credentials)
 			updated[field] = event.target.value
 			this.setState({
@@ -123,6 +123,16 @@ const BaseContainer = (Container) => {
 		register(event){
 			if (event)
 				event.preventDefault()
+
+			if (this.state.credentials.username.length == 0){
+				alert('Please enter a username')
+				return
+			}
+
+			if (this.state.credentials.email.length == 0){
+				alert('Please enter your email')
+				return
+			}
 
 			APIManager
 			.handlePost('/auth/register', this.state.credentials)
