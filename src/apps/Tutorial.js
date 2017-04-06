@@ -66,7 +66,7 @@ class Tutorial extends Component {
 
 		// User logged in:
 		if (tutorial.subscribers.indexOf(user.id) > -1) // already subscribed
-			return <CTA layout="subscribed" {...tutorial} />
+			return <CTA onSubmit={this.props.followTutorial.bind(this)} layout="subscribed" {...tutorial} />
 
 		// Not subscribed:
 		if (user.accountType == 'premium')

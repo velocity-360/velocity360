@@ -77,14 +77,14 @@ const BaseContainer = (Container) => {
 
 	        let subscribers = Object.assign([], tutorial.subscribers)
 	        if (subscribers.indexOf(user.id) != -1){ // already subscribed
-	            window.location.href = '/account'
+	            window.location.href = '/account?selected=tutorials'
 	            return
 	        }
 
 	        subscribers.push(user.id)
 	        this.props.updateTutorial(tutorial, {subscribers: subscribers})
 	        .then(response => {
-	            window.location.href = '/account'
+	            window.location.href = '/account?selected=tutorials'
 	        })
 	        .catch(err => {
 
