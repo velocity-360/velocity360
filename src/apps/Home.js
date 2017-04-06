@@ -16,10 +16,10 @@ class Home extends Component {
 		if (this.props.comments.all != null)
 			return
 
-		console.log('FETCH COMMENTS: ')
+		// console.log('FETCH COMMENTS: ')
 		this.props.fetchData('comment', {limit:3})
 		.then(response => {
-			console.log('RESONSE: '+JSON.stringify(response))
+			console.log('RESPONSE: '+JSON.stringify(response))
 		})
 		.catch(err => {
 			console.log('ERROR: '+err.message)
@@ -62,11 +62,13 @@ class Home extends Component {
 										return (
 											<div key={comment.id} className="spost clearfix">
 												<div className="entry-image">
-													<a href="#"><img src={comment.source.image+'=s64-c'} alt="Velocity 360" /></a>
+													<a href="#">
+														<img src={comment.source.image+'=s64-c'} alt="Velocity 360" />
+													</a>
 												</div>
 												<div className="entry-c">
 													<div className="entry-title">
-														<h4><a href="#">{comment.text}</a></h4>
+														<h4><a href={'/'+comment.source.context.type+'/'+comment.source.context.slug+'?selected=comments'}>{comment.text}</a></h4>
 													</div>
 													<ul className="entry-meta">
 														<li>{comment.dateString}</li>

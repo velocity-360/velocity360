@@ -104,7 +104,13 @@ const BaseContainer = (Container) => {
 			updated['source'] = {
 				id: user.id,
 				username: user.username,
-				image: user.image
+				image: user.image,
+				context: {
+					type: subject.schema,
+					id: subject.id,
+					slug: subject.slug,
+					name: subject.title || subject.name
+				}
 			}
 
 			this.postData('comment', updated)

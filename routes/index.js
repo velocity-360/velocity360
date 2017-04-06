@@ -124,14 +124,14 @@ router.get('/:page/:slug', function(req, res, next) {
 		session:{
 			page:page,
 			post: {
-				selected:'overview',
+				selected: req.query.selected || 'overview',
 				slug: req.params.slug
 			},
 			tutorial: {
-				selected:'overview',
+				selected: req.query.selected || 'overview',
 				slug: req.params.slug
 			}
-		},
+		}
 	}
 
 	controllers.account.currentUser(req)
