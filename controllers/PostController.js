@@ -1,4 +1,4 @@
-var Microservice = require('microservice-client')
+var Microservice = require('velocity-microservice')
 
 module.exports = {
 	find: function(params, token){

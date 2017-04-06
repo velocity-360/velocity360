@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var Microservice = require('microservice-client')({site_id:process.env.SITE_ID})
+var Microservice = require('velocity-microservice')({site_id:process.env.SITE_ID})
 var controllers = require('../controllers')
 var utils = require('../utils')
 

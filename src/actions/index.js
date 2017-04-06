@@ -1,6 +1,6 @@
 import constants from '../constants'
 import { APIManager } from '../utils'
-import Microservice from 'microservice-client'
+import Microservice from 'velocity-microservice'
 
 const sendMicroservice = (resource, params, actionType) => {
 	return dispatch => Microservice({site_id:'58da2bc0d644e40011da467c'}).create(resource, params)
