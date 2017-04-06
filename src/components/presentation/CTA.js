@@ -16,7 +16,7 @@ export default (props) => {
 			<h3>Subscribed</h3>
 			<hr />
 			<p style={{marginBottom:0}}>You are subscribed to this tutorial. To access, click the link below:</p>
-			<a style={{marginTop:12}} href={'/premium/tutorial/'+props.id} className="button button-circle button-dark">Access Tutorial</a>
+			<a style={{marginTop:12}} target="_blank" href={'/premium/tutorial/'+props.id} className="button button-circle button-dark">Access Tutorial</a>
 		</div>
 	)
 
