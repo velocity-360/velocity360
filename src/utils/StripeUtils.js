@@ -1,11 +1,9 @@
 import Promise from 'bluebird'
 
-
 var cbk;
 var stripeHandler;
 
 export default {
-
 	initialize: (completion, onClosed) => {
 		cbk = completion
 	    stripeHandler = StripeCheckout.configure({

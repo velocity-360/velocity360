@@ -88,7 +88,9 @@ class Post extends Component {
 					<section id="content">
 						<div className="content-wrap">
 							<div className="container clearfix">
-								{content}
+								<div className="col_two_third postcontent nobottommargin clearfix">
+									{content}
+								</div>
 								<Recent />
 							</div>
 						</div>

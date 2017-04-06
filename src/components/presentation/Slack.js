@@ -5,7 +5,7 @@ export default (props) => {
 	return (
 		<div style={localStyle.slack}>
 			<img src="/images/slack.png" />
-			<p style={{marginTop:8, marginBottom:6}}>
+			<p style={{marginTop:8, marginBottom:12}}>
 				Join our Slack channel to ask questions about tutorials and 
 				discuss general programming and industry topics:
 			</p>
@@ -19,15 +19,16 @@ export default (props) => {
 
 const localStyle = {
 	input: {
-		background: '#f9f9f9',
+		background: '#fff',
 		border: 'none',
 		borderBottom:'1px solid #ddd',
-		marginBottom: 12,
+		marginBottom: 16,
 		width: 100+'%',
 		height: 28
 	},
 	slack: {
-		background: '#f9f9f9',
+		border:'1px solid #ededed',
+		background: '#fff',
 		borderRadius: 2,
 		padding: 16
 	}

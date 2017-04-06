@@ -83,7 +83,19 @@ class Tutorial extends Component {
 					<section id="content">
 						<div className="content-wrap">
 							<div className="container clearfix">
-								{content}
+								<div className="col_two_third postcontent nobottommargin clearfix">
+									{content}
+									{ (tutorial.price == 0) ? null : (
+											<div className="promo promo-border promo-mini" style={{background:'#f9f9f9', border:'1px solid #ddd'}}>
+												<h3>Purchase</h3>
+												${tutorial.price+'.00'}
+												<hr />
+												<p style={{marginBottom:0}}>Purchase this tutorial for ${tutorial.price} and receive all videos, code samples and access to the forum where people post questions and answers.</p>
+												<a onClick={this.props.showStripeModal.bind(this, tutorial)} style={{marginTop:12}} href="#" className="button button-circle button-dark">Purchase, ${tutorial.price}</a>
+											</div>
+										)
+									}
+								</div>
 								<Recent />
 							</div>
 						</div>

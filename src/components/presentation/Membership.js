@@ -20,8 +20,8 @@ export default (props) => {
                             <li>Downloadable Videos</li>
                             <li>Q &amp; A Forum Access</li>
                             <li>Discounts on Live Courses</li>
-                        </ul>								
-						<a href="#" className="button button-border button-circle button-dark">Join</a>
+                        </ul>
+						<a onClick={props.showStripeModal.bind(this, {schema:'subscription'})} href="#" className="button button-circle button-dark">Join</a>
 					</div>
 				</div>
 
@@ -33,7 +33,7 @@ export default (props) => {
 						<p>Join as a basic member to gain access to the free tutorials, get notifications when new tutorials and courses are published, and participate in the Q&amp;A forums.</p>
 						<input onChange={props.updateCredentials.bind(this, 'username')} type="text" style={{border:'none',borderBottom:'1px solid #eee',width:100+'%',marginBottom:16}} placeholder="Username" /><br />
 						<input onChange={props.updateCredentials.bind(this, 'email')} type="text" style={{border:'none',borderBottom:'1px solid #eee',width:100+'%',marginBottom:16}} placeholder="Email" /><br />
-						<a onClick={props.register.bind(this)} href="#" className="button button-border button-circle button-dark">Join</a>
+						<a onClick={props.register.bind(this)} href="#" className="button button-circle button-dark">Join</a>
 					</div>
 				</div>
 			</div>
