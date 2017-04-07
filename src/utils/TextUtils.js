@@ -41,6 +41,32 @@ export default {
 		return array
 	},
 
+	slugVersion: (str) => {
+		let parts = str.split(' ')
+		let slug = ''
+		for (var i=0; i<parts.length; i++){
+			var word = parts[i].replace(',', '')
+			word = word.replace('.', '')
+			word = word.replace('?', '')
+			word = word.replace('/', '-')
+			slug += word
+			if (i != parts.length-1)
+				slug += '-'
+		}
+
+		return slug.toLowerCase()
+	},
+
+	randomString: (limit) => {
+	    let text = ''
+	    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+
+	    for (var i=0; i <limit; i++)
+	        text += possible.charAt(Math.floor(Math.random() * possible.length))
+
+	    return text
+	},
+
 	numberWithCommas: (num) => {
 	    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 	},
