@@ -43,7 +43,7 @@ class Profile extends Component {
 				<div key={comment.id} className="spost clearfix">
 					<div className="entry-image">
 						<a href={href}>
-							<img style={{background:'#fff'}} src={comment.source.image+'=s72-c'} alt="Velocity 360" />
+							<img src={comment.source.image+'=s72-c'} alt="Velocity 360" />
 						</a>
 					</div>
 					<div className="entry-c">
@@ -74,7 +74,7 @@ class Profile extends Component {
 									<div className="col-md-4 col-sm-6 bottommargin">
 										<div className="feature-box fbox-center fbox-bg fbox-effect" style={{minHeight:320}}>
 											<div className="fbox-icon">
-												<img src={profile.image+'=s72-c'} alt={profile.username+' | Velocity 360'} />
+												<img style={{background:'#ededed'}} src={profile.image+'=s72-c'} alt={profile.username+' | Velocity 360'} />
 											</div>
 											<h3>{profile.firstName} {profile.lastName}</h3>
 											{profile.username}
