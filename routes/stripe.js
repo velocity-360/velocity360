@@ -6,6 +6,7 @@ var controllers = require('../controllers')
 
 function createStripeAccount(profile, stripeToken){ // amount can be null
     return new Promise(function (resolve, reject){
+		console.log('TEST 4: '+JSON.stringify(profile))
 		var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 		stripe.customers.create({
 			description: profile._id.toString(),
@@ -175,14 +176,18 @@ router.post('/:resource', function(req, res, next) {
 			res.json({confirmation:'fail', message:'Missing stripeToken parameter'})
 			return
 		}
+
+		console.log('TEST 1: '+JSON.stringify(req.body))
 		
 		var params = (req.session.user) ? {id: req.session.user} : {id:'-1'}
 		controllers.profile.find(params)
 		.then(function(profile){ // can be null
+			console.log('TEST 2: '+JSON.stringify(profile))
 			return (profile == null) ? controllers.profile.create(req.body) : profile
 		})
 		.then(function(profile){
-//			console.log('CREATE STRIPE CUSTOMER: '+JSON.stringify(profile))
+			// console.log('CREATE STRIPE CUSTOMER: '+JSON.stringify(profile))
+			console.log('TEST 3: '+JSON.stringify(profile))
 			return createStripeAccount(profile, stripeToken)
 		})
 		.then(function(profile){
