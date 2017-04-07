@@ -107,7 +107,8 @@ const BaseContainer = (Container) => {
 			updated['subject'] = subject.id
 			updated['source'] = {
 				id: user.id,
-				username: user.username,
+				username: (user.username.length > 0) ? user.username : user.firstName,
+				slug: user.slug,
 				image: user.image,
 				context: {
 					type: subject.schema,
