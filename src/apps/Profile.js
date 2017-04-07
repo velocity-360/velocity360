@@ -16,7 +16,7 @@ class Profile extends Component {
 		if (profile == null)
 			return
 
-		// console.log('FETCH COMMENTS: ')
+		console.log('FETCH COMMENTS: '+JSON.stringify({'source.id':profile.id}))
 		this.props.fetchData('comment', {'source.id':profile.id})
 		.then(response => {
 			console.log('RESPONSE: '+JSON.stringify(response))
