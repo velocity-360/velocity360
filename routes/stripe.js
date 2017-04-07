@@ -4,89 +4,59 @@ var Promise = require('bluebird')
 var Microservice = require('velocity-microservice')({site_id:process.env.SITE_ID})
 var controllers = require('../controllers')
 
-function createStripeAccount(profile, stripeToken){ // amount can be null
-    return new Promise(function (resolve, reject){
-		var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-		stripe.customers.create({
-			description: profile._id.toString(),
-			source: stripeToken
-		}, function(err, customer) {
-			if (err){
-				reject(err)
-				return
-			}
-			
-			var card = customer.sources.data[0]
-			profile['stripeId'] = customer.id
-			profile['creditCard'] = {
-				id: customer.id,
-				lastFour: card.last4,
-				exp_month: card.exp_month,
-				exp_year: card.exp_year,
-				brand: card.brand
-			}
+// function createStripeCharge(customerId, amount, description){
+//     return new Promise(function (resolve, reject){
+// 		var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+// 		stripe.charges.create({
+// 			amount: amount*100, // amount in cents
+// 			currency: 'usd',
+// 			customer: customerId,
+// 			description: description,
+// 		}, function(err, charge) {
+// 			if (err){ // check for `err`
+// 	            reject(err)
+// 	            return
+// 			}
 
-			resolve(profile)
-			return
-		})
-    })
-}
+// 	    	resolve(charge)
+// 		})
+//     })
+// }
 
-function createStripeCharge(customerId, amount, description){
-    return new Promise(function (resolve, reject){
-		var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-		stripe.charges.create({
-			amount: amount*100, // amount in cents
-			currency: 'usd',
-			customer: customerId,
-			description: description,
-		}, function(err, charge) {
-			if (err){ // check for `err`
-	            reject(err)
-	            return
-			}
 
-	    	resolve(charge)
-		})
-    })
-}
+function createProfile(name, email){
+	var parts = name.split(' ')
 
-function createNonregisteredStripeCharge(stripeToken, amount, description){
-    return new Promise(function (resolve, reject){
-		var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-		stripe.charges.create({
-			amount: amount*100, // amount in cents
-			currency: 'usd',
-			source: stripeToken,
-			description: description,
-		}, function(err, charge) {
-			if (err){ // check for `err`
-	            reject(err)
-	            return
-			}
-
-	    	resolve(charge)
-		})
-    })
+	return controllers.profile.create({
+		email: email,
+		firstName: parts[0],
+		lastName: (parts.length > 1) ? parts[parts.length-1] : '',
+		password: 'abcd'
+	})
 }
 
 router.post('/:resource', function(req, res, next) {
 	var resource = req.params.resource
 
-	if (resource == 'register') { // new user signing up as premium subscriber
-//		console.log('REGISTER: '+JSON.stringify(req.body))
-		var params = {email: req.body.email}
+// 	if (resource == 'register') { // new user signing up as premium subscriber
+// //		console.log('REGISTER: '+JSON.stringify(req.body))
+// 		var params = {email: req.body.email}
 
-//		controllers.profile.create(req.body)
-		controllers.profile.create(params)
-		.then(function(profile){
-			return createStripeAccount(profile, req.body.stripeToken, null)
-		})
-		.catch(function(err){
-			res.send({'confirmation':'fail', 'message':err.message})
-			return
-		})
-	}
+// 		controllers.profile.create(params)
+// 		.then(function(profile){
+// 			// return Microservice.createStripeAccount(profile, req.body.stripeToken, null)
+// 			var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+// 			return Microservice.createStripeAccount({ // requires stripeRef, profile, stripeToken values
+// 				stripeRef: stripe,
+// 				profile: profile,
+// 				stripeToken: stripeToken
+// 			})
+// 		})
+// 		.catch(function(err){
+// 			res.send({'confirmation':'fail', 'message':err.message})
+// 			return
+// 		})
+// 	}
 
 	if (resource == 'charge') {
 		var customerName = ''
@@ -94,50 +64,35 @@ router.post('/:resource', function(req, res, next) {
 		var type = req.body.type
 		var prod = null
 
-		createNonregisteredStripeCharge(req.body.stripeToken, req.body.amount, 'Velocity 360: '+req.body.description)
+		var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+		Microservice.createStripeCharge({ // charge for new people, unregistered customers
+			stripeRef: stripe,
+			description: 'Velocity 360: '+req.body.description,
+			amount: req.body.amount,
+			stripeToken: req.body.stripeToken
+		})
 		.then(function(charge){
 			customerName = charge.source.name // this comes from Stripe
-			return controllers[type].find({id:req.body.product})
+			return controllers[type].findById(req.body.product, true) // get raw version
 		})
 		.then(function(product){
 			prod = product
 
 			var params = null
-			if (req.session == null)
-				params = {email: customerEmail}
-			else if (req.session.user == null)
-				params = {email: customerEmail}
-			else 
-				params = {id: req.session.user} // logged in user
+			if (req.session == null){
+				return controllers.profile.find({email: customerEmail})
+			}
+			if (req.session.user == null){
+				return controllers.profile.find({email: customerEmail})
+			}
 
-			return controllers.profile.find(params)
+			return controllers.profile.findById(req.session.user) // logged in user
 		})
-		.then(function(profiles){
-			var text = customerName + ' purchased ' + prod.title
-			// EmailManager.sendEmails(process.env.BASE_EMAIL, ['dkwon@velocity360.io'], type.toUpperCase()+' Purchase', text)
-			Microservice.sendEmail({
-				content: text,
-				fromemail: process.env.BASE_EMAIL,
-				fromname: 'Velocity 360',
-				recipient: 'dkwon@velocity360.io',
-				subject: type.toUpperCase()+' Purchase'
-			})			
-
-			if (profiles != null){ // can be null
-				if (profiles.length > 0) // registered user
-					return profiles[0]
-			}
+		.then(function(results){
+			if (Object.prototype.toString.call(results) === '[object Array]') 
+				return (results.length > 0) ? results[0] : createProfile(customerName, customerEmail)
 			
-			// unregistered user, create account
-			var parts = customerName.split(' ')
-			var profileInfo = {
-				email: customerEmail,
-				firstName: parts[0],
-				lastName: (parts.length > 1) ? parts[parts.length-1] : '',
-				password: 'abcd'
-			}
-
-			return controllers.profile.create(profileInfo)
+			return (results == null) ? createProfile(customerName, customerEmail) : results
 		})
 		.then(function(profile){
 			var subscribers = prod.subscribers
@@ -147,7 +102,15 @@ router.post('/:resource', function(req, res, next) {
 				prod.save()
 			}
 
-			// send new profile a welcome email
+			Microservice.sendEmail({
+				content: customerName + ' purchased ' + prod.title,
+				fromemail: process.env.BASE_EMAIL,
+				fromname: 'Velocity 360',
+				recipient: 'dkwon@velocity360.io',
+				subject: type.toUpperCase()+' Purchase'
+			})
+
+			// TODO: send new profile a welcome email, do this in the controller
 			req.session.user = profile.id // login as user
 			var response = {
 				confirmation: 'success',
@@ -160,17 +123,20 @@ router.post('/:resource', function(req, res, next) {
 		})
 		.catch(function(err){
 			console.log('CHARGE ERROR: ' + err)
-			res.send({confirmation: 'fail', message: err})
+			res.send({
+				confirmation: 'fail',
+				message: err.message
+			})
 			return
 		})
 		
 		return
 	}
 
+
 	// Apply a credit card to a profile:
 	if (resource == 'card') {
 		// req.body = {stripeToken: token.id, email: token.email, name: token.name}
-
 		var stripeToken = req.body.stripeToken
 		if (stripeToken == null){
 			res.json({confirmation:'fail', message:'Missing stripeToken parameter'})
@@ -191,7 +157,15 @@ router.post('/:resource', function(req, res, next) {
 		})
 		.then(function(profile){
 			// console.log('CREATE STRIPE CUSTOMER: '+JSON.stringify(profile))
-			return createStripeAccount(profile, stripeToken)
+//			return Microservice.createStripeAccount(profile, stripeToken)
+
+			var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+			return Microservice.createStripeAccount({ // requires stripeRef, profile, stripeToken values
+				stripeRef: stripe,
+				profile: profile,
+				stripeToken: stripeToken
+			}) 
+			
 		})
 		.then(function(profile){
 			profile['accountType'] = 'premium'
