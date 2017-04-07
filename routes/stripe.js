@@ -181,9 +181,9 @@ router.post('/:resource', function(req, res, next) {
 		
 		var params = (req.session.user) ? {id: req.session.user} : {id:'-1'}
 		controllers.profile.find(params)
-		.then(function(profile){ // can be null
+		.then(function(profiles){ // can be null
 			console.log('TEST 2: '+JSON.stringify(profile))
-			return (profile == null) ? controllers.profile.create(req.body) : profile
+			return (profile.length == 0) ? controllers.profile.create(req.body) : profile[0]
 		})
 		.then(function(profile){
 			// console.log('CREATE STRIPE CUSTOMER: '+JSON.stringify(profile))
