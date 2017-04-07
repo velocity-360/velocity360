@@ -164,7 +164,7 @@ class Account extends Component {
 		const selected = this.props.session.account.selected
 		const menuItems = [
 			{name:'profile', page:'account', selected:(selected=='profile')},
-			{name:'my tutorials', page:'account', selected:(selected=='tutorials')}
+			{name:'tutorials', page:'account', selected:(selected=='tutorials')}
 		]
 
 		// console.log('RENDER: '+JSON.stringify(this.props.tutorials.all))
@@ -174,6 +174,7 @@ class Account extends Component {
 		if (selected == 'tutorials'){
 			content = (
 				<div>
+					<p>You are subscribed to the following tutorials:</p>
 					{ list.map((tutorial, i) => {
 							return <Preview key={tutorial.id} {...tutorial} />
 						})
@@ -184,11 +185,14 @@ class Account extends Component {
 
 		if (selected == 'profile'){
 			content = (
-				<AccountForm 
-					onChange={this.onChangeProfile.bind(this)}
-					onSubmit={this.updateProfile.bind(this)}
-					onUpload={this.uploadImage.bind(this)}
-					initial={this.state.updatedProfile} />
+				<div>
+					<p>Manage your profile details:</p>
+					<AccountForm 
+						onChange={this.onChangeProfile.bind(this)}
+						onSubmit={this.updateProfile.bind(this)}
+						onUpload={this.uploadImage.bind(this)}
+						initial={this.state.updatedProfile} />
+				</div>
 			)
 		}
 		
