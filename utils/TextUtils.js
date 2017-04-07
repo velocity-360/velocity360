@@ -45,13 +45,25 @@ module.exports = {
 		var slug = ''
 		for (var i=0; i<parts.length; i++){
 			var word = parts[i].replace(',', '')
+			word = word.replace('.', '')
+			word = word.replace('?', '')
+			word = word.replace('/', '-')
 			slug += word
 			if (i != parts.length-1)
 				slug += '-'
 		}
 
-		slug = slug.replace('?', '')
 		return slug.toLowerCase()
-	}
+	},
+
+	randomString: function(limit){
+	    var text = ''
+	    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+
+	    for (var i=0; i <limit; i++)
+	        text += possible.charAt(Math.floor(Math.random() * possible.length))
+
+	    return text
+	}	
 
 }
