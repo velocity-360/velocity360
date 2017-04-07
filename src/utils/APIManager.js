@@ -112,11 +112,18 @@ export default {
 	},
 
 	submitStripeCard: (token) => {
+		// {"id":"tok_19vYn5C5b8QCRB75sRSWkA1o","object":"token","card":{"id":"card_19vYn4C5b8QCRB75SkGkpcyh"
+		// "object":"card","address_city":"Woodcliff Lake","address_country":"United States",
+		// "address_line1":"12 Lyons Court","address_line1_check":"pass","address_line2":null,"address_state":"NJ",
+		// "address_zip":"07677","address_zip_check":"pass","brand":"Visa","country":"US","cvc_check":"pass",
+		// "dynamic_last4":null,"exp_month":6,"exp_year":2020,"funding":"debit","last4":"9072","metadata":{},
+		// "name":"Denny Kwon","tokenization_method":null},"client_ip":"74.71.60.50","created":1489094839,
+		// "email":"dennykwon2@gmail.com","livemode":true,"type":"card","used":false}
 		return new Promise((resolve, reject) => {
 			var body = {
 				stripeToken: token.id,
 				email: token.email,
-				name: token.name
+				name: token.card.name
 			}
 
 			superagent

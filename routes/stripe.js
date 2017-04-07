@@ -179,14 +179,13 @@ router.post('/:resource', function(req, res, next) {
 			return
 		}
 
+		console.log('TEST 1: '+JSON.stringify(req.body))
 		if (req.body.name != null){
 			var parts = req.body.name.split(' ')
 			req.body['firstName'] = parts[0]
 			if (parts.length > 1)
 				req.body['lastName'] = parts[parts.length-1]
 		}
-
-		console.log('TEST 1: '+JSON.stringify(req.body))
 		
 		var params = (req.session.user) ? {id: req.session.user} : {id:'-1'}
 		controllers.profile.find(params)
@@ -202,12 +201,12 @@ router.post('/:resource', function(req, res, next) {
 		.then(function(profile){
 			profile['accountType'] = 'premium'
 			profile['monthlyRate'] = 19.99
-			var promoCode = req.body.promoCode
 
+			var promoCode = req.body.promoCode
 			if (promoCode != null){ // check promo code
 				profile['promoCode'] = promoCode
 				if (promoCode == 'nyu')
-					profile['monthlyRate'] = 9.99				
+					profile['monthlyRate'] = 9.99
 			}
 
 			req.session.user = profile._id.toString() // login as user
