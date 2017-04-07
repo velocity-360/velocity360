@@ -119,7 +119,8 @@ class Account extends Component {
 			let tagsArray = []
 			const array = this.state.updatedProfile.tags.split(',')
 			array.forEach((tag, i) => {
-				tagsArray.push(tag.trim().toLowerCase())
+				if (tag.length > 0)
+					tagsArray.push(tag.trim().toLowerCase())
 			})
 
 			updated['tags'] = tagsArray
@@ -127,6 +128,7 @@ class Account extends Component {
 
 		this.props.updateData('profile', this.props.user, updated)
 		.then(response => {
+			console.log('PROFILE UPDATED: '+JSON.stringify(response))
 			alert('Profile Updated')
 		})
 		.catch(err => {
