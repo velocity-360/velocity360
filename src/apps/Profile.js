@@ -77,9 +77,19 @@ class Profile extends Component {
 											<h3>{profile.firstName} {profile.lastName}</h3>
 											{profile.username}
 											<hr />
-											<p style={{textAlign:'left'}} className="subtitle">
+											<p style={{textAlign:'left', marginBottom:24}} className="subtitle">
 												{profile.bio}
 											</p>
+
+											<p style={{textAlign:'left'}} className="subtitle">
+												{ profile.tags.map((tag, i) => {
+														return (
+															<a style={localStyle.tag} href="#" key={tag}>{tag}</a>
+														)
+													})
+												}
+											</p>
+
 										</div>
 									</div>
 
@@ -107,6 +117,17 @@ class Profile extends Component {
 				</div>
 			</div>
 		)
+	}
+}
+
+const localStyle = {
+	tag: {
+		fontSize: 12,
+		padding: 4,
+		marginRight: 8,
+		marginBottom: 8,
+		display: 'inline-block',
+		background: '#ededed'
 	}
 }
 
