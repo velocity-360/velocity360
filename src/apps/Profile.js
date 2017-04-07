@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Nav, Sidebar, Footer } from '../components/presentation'
 import { BaseContainer, Tutorials } from '../components/containers'
+import { TextUtils } from '../utils'
 
 class Profile extends Component {
 	constructor(){
@@ -16,7 +17,6 @@ class Profile extends Component {
 		if (profile == null)
 			return
 
-		console.log('FETCH COMMENTS: '+JSON.stringify({'source.id':profile.id}))
 		this.props.fetchData('comment', {'source.id':profile.id})
 		.then(response => {
 			console.log('RESPONSE: '+JSON.stringify(response))
@@ -49,7 +49,7 @@ class Profile extends Component {
 					<div className="entry-c">
 						<div className="entry-title">
 							<h4>
-								<a href={href}>{TextUtils.truncateText(comment.text, 90)}</a>
+								<a href={href}>{ TextUtils.truncateText(comment.text, 120) }</a>
 							</h4>
 						</div>
 						<ul className="entry-meta">
