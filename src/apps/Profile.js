@@ -48,7 +48,9 @@ class Profile extends Component {
 					</div>
 					<div className="entry-c">
 						<div className="entry-title">
-							<h4><a href={href}>{comment.text}</a></h4>
+							<h4>
+								<a href={href}>{TextUtils.truncateText(comment.text, 90)}</a>
+							</h4>
 						</div>
 						<ul className="entry-meta">
 							<li>{comment.dateString}</li>

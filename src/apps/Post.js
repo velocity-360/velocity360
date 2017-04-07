@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Nav, Sidebar, Footer, Detail, Comments } from '../components/presentation'
 import { BaseContainer, Tutorials, Posts, Recent } from '../components/containers'
+import { TextUtils } from '../utils'
 
 class Post extends Component {
 	constructor(){
