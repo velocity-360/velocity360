@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
 var ProfileSchema = new mongoose.Schema({
 	firstName: {type:String, trim:true, lowercase:true, default:''},
 	lastName: {type:String, trim:true, lowercase:true, default:''},
-	slug: {type:String, default:''},
+	slug: {type:String, trim:true, lowercase:true, default:''},
 	featured: {type:String, default:'no'},
 	confirmed: {type:String, default:'no'},
 	promoCode: {type:String, trim:true, lowercase:true, default:''},
