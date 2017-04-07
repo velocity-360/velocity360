@@ -42,9 +42,7 @@ class Profile extends Component {
 			// {name:'comments', page:'profile', selected:(selected=='comments')}
 		]
 
-		// const post = this.props.posts[this.props.session.post.slug]
-		// console.log('RENDER: '+JSON.stringify(post))
-
+		const profile = this.props.profiles[this.props.session.profile.slug]
 		// let content = null
 		// if (selected == 'overview')
 		// 	content = <Detail {...post} />
@@ -72,19 +70,13 @@ class Profile extends Component {
 									<div className="col-md-4 col-sm-6 bottommargin">
 										<div className="feature-box fbox-center fbox-bg fbox-effect" style={{minHeight:320}}>
 											<div className="fbox-icon">
-												<a href="#">
-													<img src="https://lh3.googleusercontent.com/oKjv_cWz2bmBpiGEC9wOK5_dvz8JhlAr3xo4rKoh2a9frmCu87GGkQ3xnUXiMAaCZkKWKZ4shBYH2JgsQp9eYFS7=s72-c" alt="Velocity 360" />
-												</a>
+												<img src={profile.image+'=s72-c'} alt={profile.username+' | Velocity 360'} />
 											</div>
-											<h3>
-												<a style={{color:'#333'}} href="#">FirstName LastName</a>
-											</h3>
-											username
+											<h3>{profile.firstName} {profile.lastName}</h3>
+											{profile.username}
 											<hr />
 											<p style={{textAlign:'left'}} className="subtitle">
-												Lorem ipsum dolor sit amet, vix veritus tacimates quaerendum no. An brute ullum utroque cum. Vis ei consulatu signiferumque, ex prompta fuisset pri. Apeirian pertinacia ea duo.
-												<br /><br />
-												Eos tale noluisse ex. Discere assueverit mediocritatem pri ei. Est ut error erroribus repudiandae, mollis expetendis te mei, autem labores duo ut. Malis exerci partem eum an, mea ex recteque electram.
+												{profile.bio}
 											</p>
 										</div>
 									</div>
@@ -163,6 +155,7 @@ class Profile extends Component {
 
 const stateToProps = (state) => {
 	return {
+		profiles: state.profile,
 		account: state.account,
 		session: state.session
 	}
