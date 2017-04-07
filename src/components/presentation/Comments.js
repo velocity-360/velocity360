@@ -8,7 +8,7 @@ export default (props) => {
 		<div className="single-post nobottommargin">
 			<div className="entry clearfix" style={{border:'none',paddingBottom:0,marginBottom:0}}>
 				<div className="entry-title">
-					<h1>Comments</h1>
+					<h1>Comments: {props.title || props.name}</h1>
 				</div>
 				<hr />
 

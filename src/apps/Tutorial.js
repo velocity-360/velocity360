@@ -91,6 +91,7 @@ class Tutorial extends Component {
 		else if (selected == 'comments'){
 			content = (
 				<Comments 
+					{...tutorial}
 					comments={this.props.comments.all || []}
 					onChangeComment={this.changeComment.bind(this)}
 					onSubmit={this.submitComment.bind(this)} />

@@ -64,7 +64,6 @@ class Post extends Component {
 		]
 
 		const post = this.props.posts[this.props.session.post.slug]
-		// console.log('RENDER: '+JSON.stringify(post))
 
 		let content = null
 		if (selected == 'overview')
@@ -73,6 +72,7 @@ class Post extends Component {
 		else if (selected == 'comments'){
 			content = (
 				<Comments 
+					{...post}
 					comments={this.props.comments.all || []}
 					onChangeComment={this.changeComment.bind(this)}
 					onSubmit={this.submitComment.bind(this)} />
