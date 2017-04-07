@@ -21,11 +21,7 @@ class Account extends Component {
 		if (this.props.user == null)
 			return
 
-		let updated = Object.assign({}, this.props.user)
-		updated['tags'] = updated.tags.join(', ')
-		this.setState({
-			updatedProfile: updated
-		})
+		this.copyUserToState()
 	}
 
 	componentDidMount(){
@@ -49,6 +45,14 @@ class Account extends Component {
 			console.log('ERROR: '+JSON.stringify(err))
 		})
 	}
+
+	copyUserToState(){
+		let updated = Object.assign({}, this.props.user)
+		updated['tags'] = updated.tags.join(', ')
+		this.setState({
+			updatedProfile: updated
+		})		
+	}	
 
     toggleModal(){
         this.setState({
@@ -97,6 +101,7 @@ class Account extends Component {
         this.props.updateData('profile', user, params)
         .then(result => {
             alert('Your password has been updated. Thanks!')
+			this.copyUserToState()
             return result
         })
         .catch(err => {
@@ -152,13 +157,14 @@ class Account extends Component {
 		})
 	}
 
+
 	render(){
 //		console.log('SLUG: '+this.props.session.post.slug)
 		const SidebarContainer = BaseContainer(Sidebar)
 		const selected = this.props.session.account.selected
 		const menuItems = [
 			{name:'profile', page:'account', selected:(selected=='profile')},
-			{name:'tutorials', page:'account', selected:(selected=='tutorials')}
+			{name:'my tutorials', page:'account', selected:(selected=='tutorials')}
 		]
 
 		// console.log('RENDER: '+JSON.stringify(this.props.tutorials.all))

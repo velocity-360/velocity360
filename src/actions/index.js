@@ -59,13 +59,7 @@ const getData = (path, params, actionType) => {
 		})
 		.catch((err) => {
 			console.log('ERROR: '+JSON.stringify(err))
-			dispatch({
-				type: constants.TOGGLE_LOADING,
-				isLoading: false
-			})
-
 			throw err
-			// alert(err.message)
 		})
 }
 
@@ -73,7 +67,7 @@ const putData = (path, data, actionType) => {
 	return (dispatch) => APIManager
 		.handlePut(path, data)
 		.then((response) => {
-			// console.log('PUT RESPONSE: '+JSON.stringify(response))
+			console.log('PUT RESPONSE: '+JSON.stringify(response))
 			if (actionType != null){
 				dispatch({
 					type: actionType,
@@ -84,10 +78,10 @@ const putData = (path, data, actionType) => {
 			return response
 		})
 		.catch((err) => {
-			dispatch({
-				type: constants.TOGGLE_LOADING,
-				isLoading: false
-			})
+			// dispatch({
+			// 	type: constants.TOGGLE_LOADING,
+			// 	isLoading: false
+			// })
 			throw err
 		})
 }
@@ -182,7 +176,7 @@ export default {
 
 	updateProfile: (profile, params) => {
 		return dispatch => {
-			return dispatch(putData('/api/profile/'+profile.id, params, constants.PROFILE_UPDDATED, 'profile'))
+			return dispatch(putData('/api/profile/'+profile.id, params, constants.PROFILE_UPDDATED))
 		}
 	},
 

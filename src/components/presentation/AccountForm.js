@@ -13,13 +13,21 @@ export default (props) => {
 					<input defaultValue={initial.username} type="text" onChange={props.onChange.bind(this, 'username')} placeholder="Username" style={localStyle.input} />
 					<input defaultValue={initial.tags} type="text" onChange={props.onChange.bind(this, 'tags')} placeholder="Tags (node, react, redux, etc)" style={localStyle.input} />
 					<textarea defaultValue={initial.bio} onChange={props.onChange.bind(this, 'bio')} placeholder="Bio" style={localStyle.textarea}></textarea>
-					<a href="#" onClick={props.onSubmit.bind(this)} style={{marginLeft:0, marginTop:16}} className="button button-blue">Update Profile</a>
+					<div className="row">
+						<div className="col-md-6">
+							<a href="#" onClick={props.onSubmit.bind(this)} style={{marginLeft:0, marginTop:16}} className="button button-blue">Update Profile</a>
+						</div>
+						<div className="col-md-6">
+							<a target="_blank" href={'/profile/'+initial.slug} style={{marginLeft:0, marginTop:16}} className="button button-green">Public Profile</a>
+						</div>
+					</div>
+
 				</div>
 
 				<div className="col-md-4">
 					<div style={{width:100+'%'}}>
 						<Dropzone onDrop={props.onUpload.bind(this)} style={{border:'none', textAlign:'center'}}>
-							<div style={localStyle.dropzone}>
+							<div style={ (initial.image.indexOf('http') > -1) ? localStyle.dropzoneWithImage : localStyle.dropzone}>
 								{ (initial.image.indexOf('http') > -1) ? <img style={{marginBottom:6}} src={initial.image+'=s120-c'} /> : null }
 								Profile Image
 							</div>
@@ -64,5 +72,14 @@ const localStyle = {
 		padding: 24,
 		textAlign: 'center',
 		marginBottom: 12
+	},
+	dropzoneWithImage: {
+		width: 100+'%',
+		height: 200,
+		background: '#ffff',
+		float: 'right',
+		padding: 24,
+		textAlign: 'center',
+		marginBottom: 6
 	}
 }
