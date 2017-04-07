@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Nav, Sidebar, Membership, Footer } from '../components/presentation'
 import { BaseContainer, Tutorials, Posts } from '../components/containers'
+import { TextUtils } from '../utils'
 
 class Home extends Component {
 	componentWillMount(){
@@ -72,7 +73,11 @@ class Home extends Component {
 												</div>
 												<div className="entry-c">
 													<div className="entry-title">
-														<h4><a href={'/'+comment.source.context.type+'/'+comment.source.context.slug+'?selected=comments'}>{comment.text}</a></h4>
+														<h4>
+															<a href={'/'+comment.source.context.type+'/'+comment.source.context.slug+'?selected=comments'}>
+																{TextUtils.truncateText(comment.text, 90)}
+															</a>
+														</h4>
 													</div>
 													<ul className="entry-meta">
 														<li>{comment.dateString}</li>

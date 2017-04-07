@@ -23,7 +23,7 @@ export default (props) => {
 				{ props.comments.map((comment, i) => {
 						return (
 							<div key={comment.id} style={{border:'none', padding:16, background:'#f9f9f9', marginBottom:16}}>
-								<strong>{comment.source.username}</strong>
+								<a href={'/profile/'+comment.source.slug}><strong>{comment.source.username}</strong></a>
 								<span style={{fontWeight:200, fontSize:12, float:'right'}}>{comment.dateString}</span>
 								<p dangerouslySetInnerHTML={{ __html:TextUtils.convertToHtml(comment.text) }} style={{marginBottom:0, marginTop:4}}></p>
 							</div>
