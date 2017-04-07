@@ -46,6 +46,9 @@ module.exports = {
 					for (var i=0; i<profiles.length; i++){
 						var profile = profiles[i]
 						var email = profile.email.toLowerCase()
+						profile['slug'] = email.split('@')[0]+'-'+utils.TextUtils.randomString(6)
+						profile.save()
+
 						if (list.indexOf(email) != -1) // already there, duplicate
 							continue
 						
