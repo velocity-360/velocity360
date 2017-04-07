@@ -45,8 +45,6 @@ module.exports = {
 					var list = []
 					for (var i=0; i<profiles.length; i++){
 						var profile = profiles[i]
-						profile['image'] = process.env.DEFAULT_ICON
-						profile.save()
 						var email = profile.email.toLowerCase()
 
 						if (list.indexOf(email) != -1) // already there, duplicate
