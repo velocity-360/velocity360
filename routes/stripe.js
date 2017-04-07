@@ -171,10 +171,19 @@ router.post('/:resource', function(req, res, next) {
 
 	// Apply a credit card to a profile:
 	if (resource == 'card') {
+		// req.body = {stripeToken: token.id, email: token.email, name: token.name}
+
 		var stripeToken = req.body.stripeToken
 		if (stripeToken == null){
 			res.json({confirmation:'fail', message:'Missing stripeToken parameter'})
 			return
+		}
+
+		if (req.body.name != null){
+			var parts = req.body.name.split(' ')
+			req.body['firstName'] = parts[0]
+			if (parts.length > 1)
+				req.body['lastName'] = parts[parts.length-1]
 		}
 
 		console.log('TEST 1: '+JSON.stringify(req.body))
