@@ -43,7 +43,7 @@ class Profile extends Component {
 				<div key={comment.id} className="spost clearfix">
 					<div className="entry-image">
 						<a href={href}>
-							<img src={comment.source.image+'=s72-c'} alt="Velocity 360" />
+							<img style={{background:'#fff'}} src={comment.source.image+'=s72-c'} alt="Velocity 360" />
 						</a>
 					</div>
 					<div className="entry-c">
