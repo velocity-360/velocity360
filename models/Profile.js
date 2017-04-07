@@ -21,7 +21,7 @@ var ProfileSchema = new mongoose.Schema({
 	username: {type:String, trim:true, default:''},
 	credits: {type: Number, default: 20},
 	monthlyRate: {type: Number, default: 0},
-	image: {type:String, trim:true, default:'qeodpw-g'}, // default profile icon
+	image: {type:String, trim:true, default:process.env.DEFAULT_ICON}, // default profile icon
 	isAdmin: {type:String, trim:true, lowercase:true, default:'no'},
 	timestamp: {type:Date, default:Date.now},
 })
