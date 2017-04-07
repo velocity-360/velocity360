@@ -96,11 +96,11 @@ class Home extends Component {
 										return (
 											<div key={member.id} className="spost clearfix">
 												<div className="entry-image">
-													<a href="#"><img src={(member.image.length < 10) ? '/images/usericon.png' : member.image+'=s72-c'} alt={'Velocity 360 | '+member.username} /></a>
+													<a href={'/profile/'+member.slug}><img src={(member.image.length < 10) ? '/images/usericon.png' : member.image+'=s72-c'} alt={'Velocity 360 | '+member.username} /></a>
 												</div>
 												<div className="entry-c">
 													<div className="entry-title">
-														<h4><a href="#">{(member.username.length > 0) ? member.username : member.firstName+' '+member.lastName}</a></h4>
+														<h4><a href={'/profile/'+member.slug}>{(member.username.length > 0) ? member.username : member.firstName+' '+member.lastName}</a></h4>
 													</div>
 													<ul className="entry-meta">
 														<li>10th July 2014</li>
