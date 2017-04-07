@@ -3,6 +3,7 @@ import Home from './Home'
 import Post from './Post'
 import Tutorial from './Tutorial'
 import Account from './Account'
+import Profile from './Profile'
 
 export {
 
@@ -10,6 +11,7 @@ export {
 	Home,
 	Post,
 	Tutorial,
-	Account
+	Account,
+	Profile
 	
 }

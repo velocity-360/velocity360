@@ -98,7 +98,7 @@ class Post extends Component {
 
 					<section id="content" style={{background:'#f9f9f9'}}>
 						<div className="content-wrap">
-							<Tutorials />						
+							<Tutorials />
 						</div>
 					</section>
 

@@ -13,6 +13,10 @@ var initialState = {
 		selected: 'overview',
 		slug: ''
 	},
+	profile: {
+		selected: 'profile',
+		slug: ''
+	},
 	account: {
 		selected: 'profile'
 	}

@@ -14,7 +14,8 @@ var staticPages = {
 var reactApps = {
 	tutorial: apps.Tutorial,
 	post: apps.Post,
-	account: apps.Account
+	account: apps.Account,
+	profile: apps.Profile
 }
 
 router.get('/', function(req, res, next) {
@@ -119,16 +120,19 @@ router.get('/:page/:slug', function(req, res, next) {
 	}
 
 	var controller = controllers[page] // check for null
-
 	var initialData = {
 		session:{
-			page:page,
+			page: page,
 			post: {
 				selected: req.query.selected || 'overview',
 				slug: req.params.slug
 			},
 			tutorial: {
 				selected: req.query.selected || 'overview',
+				slug: req.params.slug
+			},
+			profile: {
+				selected: req.query.selected || 'profile',
 				slug: req.params.slug
 			}
 		}
@@ -152,9 +156,9 @@ router.get('/:page/:slug', function(req, res, next) {
 		initialData[page] = reducer
 
 		var initialState = store.configureStore(initialData)
-		// console.log('INITIAL: '+JSON.stringify(initialState.getState()))
 
-		var component = React.createElement(reactApps[page], {slug: req.params.slug})
+//		var component = React.createElement(reactApps[page], {slug: req.params.slug})
+		var component = React.createElement(reactApps[page])
 		var provider = React.createElement(apps.ServerEntry, {component:component, store:initialState})
 
 	    res.render('index', {
