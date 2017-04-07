@@ -101,7 +101,7 @@ module.exports = {
 				}
 
 				// Create new profile. This is what should happen:
-				if (params.username.length != null)
+				if (params.username != null)
 					params['slug'] = (params.username.length == 0) ? '' : utils.TextUtils.slugVersion(params.username)+'-'+utils.TextUtils.randomString(6)
 				
 				Profile.create(params, function(error, profile){
@@ -118,6 +118,9 @@ module.exports = {
 	},
 
 	put: function(id, params){
+		if (params.username != null) // resetting username
+			params['slug'] = (params.username.length == 0) ? '' : utils.TextUtils.slugVersion(params.username)+'-'+utils.TextUtils.randomString(6)
+
 		return new Promise(function(resolve, reject){
 			Profile.findByIdAndUpdate(id, params, {new:true}, function(err, profile){
 				if (err){

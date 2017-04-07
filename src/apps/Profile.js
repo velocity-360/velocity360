@@ -82,14 +82,12 @@ class Profile extends Component {
 											username
 											<hr />
 											<p style={{textAlign:'left'}} className="subtitle">
-Lorem ipsum dolor sit amet, vix veritus tacimates quaerendum no. An brute ullum utroque cum. Vis ei consulatu signiferumque, ex prompta fuisset pri. Apeirian pertinacia ea duo.
-<br /><br />
-Eos tale noluisse ex. Discere assueverit mediocritatem pri ei. Est ut error erroribus repudiandae, mollis expetendis te mei, autem labores duo ut. Malis exerci partem eum an, mea ex recteque electram.
+												Lorem ipsum dolor sit amet, vix veritus tacimates quaerendum no. An brute ullum utroque cum. Vis ei consulatu signiferumque, ex prompta fuisset pri. Apeirian pertinacia ea duo.
+												<br /><br />
+												Eos tale noluisse ex. Discere assueverit mediocritatem pri ei. Est ut error erroribus repudiandae, mollis expetendis te mei, autem labores duo ut. Malis exerci partem eum an, mea ex recteque electram.
 											</p>
 										</div>
 									</div>
-
-
 
 									<div className="col-md-8 col-sm-6 bottommargin" style={{paddingTop:48}}>
 										<div className="fancy-title title-border">
