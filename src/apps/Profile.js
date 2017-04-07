@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Nav, Sidebar, Footer, Detail, Comments } from '../components/presentation'
-import { BaseContainer, Tutorials, Recent } from '../components/containers'
+import { Nav, Sidebar, Footer } from '../components/presentation'
+import { BaseContainer, Tutorials } from '../components/containers'
 
 class Profile extends Component {
 	constructor(){
@@ -11,27 +11,19 @@ class Profile extends Component {
 		}
 	}
 
-	componentWillMount(){
-
-	}
-
 	componentDidMount(){
+		const profile = this.props.profiles[this.props.session.profile.slug]
+		if (profile == null)
+			return
 
-	}
-
-	componentDidUpdate(){
-		// const selected = this.props.session.post.selected
-		// if (selected != 'comments')
-		// 	return
-
-		// const post = this.props.posts[this.props.session.post.slug]
-		// if (post == null)
-		// 	return
-
-		// if (this.props.comments.all != null)
-		// 	return
-
-		// this.props.fetchData('comment', {subject:post.id})
+		// console.log('FETCH COMMENTS: ')
+		this.props.fetchData('comment', {'source.id':profile.id})
+		.then(response => {
+			console.log('RESPONSE: '+JSON.stringify(response))
+		})
+		.catch(err => {
+			console.log('ERROR: '+err.message)
+		})
 	}
 
 	render(){
@@ -43,18 +35,28 @@ class Profile extends Component {
 		]
 
 		const profile = this.props.profiles[this.props.session.profile.slug]
-		// let content = null
-		// if (selected == 'overview')
-		// 	content = <Detail {...post} />
-		
-		// else if (selected == 'comments'){
-		// 	content = (
-		// 		<Comments 
-		// 			comments={this.props.comments.all || []}
-		// 			onChangeComment={this.changeComment.bind(this)}
-		// 			onSubmit={this.submitComment.bind(this)} />
-		// 	)			
-		// }
+		const commentsList = this.props.comments.all || []
+		const comments = commentsList.map((comment, i) => {
+			const context = comment.source.context
+			const href = '/'+context.type+'/'+context.slug+'?selected=comments'
+			return (
+				<div key={comment.id} className="spost clearfix">
+					<div className="entry-image">
+						<a href={href}>
+							<img src={comment.source.image+'=s72-c'} alt="Velocity 360" />
+						</a>
+					</div>
+					<div className="entry-c">
+						<div className="entry-title">
+							<h4><a href={href}>{comment.text}</a></h4>
+						</div>
+						<ul className="entry-meta">
+							<li>{comment.dateString}</li>
+						</ul>
+					</div>
+				</div>
+			)
+		})
 
 		return (
 			<div>
@@ -85,53 +87,8 @@ class Profile extends Component {
 										<div className="fancy-title title-border">
 											<h4>Comments</h4>
 										</div>
-
-										<div id="home-recent-news">
-											<div className="spost clearfix">
-												<div className="entry-image">
-													<a href="#"><img src="https://lh3.googleusercontent.com/oKjv_cWz2bmBpiGEC9wOK5_dvz8JhlAr3xo4rKoh2a9frmCu87GGkQ3xnUXiMAaCZkKWKZ4shBYH2JgsQp9eYFS7=s72-c" alt="Velocity 360" /></a>
-												</div>
-												<div className="entry-c">
-													<div className="entry-title">
-														<h4><a href="#">Dkwon</a></h4>
-													</div>
-													<ul className="entry-meta">
-														<li>10th July 2014</li>
-													</ul>
-												</div>
-											</div>
-
-											<div className="spost clearfix">
-												<div className="entry-image">
-													<a href="#"><img src="https://lh3.googleusercontent.com/oKjv_cWz2bmBpiGEC9wOK5_dvz8JhlAr3xo4rKoh2a9frmCu87GGkQ3xnUXiMAaCZkKWKZ4shBYH2JgsQp9eYFS7=s72-c" alt="Velocity 360" /></a>
-												</div>
-												<div className="entry-c">
-													<div className="entry-title">
-														<h4><a href="#">Dkwon</a></h4>
-													</div>
-													<ul className="entry-meta">
-														<li>10th July 2014</li>
-													</ul>
-												</div>
-											</div>
-
-											<div className="spost clearfix">
-												<div className="entry-image">
-													<a href="#"><img src="https://lh3.googleusercontent.com/oKjv_cWz2bmBpiGEC9wOK5_dvz8JhlAr3xo4rKoh2a9frmCu87GGkQ3xnUXiMAaCZkKWKZ4shBYH2JgsQp9eYFS7=s72-c" alt="Velocity 360" /></a>
-												</div>
-												<div className="entry-c">
-													<div className="entry-title">
-														<h4><a href="#">Dkwon</a></h4>
-													</div>
-													<ul className="entry-meta">
-														<li>10th July 2014</li>
-													</ul>
-												</div>
-											</div>
-										</div>
+										<div id="home-recent-news">{comments}</div>
 									</div>
-
-
 
 								</div>
 
@@ -156,6 +113,7 @@ class Profile extends Component {
 const stateToProps = (state) => {
 	return {
 		profiles: state.profile,
+		comments: state.comment,
 		account: state.account,
 		session: state.session
 	}
