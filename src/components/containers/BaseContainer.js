@@ -114,6 +114,7 @@ const BaseContainer = (Container) => {
 					type: subject.schema,
 					id: subject.id,
 					slug: subject.slug,
+					image: subject.image || ''
 					name: subject.title || subject.name
 				}
 			}
