@@ -16,7 +16,7 @@ class Tutorials extends Component {
 		return (
 			<div className="container clearfix">
 				<div className="heading-block center">
-					<h1 style={{fontFamily:'Pathway Gothic One'}}>Tutorials</h1>
+					<h1 style={{fontFamily:'Pathway Gothic One', fontWeight:200}}>Tutorials</h1>
 				</div>
 
 				{ list.map((tutorial, i) => {

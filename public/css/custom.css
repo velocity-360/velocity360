@@ -24,7 +24,8 @@
 
 .description h3 {
 	margin-bottom: 4px;
-	font-family: 'Pathway Gothic One'
+	font-family: 'Pathway Gothic One';
+	font-weight: 200
 }
 
 .description h4 {

@@ -5,7 +5,7 @@ export default (props) => {
 	return (
 		<div className="container clearfix">
 			<div className="heading-block center">
-				<h1 style={{fontFamily:'Pathway Gothic One'}}>Membership</h1>
+				<h1 style={{fontFamily:'Pathway Gothic One', fontWeight:200}}>Membership</h1>
 			</div>
 
 			<div className="row clear-bottommargin">
