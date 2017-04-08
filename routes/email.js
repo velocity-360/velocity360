@@ -12,10 +12,11 @@ router.get('/:template', function(req, res, next) {
 	.find({limit:3})
 	.then(function(results){
 		data['tutorials'] = results
-	    return Microservice.fetch('post', {limit:1})
+	    return Microservice.fetch('post', {limit:5})
 	})
 	.then(function(results){
-		data['post'] = results[0]
+		var index = req.query.index || 0
+		data['post'] = results[index]
 	    res.render('email/'+template, data)
 	})
 	.catch(function(err){
