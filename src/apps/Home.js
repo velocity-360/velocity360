@@ -18,7 +18,7 @@ class Home extends Component {
 			return
 
 		// console.log('FETCH COMMENTS: ')
-		this.props.fetchData('comment', {limit:3})
+		this.props.fetchData('comment', {limit:10})
 		.then(response => {
 			return this.props.fetchData('profile', {featured:'yes', limit:10}) // fetch featured members
 		})
