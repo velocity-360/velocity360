@@ -18,6 +18,8 @@ var reactApps = {
 	profile: apps.Profile
 }
 
+var template = (process.env.ENVIRONMENT=='dev') ? 'index-dev' : 'index'
+
 router.get('/', function(req, res, next) {
 	var initialData = {
 		session:{
@@ -46,7 +48,7 @@ router.get('/', function(req, res, next) {
 		var home = React.createElement(apps.Home)
 		var provider = React.createElement(apps.ServerEntry, {component:home, store:initialState})
 
-	    res.render('index', {
+	    res.render(template, {
 	    	react: ReactDOMServer.renderToString(provider),
 	    	initial: JSON.stringify(initialState.getState()),
 	    	bundle: 'home'
@@ -82,7 +84,7 @@ router.get('/account', function(req, res, next) {
 		var component = React.createElement(reactApps['account'])
 		var provider = React.createElement(apps.ServerEntry, {component:component, store:initialState})
 
-	    res.render('index', {
+	    res.render(template, {
 	    	react: ReactDOMServer.renderToString(provider),
 	    	initial: JSON.stringify(initialState.getState()),
 	    	bundle: 'account'
@@ -161,7 +163,7 @@ router.get('/:page/:slug', function(req, res, next) {
 		var component = React.createElement(reactApps[page])
 		var provider = React.createElement(apps.ServerEntry, {component:component, store:initialState})
 
-	    res.render('index', {
+	    res.render(template, {
 	    	react: ReactDOMServer.renderToString(provider),
 	    	initial: JSON.stringify(initialState.getState()),
 	    	bundle: page
