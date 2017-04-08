@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" ng-app="FullStack360Admin">
+    <head>
+        <meta charset="utf-8">
+        <title>The Full Stack</title>
+        <meta name="viewport" content="width=device-width, initial-scale=0.8">
+        <link href="/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/admin/css/themify-icons.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/admin/css/flexslider.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/admin/css/lightbox.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/admin/css/ytplayer.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/admin/css/theme.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/admin/css/custom.css" rel="stylesheet" type="text/css" media="all" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Lato:300,400%7CRaleway:100,400,300,500,600,700%7COpen+Sans:400,500,600' rel='stylesheet' type='text/css'>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <!-- Angular -->
+        
+        <script src="https://malsup.github.com/jquery.form.js"></script>
+        <script src="/admin/angular/thirdparty/fileupload/angular-file-upload-shim.js"></script>
+        <script src="/admin/bower_components/angular/angular.js"></script>
+        <script src="/admin/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="/admin/angular/thirdparty/fileupload/angular-file-upload.js"></script>
+        <script src="/admin/bower_components/angular-resource/angular-resource.js"></script>
+        
+        <script src='/admin/angular/app.js'></script>
+        <script src='/admin/angular/services/restService.js'></script>
+        <script src='/admin/angular/services/accountService.js'></script>
+        <script src='/admin/angular/services/uploadService.js'></script>
+        <script src='/admin/angular/services/generalService.js'></script>
+        <script src='/admin/angular/controllers/duplicates.js'></script>
+        <script src='/admin/angular/controllers/email.js'></script>
+        <script src='/admin/angular/controllers/course.js'></script>
+        <script src='/admin/angular/controllers/courselist.js'></script>
+        <script src='/admin/angular/controllers/eventlist.js'></script>
+        <script src='/admin/angular/controllers/tutorials.js'></script>
+        <script src='/admin/angular/controllers/scrape.js'></script>
+        <script src='/admin/angular/controllers/series.js'></script>
+        <script src='/admin/angular/controllers/project.js'></script>
+    </head>
+    
+    <body ng-controller="TutorialsController" ng-init="init()">
+        <div class="main-container container">
+        
+            <section>
+                <h4>Edit Tutorial</h4>
+
+                <div class="row">
+                    <div class="col-md-6 mb-xs-24">
+                        <input ng-model="tutorial.title" class="form-control" type="text" placeholder="Title" />
+                        <input ng-model="tutorial.price" class="form-control" type="text" placeholder="Price" />
+                        <input ng-model="tutorial.link" class="form-control" type="text" placeholder="Mediafire Link" />
+                        <input ng-model="tutorial.priority" class="form-control" type="text" placeholder="Priority" />
+                        <input ng-model="tutorial.isFeatured" class="form-control" type="text" placeholder="Featured" />
+                        <input ng-model="tutorial.status" class="form-control" type="text" placeholder="Status (live or coming soon)" />
+                        <select ng-model="tutorial.category" class="form-control">
+                            <option value="node">Node</option>
+                            <option value="react">React</option>
+                            <option value="fullstack">Fullstack</option>
+                            <option value="data science">Data Science</option>
+                        </select>
+                        <textarea ng-model="tutorial.description" class="form-control" type="text" placeholder="Description" style="height:220px"></textarea>
+                        <div style="border:1px solid #ddd;height:96px;background:#f9f9f9;padding:12px;color:#777;margin-bottom:24px" ng-file-drop="uploadImage($files)">
+                            <img style="width:72px;border:1px solid #ddd" ng-show="tutorial.image.length > 0" ng-src="https://media-service.appspot.com/site/images/<% tutorial.image %>?crop=360" />
+                            Drag &amp; drop image
+                        </div>
+
+                        <a class="btn btn-rounded btn-lg" ng-click="updateTutorial()" href="">Update</a>
+                        <a ng-show="tutorial.id != null" class="btn btn-rounded btn-lg" ng-click="removeTutorial()" href="">Delete Event</a>
+                    </div>
+
+                    <div class="col-md-6 mb-xs-24">
+                        <h5>Posts</h5>
+                        <ol style="margin-left:24px">
+                            <li ng-repeat="post in tutorial.posts track by $index">
+                                <span><a ng-click="selectPost(post)" style="color:red" href=""><% post.title %></a></span>
+                                <p style="color:#777">
+                                    <% post.description %>
+                                    <br />
+                                    <a ng-click="removePost(post)" href="">Remove</a>
+                                </p>
+                            </li>
+                        </ol>
+
+                        <input ng-model="post.title" type="text" placeholder="Topic" class="form-control" />
+                        <input ng-model="post.youtube" type="text" placeholder="Youtube ID" class="form-control" />
+                        <input ng-model="post.package" type="text" placeholder="Package" class="form-control" />
+                        <textarea ng-model="post.description" rows="3" placeholder="Description"></textarea>
+
+                        <a class="btn btn-rounded btn-sm" ng-click="addPost()" href="">+ Add Post</a>
+
+
+                    </div>                    
+
+                </div>
+            </section>
+
+        </div>
+        
+        
+    </body>
+</html>

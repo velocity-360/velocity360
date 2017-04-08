@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" ng-app="FullStack360Admin">
+    <head>
+        <meta charset="utf-8">
+        <title>The Full Stack</title>
+        <meta name="viewport" content="width=device-width, initial-scale=0.8">
+        <link href="/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/admin/css/themify-icons.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/admin/css/flexslider.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/admin/css/lightbox.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/admin/css/ytplayer.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/admin/css/theme.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/admin/css/custom.css" rel="stylesheet" type="text/css" media="all" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Lato:300,400%7CRaleway:100,400,300,500,600,700%7COpen+Sans:400,500,600' rel='stylesheet' type='text/css'>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <!-- Angular -->
+        
+        <script src="https://malsup.github.com/jquery.form.js"></script>
+        <script src="/admin/angular/thirdparty/fileupload/angular-file-upload-shim.js"></script>
+        <script src="/admin/bower_components/angular/angular.js"></script>
+        <script src="/admin/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="/admin/angular/thirdparty/fileupload/angular-file-upload.js"></script>
+        <script src="/admin/bower_components/angular-resource/angular-resource.js"></script>
+        
+        <script src='/admin/angular/app.js'></script>
+        <script src='/admin/angular/services/restService.js'></script>
+        <script src='/admin/angular/services/accountService.js'></script>
+        <script src='/admin/angular/services/uploadService.js'></script>
+        <script src='/admin/angular/services/generalService.js'></script>
+        <script src='/admin/angular/controllers/duplicates.js'></script>
+        <script src='/admin/angular/controllers/email.js'></script>
+        <script src='/admin/angular/controllers/course.js'></script>
+        <script src='/admin/angular/controllers/courselist.js'></script>
+        <script src='/admin/angular/controllers/eventlist.js'></script>
+        <script src='/admin/angular/controllers/tutorials.js'></script>
+        <script src='/admin/angular/controllers/scrape.js'></script>
+        <script src='/admin/angular/controllers/series.js'></script>
+        <script src='/admin/angular/controllers/project.js'></script>
+        
+    </head>
+    
+    <body ng-controller="EventsController" ng-init="init()">
+        <div class="main-container">
+        
+            <section style="border-top:1px solid #ddd">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-2 mb-xs-24">
+                            <h4>Events</h4>
+                            <ul>
+                                <li ng-repeat="event in events track by $index">
+                                    <a ng-click="selectEvent(event)" href=""><% event.title %></a>
+                                </li>
+                            </ul>
+                            
+                        </div>
+
+                        <div class="col-md-10 mb-xs-24">
+                            <h4>Edit Event / Create Event</h4>
+                            <input ng-model="event.title" class="form-control" type="text" placeholder="Title" />
+                            <input ng-model="event.date" class="form-control" type="text" placeholder="Date" />
+                            <input ng-model="event.time" class="form-control" type="text" placeholder="Time" />
+                            <input ng-model="event.link" class="form-control" type="text" placeholder="Link" />
+                            <input ng-model="event.fee" class="form-control" type="text" placeholder="Fee" />
+                            <input ng-model="event.priority" class="form-control" type="text" placeholder="Priority" />
+                            <input ng-model="event.address" class="form-control" type="text" placeholder="Address" />
+                            <input ng-model="event.status" class="form-control" type="text" placeholder="Status" />
+                            <div style="border:1px solid #ddd;height:96px;background:#f9f9f9;padding:12px;color:#777;margin-bottom:24px" ng-file-drop="uploadImage($files)">
+                                <img style="width:72px;border:1px solid #ddd" ng-show="event.image.length > 0" ng-src="https://media-service.appspot.com/site/images/<% event.image %>?crop=360" />
+                                Drag &amp; drop image
+                            </div>
+
+                            <textarea ng-model="event.description" class="form-control" type="text" placeholder="Description" style="height:220px"></textarea>
+                            <a class="btn btn-rounded btn-lg" ng-click="updateEvent()" href="">Submit</a>
+                            <a ng-show="event.id != null" class="btn btn-rounded btn-lg" ng-click="removeEvent()" href="">Delete Event</a>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </section>
+            
+
+        </div>
+        
+        
+    </body>
+</html>

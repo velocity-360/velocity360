@@ -111,7 +111,7 @@ router.get('/:page', function(req, res, next) {
 
 router.get('/:page/:slug', function(req, res, next) {
 	var page = req.params.page
-	if (page == 'api' || page == 'auth' || page=='premium' || page=='stripe' || page=='email'){
+	if (page == 'api' || page == 'auth' || page=='premium' || page=='stripe' || page=='email' || page=='admin'){
 		next()
 		return
 	}

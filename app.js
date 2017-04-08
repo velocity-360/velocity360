@@ -10,6 +10,7 @@ require('dotenv').config()
 
 var routes = require('./routes/index')
 var api = require('./routes/api')
+var admin = require('./routes/admin')
 var auth = require('./routes/auth')
 var premium = require('./routes/premium')
 var stripe = require('./routes/stripe') // TODO: put this on microservice
@@ -45,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', routes)
 app.use('/api', api)
+app.use('/admin', admin)
 app.use('/auth', auth)
 app.use('/premium', premium)
 app.use('/stripe', stripe)
