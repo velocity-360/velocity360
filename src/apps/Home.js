@@ -20,7 +20,7 @@ class Home extends Component {
 		// console.log('FETCH COMMENTS: ')
 		this.props.fetchData('comment', {limit:3})
 		.then(response => {
-			return this.props.fetchData('profile', {featured:'yes', limit:3}) // fetch featured members
+			return this.props.fetchData('profile', {featured:'yes', limit:10}) // fetch featured members
 		})
 		.then(response => {
 			console.log('RESPONSE: '+JSON.stringify(response))
