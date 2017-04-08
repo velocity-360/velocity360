@@ -8,7 +8,7 @@ export default (props) => {
 			<div className="feature-box fbox-center fbox-bg fbox-effect" style={{height:320}}>
 				<div className="fbox-icon">
 					<a href={'/tutorial/'+tutorial.slug}>
-						<img src={'https://media-service.appspot.com/site/images/'+tutorial.image+'?crop=120'} alt={tutorial.title} />
+						<img style={{background:'#fff'}} src={'https://media-service.appspot.com/site/images/'+tutorial.image+'?crop=120'} alt={tutorial.title} />
 					</a>
 				</div>
 				<h3>
