@@ -12,7 +12,8 @@ var routes = require('./routes/index')
 var api = require('./routes/api')
 var auth = require('./routes/auth')
 var premium = require('./routes/premium')
-var stripe = require('./routes/stripe')
+var stripe = require('./routes/stripe') // TODO: put this on microservice
+var email = require('./routes/email')
 
 mongoose.connect(process.env.MONGOLAB_URI, function (err, res) {
   if (err)
@@ -47,6 +48,7 @@ app.use('/api', api)
 app.use('/auth', auth)
 app.use('/premium', premium)
 app.use('/stripe', stripe)
+app.use('/email', email)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
