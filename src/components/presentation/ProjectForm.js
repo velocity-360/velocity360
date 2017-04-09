@@ -44,10 +44,12 @@ class ProjectForm extends Component {
 		event.preventDefault()
 		let project = Object.assign({}, this.state.updated)
 		let tagsArray = []
-		project.tags.split(',').forEach((tag, i) => {
-			if (tag.length > 0)
-				tagsArray.push(tag.trim().toLowerCase())
-		})
+		if (project.tags != null){
+			project.tags.split(',').forEach((tag, i) => {
+				if (tag.length > 0)
+					tagsArray.push(tag.trim().toLowerCase())
+			})
+		}
 
 		project['tags'] = tagsArray
 		this.props.onSubmit(project)
@@ -60,7 +62,7 @@ class ProjectForm extends Component {
 			<div style={localStyle.profile}>
 				<input value={updated.name} onChange={this.updateProject.bind(this, 'name')} type="text" placeholder="Project Name" style={localStyle.input} />
 				<input value={updated.tags} onChange={this.updateProject.bind(this, 'tags')} type="text" placeholder="Tags" style={localStyle.input} />
-				<textarea value={updated.description} onChange={this.updateProject.bind(this, 'description')} placeholder="Description" style={localStyle.textarea}></textarea>
+				<textarea value={updated.description || ''} onChange={this.updateProject.bind(this, 'description')} placeholder="Description" style={localStyle.textarea}></textarea>
 				<a href="#" onClick={this.submitProject.bind(this)} style={{marginLeft:0, marginTop:16}} className="button button-blue">Update Project</a>
 			</div>
 

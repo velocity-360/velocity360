@@ -10,7 +10,6 @@ class Account extends Component {
 		super()
 		this.state = {
             showModal: false,
-            // selectedProject: null,
             project: {
             	name: ''
             },
@@ -162,6 +161,7 @@ class Account extends Component {
 	}
 
 	setProjectName(field, event){
+		console.log('setProjectName: '+event.target.value)
 		event.preventDefault()
 		let project = Object.assign({}, this.state.project)
 		project[field] = event.target.value
@@ -181,10 +181,11 @@ class Account extends Component {
 	}
 
 	updateProject(project){
-		console.log('updateProject: '+JSON.stringify(project))
+		// console.log('updateProject: '+JSON.stringify(project))
 		this.props.updateData('project', this.state.project, project)
 		.then(result => {
-			console.log('RESULT: '+JSON.stringify(result))
+			// console.log('RESULT: '+JSON.stringify(result))
+			alert('Project Updated')
 		})
 		.catch(err => {
 			console.log('ERROR: '+err.message)
@@ -198,15 +199,17 @@ class Account extends Component {
 			return
 		}
 
-		let project = Object.assign({}, this.state.project)
-		project['profile'] = {
-			id: this.props.user.id,
-			username: this.props.user.username,
-			image: this.props.user.image,
-			slug: this.props.user.slug
+		var newProject = {
+			name: this.state.project.name.trim(),
+			profile: {
+				id: this.props.user.id,
+				username: this.props.user.username,
+				image: this.props.user.image,
+				slug: this.props.user.slug
+			}
 		}
 
-		this.props.postData('project', project)
+		this.props.postData('project', newProject)
 		.then(response => {
 			// console.log('RESPONSE: '+JSON.stringify(response))
 			this.selectProject(response)
@@ -236,18 +239,15 @@ class Account extends Component {
 	}
 
 	render(){
-//		console.log('SLUG: '+this.props.session.post.slug)
 		const SidebarContainer = BaseContainer(Sidebar)
 		const selected = this.props.session.account.selected
 		const menuItems = [
 			{name:'profile', page:'account', selected:(selected=='profile')},
 			{name:'tutorials', page:'account', selected:(selected=='tutorials')},
-			{name:'projects', page:'account', selected:(selected=='projects')}
+			// {name:'projects', page:'account', selected:(selected=='projects')}
 		]
 
-		// console.log('RENDER: '+JSON.stringify(this.props.tutorials.all))
 		const list = this.props.tutorials.all || []
-
 		let content = null
 		if (selected == 'tutorials'){
 			content = (
@@ -283,7 +283,7 @@ class Account extends Component {
 							<div className="spost clearfix">
 								<div className="entry-c">
 									<div className="entry-title">
-										<input onChange={this.setProjectName.bind(this, 'name')} style={{width:100+'%', marginBottom:12}} type="text" placeholder="Project Name" />
+										<input onFocus={this.setProjectName.bind(this, 'name')} onChange={this.setProjectName.bind(this, 'name')} style={{width:100+'%', marginBottom:12}} type="text" placeholder="Project Name" />
 										<button onClick={this.createProject.bind(this)}>Add Project</button>
 									</div>
 								</div>

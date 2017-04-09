@@ -20,8 +20,7 @@ export default (state = initialState, action) => {
 			return newState
 
 		case constants.PROJECT_UPDATED:
-			console.log('PROJECT_UPDATED: '+JSON.stringify(action.data))
-			// all.unshift(action.data)
+			// console.log('PROJECT_UPDATED: '+JSON.stringify(action.data))
 			let array = []
 			all.forEach((project, i) => {
 				if (project.id == action.data.id)
