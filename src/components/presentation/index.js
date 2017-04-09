@@ -12,6 +12,7 @@ import CTA from './CTA'
 // these are not theme specific:
 import Slack from './Slack'
 import AccountForm from './AccountForm'
+import ProjectForm from './ProjectForm'
 
 export {
 
@@ -25,6 +26,7 @@ export {
 	Slack,
 	Preview,
 	AccountForm,
+	ProjectForm,
 	Comments,
 	CTA
 }
