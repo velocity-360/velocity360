@@ -30,8 +30,8 @@ class Profile extends Component {
 		const SidebarContainer = BaseContainer(Sidebar)
 		const selected = this.props.session.profile.selected
 		const menuItems = [
-			{name:'profile', page:'profile', selected:(selected=='profile')},
-			{name:'site', page:'profile', selected:(selected=='site')}
+			{name:'profile', page:'profile', selected:(selected=='profile')}
+			// {name:'site', page:'profile', selected:(selected=='site')}
 		]
 
 		const profile = this.props.profiles[this.props.session.profile.slug]
