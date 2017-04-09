@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Modal } from 'react-bootstrap'
-import { Nav, Sidebar, Footer, Preview, AccountForm } from '../components/presentation'
+import { Nav, Sidebar, Footer, Preview, AccountForm, ProjectForm } from '../components/presentation'
 import { BaseContainer } from '../components/containers'
 import { TextUtils, APIManager } from '../utils'
 
@@ -11,6 +11,9 @@ class Account extends Component {
 		this.state = {
             showModal: false,
             passwords: {},
+            project: {
+            	name: ''
+            },
 			updatedProfile: {
 
 			}
@@ -157,6 +160,51 @@ class Account extends Component {
 		})
 	}
 
+	updateProject(field, event){
+		event.preventDefault()
+		let project = Object.assign({}, this.state.project)
+		project[field] = event.target.value
+		this.setState({
+			project: project
+		})
+
+	}
+
+	createProject(event){
+		event.preventDefault()
+		if (this.state.project.name.length == 0){
+			alert('Please Enter a Name For Your Project')
+			return
+		}
+
+		let project = Object.assign({}, this.state.project)
+		project['profile'] = {
+			id: this.props.user.id,
+			username: this.props.user.username,
+			image: this.props.user.image,
+			slug: this.props.user.slug
+		}
+
+		this.props.postData('project', project)
+		.then(response => {
+			console.log('RESPONSE: '+JSON.stringify(response))
+		})
+		.catch(err => {
+			console.log('ERROR: '+err.message)
+		})
+	}
+
+	componentDidUpdate(){
+		const selected = this.props.session.account.selected
+		if (selected == 'projects'){
+			if (this.props.projects.all != null)
+				return
+
+			console.log('FETCH PORJECTS: ')
+			this.props.fetchData('project', {'profile.id': this.props.user.id})
+			return
+		}
+	}
 
 	render(){
 //		console.log('SLUG: '+this.props.session.post.slug)
@@ -164,7 +212,8 @@ class Account extends Component {
 		const selected = this.props.session.account.selected
 		const menuItems = [
 			{name:'profile', page:'account', selected:(selected=='profile')},
-			{name:'tutorials', page:'account', selected:(selected=='tutorials')}
+			{name:'tutorials', page:'account', selected:(selected=='tutorials')},
+			{name:'projects', page:'account', selected:(selected=='projects')}
 		]
 
 		// console.log('RENDER: '+JSON.stringify(this.props.tutorials.all))
@@ -196,6 +245,56 @@ class Account extends Component {
 			)
 		}
 		
+		if (selected == 'projects'){
+			content = (
+				<div className="row">
+					<div className="col-md-4 col-sm-6 bottommargin">
+
+						<div id="home-recent-news">
+							<div className="spost clearfix">
+								<div className="entry-c">
+									<div className="entry-title">
+										<input onChange={this.updateProject.bind(this, 'name')} style={{width:100+'%', marginBottom:12}} type="text" placeholder="Project Name" />
+										<button onClick={this.createProject.bind(this)}>Add Project</button>
+									</div>
+								</div>
+							</div>
+
+							{ (this.props.projects.all == null) ? null : this.props.projects.all.map((project, i) => {
+									return (
+										<div key={project.id} className="spost clearfix">
+											<div className="entry-c">
+												<div className="entry-title">
+													<h4>
+														<a href="#">{project.name}</a>
+													</h4>
+												</div>
+												<ul className="entry-meta">
+													<li>Date</li>
+												</ul>
+											</div>
+										</div>
+									)
+								})
+
+							}
+
+						</div>
+					</div>
+
+
+					<div className="col-md-8 col-sm-6 bottommargin">
+						<ProjectForm 
+							onChange={this.onChangeProfile.bind(this)}
+							onSubmit={this.updateProfile.bind(this)}
+							onUpload={this.uploadImage.bind(this)}
+							initial={this.state.updatedProfile} />
+					</div>
+
+				</div>
+			)
+		}
+
 		return (
 			<div>
 				<Nav user={this.props.user} />
@@ -205,7 +304,7 @@ class Account extends Component {
 					<section id="content" style={{background:'#f9f9f9'}}>
 						<div className="content-wrap">
 							<div className="container clearfix">
-								<div className="col_two_third postcontent nobottommargin clearfix">
+								<div className="col_three_fourth postcontent nobottommargin clearfix">
 
 									<div id="posts" className="events small-thumbs">
 										<div className="entry-title">
@@ -273,8 +372,9 @@ const localStyle = {
 
 const stateToProps = (state) => {
 	return {
+		session: state.session,
 		tutorials: state.tutorial,
-		session: state.session
+		projects: state.project
 	}
 }
 

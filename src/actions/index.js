@@ -4,14 +4,37 @@ import Microservice from 'velocity-microservice'
 
 const sendMicroservice = (resource, params, actionType) => {
 	return dispatch => Microservice({site_id:'58da2bc0d644e40011da467c'}).create(resource, params)
-		.then(response => {
-			// console.log('Microservice RESPONSE: '+JSON.stringify(response))
+		.then(result => {
+			// console.log('Microservice RESPONSE: '+JSON.stringify(result))
 			if (actionType != null){
 				dispatch({
 					type: actionType,
-					data: response.result || response.results
+					data: result
 				})
 			}
+
+			return result
+		})
+		.catch(err => {
+			console.log('Microservice ERROR: '+err.message)
+			throw err
+		})
+}
+
+
+const getMicroservice = (resource, params, actionType) => {
+	return dispatch => Microservice({site_id:'58da2bc0d644e40011da467c'}).fetch(resource, params)
+		.then(results => {
+			// console.log('Microservice RESPONSE: '+JSON.stringify(results))
+			if (actionType != null){
+				dispatch({
+					type: actionType,
+					params: params, // can be null
+					data: results
+				})
+			}
+			
+			return results
 		})
 		.catch(err => {
 			console.log('Microservice ERROR: '+err.message)
@@ -199,10 +222,10 @@ export default {
 	},
 
 	fetchComments: (params) => {
-		params['site'] = '58da2bc0d644e40011da467c'
 		return dispatch => {
-			return dispatch(getData('https://velocity-microservices.herokuapp.com/api/comment', params, constants.COMMENTS_RECEIVED))
+			return dispatch(getMicroservice('comment', params, constants.COMMENTS_RECEIVED))
 		}
+
 	},
 
 	submitComment: (params) => {
@@ -210,6 +233,19 @@ export default {
 			// return dispatch(postData('https://velocity-microservices.herokuapp.com/api/comment', params, constants.COMMENT_CREATED))
 			return dispatch(sendMicroservice('comment', params, constants.COMMENT_CREATED))
 		}
+	},
+
+	createProject: (params) => {
+		return dispatch => {
+			return dispatch(sendMicroservice('project', params, constants.PROJECT_CREATED))
+		}
+	},
+
+	fetchProjects: (params) => {
+		return dispatch => {
+			return dispatch(getMicroservice('project', params, constants.PROJECTS_RECEIVED))
+		}
+
 	},
 
 	submitStripeCharge: (token, product) => {

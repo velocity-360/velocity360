@@ -220,6 +220,11 @@ const BaseContainer = (Container) => {
 			if (resource == 'comment'){
 				return this.props.fetchComments(params)
 			}
+
+			if (resource == 'project'){
+				return this.props.fetchProjects(params)
+			}
+
 		}
 
 		postData(resource, params, event){
@@ -228,6 +233,10 @@ const BaseContainer = (Container) => {
 
 			if (resource == 'comment'){
 				return this.props.submitComment(params)
+			}
+
+			if (resource == 'project'){
+				return this.props.createProject(params)
 			}
 		}
 
@@ -282,6 +291,8 @@ const BaseContainer = (Container) => {
 			fetchPosts: (params) => dispatch(actions.fetchPosts(params)),
 			fetchComments: (params) => dispatch(actions.fetchComments(params)),
 			submitComment: (params) => dispatch(actions.submitComment(params)),
+			fetchProjects: (params) => dispatch(actions.fetchProjects(params)),
+			createProject: (params) => dispatch(actions.createProject(params)),
 			selectMenuItem: (item) => dispatch(actions.selectMenuItem(item)),
 	        submitStripeCard: (token) => dispatch(actions.submitStripeCard(token)),
 	        submitStripeCharge: (token, product) => dispatch(actions.submitStripeCharge(token, product)),
