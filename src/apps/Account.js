@@ -10,10 +10,11 @@ class Account extends Component {
 		super()
 		this.state = {
             showModal: false,
-            passwords: {},
+            // selectedProject: null,
             project: {
             	name: ''
             },
+            passwords: {},
 			updatedProfile: {
 
 			}
@@ -160,14 +161,34 @@ class Account extends Component {
 		})
 	}
 
-	updateProject(field, event){
+	setProjectName(field, event){
 		event.preventDefault()
 		let project = Object.assign({}, this.state.project)
 		project[field] = event.target.value
 		this.setState({
 			project: project
 		})
+	}
 
+	selectProject(project, event){
+		if (event)
+			event.preventDefault()
+
+		window.scrollTo(0, 0)
+		this.setState({
+			project: project
+		})
+	}
+
+	updateProject(project){
+		console.log('updateProject: '+JSON.stringify(project))
+		this.props.updateData('project', this.state.project, project)
+		.then(result => {
+			console.log('RESULT: '+JSON.stringify(result))
+		})
+		.catch(err => {
+			console.log('ERROR: '+err.message)
+		})
 	}
 
 	createProject(event){
@@ -187,7 +208,8 @@ class Account extends Component {
 
 		this.props.postData('project', project)
 		.then(response => {
-			console.log('RESPONSE: '+JSON.stringify(response))
+			// console.log('RESPONSE: '+JSON.stringify(response))
+			this.selectProject(response)
 		})
 		.catch(err => {
 			console.log('ERROR: '+err.message)
@@ -200,8 +222,15 @@ class Account extends Component {
 			if (this.props.projects.all != null)
 				return
 
-			console.log('FETCH PORJECTS: ')
 			this.props.fetchData('project', {'profile.id': this.props.user.id})
+			.then(response => {
+				if (response.length > 0)
+					this.selectProject(response[0])
+			})
+			.catch(err => {
+				console.log('ERROR: '+err.message)
+			})
+
 			return
 		}
 	}
@@ -254,7 +283,7 @@ class Account extends Component {
 							<div className="spost clearfix">
 								<div className="entry-c">
 									<div className="entry-title">
-										<input onChange={this.updateProject.bind(this, 'name')} style={{width:100+'%', marginBottom:12}} type="text" placeholder="Project Name" />
+										<input onChange={this.setProjectName.bind(this, 'name')} style={{width:100+'%', marginBottom:12}} type="text" placeholder="Project Name" />
 										<button onClick={this.createProject.bind(this)}>Add Project</button>
 									</div>
 								</div>
@@ -266,7 +295,7 @@ class Account extends Component {
 											<div className="entry-c">
 												<div className="entry-title">
 													<h4>
-														<a href="#">{project.name}</a>
+														<a onClick={this.selectProject.bind(this, project)} href="#">{project.name}</a>
 													</h4>
 												</div>
 												<ul className="entry-meta">
@@ -276,19 +305,17 @@ class Account extends Component {
 										</div>
 									)
 								})
-
 							}
-
 						</div>
 					</div>
 
-
 					<div className="col-md-8 col-sm-6 bottommargin">
-						<ProjectForm 
-							onChange={this.onChangeProfile.bind(this)}
-							onSubmit={this.updateProfile.bind(this)}
-							onUpload={this.uploadImage.bind(this)}
-							initial={this.state.updatedProfile} />
+						{ (this.state.project.id == null) ? null : (
+							<ProjectForm 
+								onSubmit={this.updateProject.bind(this)}
+								onUpload={this.uploadImage.bind(this)}
+								{...this.state.project} />
+						)}
 					</div>
 
 				</div>
