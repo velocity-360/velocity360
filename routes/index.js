@@ -158,7 +158,7 @@ router.get('/:page/:slug', function(req, res, next) {
 		entities.forEach(function(entity, i){
 			var summary = entity.description || entity.preview || entity.bio
 			reducer[entity.slug] = entity
-			tags['title'] = entity.title || entity.name
+			tags['title'] = entity.title || entity.name || entity.username
 			tags['url'] = 'https://www.velocity360.io/'+page+'/'+entity.slug
 			tags['image'] = (entity.image.indexOf('http') == -1) ? 'https://media-service.appspot.com/site/images/'+entity.image+'?crop=260' : entity.image+'=s260-c'
 			tags['description'] = utils.TextUtils.truncateText(summary, 220)

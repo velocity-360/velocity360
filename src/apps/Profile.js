@@ -75,6 +75,12 @@ class Profile extends Component {
 										</div>
 										<h3>{profile.firstName} {profile.lastName}</h3>
 										{profile.username}
+										<div className="ssk-group ssk-round" style={{marginTop:16}}>
+										    <a href="#" className="ssk ssk-facebook"></a>
+										    <a href="#" className="ssk ssk-twitter"></a>
+										    <a href="#" className="ssk ssk-email"></a>
+										</div>
+
 										<hr />
 										<p style={{textAlign:'left', marginBottom:24}} className="subtitle">
 											{profile.bio}
@@ -88,7 +94,6 @@ class Profile extends Component {
 												})
 											}
 										</p>
-
 									</div>
 								</div>
 
