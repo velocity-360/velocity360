@@ -253,6 +253,9 @@ const BaseContainer = (Container) => {
 			// console.log('updateData: '+resource+' == '+JSON.stringify(params))
 			if (resource == 'profile')
 				return this.props.updateProfile(entity, params)
+
+			if (resource == 'project')
+				return this.props.updateProject(entity, params)
 		}		
 
 		render(){
@@ -293,6 +296,7 @@ const BaseContainer = (Container) => {
 			submitComment: (params) => dispatch(actions.submitComment(params)),
 			fetchProjects: (params) => dispatch(actions.fetchProjects(params)),
 			createProject: (params) => dispatch(actions.createProject(params)),
+			updateProject: (project, params) => dispatch(actions.updateProject(project, params)),
 			selectMenuItem: (item) => dispatch(actions.selectMenuItem(item)),
 	        submitStripeCard: (token) => dispatch(actions.submitStripeCard(token)),
 	        submitStripeCharge: (token, product) => dispatch(actions.submitStripeCharge(token, product)),

@@ -21,7 +21,6 @@ const sendMicroservice = (resource, params, actionType) => {
 		})
 }
 
-
 const getMicroservice = (resource, params, actionType) => {
 	return dispatch => Microservice({site_id:'58da2bc0d644e40011da467c'}).fetch(resource, params)
 		.then(results => {
@@ -35,6 +34,25 @@ const getMicroservice = (resource, params, actionType) => {
 			}
 			
 			return results
+		})
+		.catch(err => {
+			console.log('Microservice ERROR: '+err.message)
+			throw err
+		})
+}
+
+const putMicroservice = (resource, entity, params, actionType) => {
+	return dispatch => Microservice({site_id:'58da2bc0d644e40011da467c'}).update(resource, entity, params)
+		.then(result => {
+			// console.log('Microservice RESPONSE: '+JSON.stringify(result))
+			if (actionType != null){
+				dispatch({
+					type: actionType,
+					data: result
+				})
+			}
+
+			return result
 		})
 		.catch(err => {
 			console.log('Microservice ERROR: '+err.message)
@@ -245,7 +263,12 @@ export default {
 		return dispatch => {
 			return dispatch(getMicroservice('project', params, constants.PROJECTS_RECEIVED))
 		}
+	},
 
+	updateProject: (project, params) => {
+		return dispatch => {
+			return dispatch(putMicroservice('project', project, params, constants.PROJECT_UPDATED))
+		}
 	},
 
 	submitStripeCharge: (token, product) => {
