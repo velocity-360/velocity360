@@ -5,6 +5,7 @@ import tutorialReducer from './tutorialReducer'
 import postReducer from './postReducer'
 import commentReducer from './commentReducer'
 import profileReducer from './profileReducer'
+import projectReducer from './projectReducer'
 
 export {
 
@@ -14,6 +15,7 @@ export {
 	tutorialReducer,
 	postReducer,
 	commentReducer,
-	profileReducer
+	profileReducer,
+	projectReducer
 	
 }

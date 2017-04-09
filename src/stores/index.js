@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
-import { accountReducer, sessionReducer, courseReducer, tutorialReducer, postReducer, commentReducer, profileReducer } from '../reducers'
+import { accountReducer, sessionReducer, courseReducer, tutorialReducer, postReducer, commentReducer, profileReducer, projectReducer } from '../reducers'
 
 var store
 export default {
@@ -14,6 +14,7 @@ export default {
 			tutorial: tutorialReducer,
 			comment: commentReducer,
 			post: postReducer,
+			project: projectReducer,
 			profile: profileReducer
 		})
 
