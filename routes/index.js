@@ -6,6 +6,7 @@ var ReactDOMServer = require('react-dom/server')
 var apps = require('../public/dist/es5/apps')
 var store = require('../public/dist/es5/stores')
 var controllers = require('../controllers')
+var utils = require('../utils')
 
 var staticPages = {
 	about: 'about'
@@ -51,7 +52,13 @@ router.get('/', function(req, res, next) {
 	    res.render(template, {
 	    	react: ReactDOMServer.renderToString(provider),
 	    	initial: JSON.stringify(initialState.getState()),
-	    	bundle: 'home'
+	    	bundle: 'home',
+			tags: {
+				title: 'Learn Full Stack React, Redux and Node ',
+				description: 'Learn Full Stack React, Redux and Node ',
+				url: 'https://www.velocity360.io',
+				image: 'https://www.velocity360.io/images/logo_260.png'
+			}
 	    })
 	})
 	.catch(function(err){
@@ -121,6 +128,7 @@ router.get('/:page/:slug', function(req, res, next) {
 		return
 	}
 
+	var tags = {}
 	var controller = controllers[page] // check for null
 	var initialData = {
 		session:{
@@ -146,13 +154,14 @@ router.get('/:page/:slug', function(req, res, next) {
 		return controller.find({slug: req.params.slug})
 	})
 	.then(function(entities){
-		var reducer = {
-			// all: entities
-		}
-
+		var reducer = {}
 		entities.forEach(function(entity, i){
+			var summary = entity.description || entity.preview
 			reducer[entity.slug] = entity
-			// reducer[entity.id] = entity
+			tags['title'] = entity.title || entity.name
+			tags['url'] = 'https://www.velocity360.io/'+page+'/'+entity.slug
+			tags['image'] = (entity.image.indexOf('http') == -1) ? 'https://media-service.appspot.com/site/images/'+entity.image+'?crop=260' : entity.image+'=s260-c'
+			tags['description'] = utils.TextUtils.truncateText(summary, 220)
 		})
 
 		initialData[page] = reducer
@@ -166,7 +175,8 @@ router.get('/:page/:slug', function(req, res, next) {
 	    res.render(template, {
 	    	react: ReactDOMServer.renderToString(provider),
 	    	initial: JSON.stringify(initialState.getState()),
-	    	bundle: page
+	    	bundle: page,
+	    	tags: tags
 	    })
 	})
 	.catch(function(err){
