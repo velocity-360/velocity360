@@ -54,8 +54,8 @@ router.get('/', function(req, res, next) {
 	    	initial: JSON.stringify(initialState.getState()),
 	    	bundle: 'home',
 			tags: {
-				title: 'Learn Full Stack React, Redux and Node ',
-				description: 'Learn Full Stack React, Redux and Node ',
+				title: 'Learn Full Stack React, Redux and Node',
+				description: 'Learn Full Stack React, Redux and Node',
 				url: 'https://www.velocity360.io',
 				image: 'https://www.velocity360.io/images/logo_260.png'
 			}
