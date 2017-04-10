@@ -264,7 +264,7 @@ class Account extends Component {
 		const menuItems = [
 			{name:'profile', page:'account', selected:(selected=='profile')},
 			{name:'tutorials', page:'account', selected:(selected=='tutorials')},
-			// {name:'projects', page:'account', selected:(selected=='projects')}
+			{name:'projects', page:'account', selected:(selected=='projects')}
 		]
 
 		const list = this.props.tutorials.all || []
