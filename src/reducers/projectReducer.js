@@ -32,6 +32,16 @@ export default (state = initialState, action) => {
 			newState['all'] = array
 			return newState
 
+		case constants.PROJECT_REMOVED:
+			// console.log('PROJECT_REMOVED: '+JSON.stringify(action.data))
+			newState['all'] = []
+			all.forEach((project, i) => {
+				if (project.id != action.data.id)
+					newState.all.push(project)
+			})
+
+			return newState
+
 		default:
 			return state
 	}

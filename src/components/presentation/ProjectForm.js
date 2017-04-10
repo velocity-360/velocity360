@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
+import { APIManager } from '../../utils'
 
 class ProjectForm extends Component {
 	constructor(){
@@ -55,6 +56,38 @@ class ProjectForm extends Component {
 		this.props.onSubmit(project)
 	}
 
+	deleteProject(event){
+		event.preventDefault()
+		const confirmed = confirm('Are You Sure?')
+		if (confirmed == true)
+			this.props.onDeleteProject(this.props)
+	}
+
+	uploadImage(files){
+		APIManager.upload(files[0], (err, image) => {
+			if (err){
+				alert(err.message)
+				return
+			}
+
+			// {"id":"zlaYa4d4","address":"https://lh3.googleusercontent.com/4wx2dLcSxn45N_G2--w9USvDJMx",
+			// "name":"2.png","key":"AMIfv97SWgG7RBl_424QhViLIDJYPRBa3UPs9y-PXOYGTI-TKYsdt4Fc"}
+			// console.log('Image Uloaded: '+JSON.stringify(image))
+
+			let updated = Object.assign({}, this.state.updated)
+			let images = (updated.images == null) ? [] : Object.assign([], updated.images)
+			images.push(image.address)
+			updated['images'] = images
+			this.setState({
+				updated: updated
+			})
+		})
+	}
+
+	removeImage(image){
+
+	}
+
 	render(){
 		const updated = this.state.updated
 
@@ -62,10 +95,37 @@ class ProjectForm extends Component {
 			<div style={localStyle.profile}>
 				<input value={updated.name} onChange={this.updateProject.bind(this, 'name')} type="text" placeholder="Project Name" style={localStyle.input} />
 				<input value={updated.tags} onChange={this.updateProject.bind(this, 'tags')} type="text" placeholder="Tags" style={localStyle.input} />
+				<input value={updated.github} onChange={this.updateProject.bind(this, 'github')} type="text" placeholder="GitHub Repo" style={localStyle.input} />
 				<textarea value={updated.description || ''} onChange={this.updateProject.bind(this, 'description')} placeholder="Description" style={localStyle.textarea}></textarea>
-				<a href="#" onClick={this.submitProject.bind(this)} style={{marginLeft:0, marginTop:16}} className="button button-blue">Update Project</a>
-			</div>
+				<h4 style={{marginBottom:12}}>Images</h4>
+				<div className="row">
+					{ (updated.images == null) ? null : updated.images.map((image, i) => {
+							return (
+								<div key={image} className="col-md-3" style={{marginBottom:16}}>
+									<a target="_blank" href={image}>
+										<img style={{marginBottom:4}} src={image+'=s256-c'} />
+									</a>
+									<a style={{fontSize:12, color:'red'}} href="#">remove</a>
+								</div>
+							)
+						})
+					}
+				</div>
 
+				<Dropzone onDrop={this.uploadImage.bind(this)} style={{border:'none'}}>
+					<button>Upload Image</button>
+				</Dropzone>
+
+				<hr />
+				<div className="row">
+					<div className="col-md-6">
+						<a href="#" onClick={this.submitProject.bind(this)} style={{marginLeft:0, marginTop:16}} className="button button-blue">Update Project</a>
+					</div>
+					<div className="col-md-6">
+						<a href="#" onClick={this.deleteProject.bind(this)} style={{marginLeft:0, marginTop:16}} className="button button-red">Delete Project</a>
+					</div>
+				</div>
+			</div>
 		)
 	}
 }

@@ -219,6 +219,26 @@ class Account extends Component {
 		})
 	}
 
+	deleteProject(project){
+		this.props.deleteData('project', project)
+		.then(response => {
+			// console.log('RESPONSE: '+JSON.stringify(response))
+			if (this.props.projects.all.length > 0)
+				this.selectProject(this.props.projects.all[0])
+			else {
+				this.setState({
+					project: {
+		            	name: ''
+		            }
+				})
+			}
+		})
+		.catch(err => {
+			console.log('ERROR: '+err.message)
+		})
+
+	}
+
 	componentDidUpdate(){
 		const selected = this.props.session.account.selected
 		if (selected == 'projects'){
@@ -244,7 +264,7 @@ class Account extends Component {
 		const menuItems = [
 			{name:'profile', page:'account', selected:(selected=='profile')},
 			{name:'tutorials', page:'account', selected:(selected=='tutorials')},
-			// {name:'projects', page:'account', selected:(selected=='projects')}
+			{name:'projects', page:'account', selected:(selected=='projects')}
 		]
 
 		const list = this.props.tutorials.all || []
@@ -314,6 +334,7 @@ class Account extends Component {
 							<ProjectForm 
 								onSubmit={this.updateProject.bind(this)}
 								onUpload={this.uploadImage.bind(this)}
+								onDeleteProject={this.deleteProject.bind(this)}
 								{...this.state.project} />
 						)}
 					</div>

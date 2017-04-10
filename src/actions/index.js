@@ -60,6 +60,25 @@ const putMicroservice = (resource, entity, params, actionType) => {
 		})
 }
 
+const deleteMicroservice = (resource, entity, actionType) => {
+	return dispatch => Microservice({site_id:'58da2bc0d644e40011da467c'}).remove(resource, entity)
+		.then(result => {
+			// console.log('Microservice RESPONSE: '+JSON.stringify(result))
+			if (actionType != null){
+				dispatch({
+					type: actionType,
+					data: result
+				})
+			}
+
+			return result
+		})
+		.catch(err => {
+			console.log('Microservice ERROR: '+err.message)
+			throw err
+		})
+}
+
 const postData = (path, data, actionType) => {
 	return (dispatch) => APIManager
 		.handlePost(path, data)
@@ -268,6 +287,12 @@ export default {
 	updateProject: (project, params) => {
 		return dispatch => {
 			return dispatch(putMicroservice('project', project, params, constants.PROJECT_UPDATED))
+		}
+	},
+
+	removeProject: (project) => {
+		return dispatch => {
+			return dispatch(deleteMicroservice('project', project, constants.PROJECT_REMOVED))
 		}
 	},
 

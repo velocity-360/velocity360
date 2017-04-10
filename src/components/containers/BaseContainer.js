@@ -256,7 +256,16 @@ const BaseContainer = (Container) => {
 
 			if (resource == 'project')
 				return this.props.updateProject(entity, params)
-		}		
+		}
+
+		deleteData(resource, entity){
+			if (event)
+				event.preventDefault()
+
+			if (resource == 'project'){
+				return this.props.removeProject(entity)
+			}
+		}
 
 		render(){
 			return (
@@ -266,6 +275,7 @@ const BaseContainer = (Container) => {
 						fetchData={this.fetchData.bind(this)}
 						postData={this.postData.bind(this)}
 						updateData={this.updateData.bind(this)}
+						deleteData={this.deleteData.bind(this)}
 						onSubmitComment={this.submitComment.bind(this)}
 						updateCredentials={this.updateCredentials.bind(this)}
 						register={this.register.bind(this)}
@@ -297,6 +307,7 @@ const BaseContainer = (Container) => {
 			fetchProjects: (params) => dispatch(actions.fetchProjects(params)),
 			createProject: (params) => dispatch(actions.createProject(params)),
 			updateProject: (project, params) => dispatch(actions.updateProject(project, params)),
+			removeProject: (project) => dispatch(actions.removeProject(project)),
 			selectMenuItem: (item) => dispatch(actions.selectMenuItem(item)),
 	        submitStripeCard: (token) => dispatch(actions.submitStripeCard(token)),
 	        submitStripeCharge: (token, product) => dispatch(actions.submitStripeCharge(token, product)),
