@@ -86,7 +86,7 @@ class ProjectForm extends Component {
 
 	removeImage(image, event){
 		event.preventDefault()
-		console.log('removeImage: '+JSON.stringify(image))
+		// console.log('removeImage: '+JSON.stringify(image))
 
 		let updated = Object.assign({}, this.state.updated)
 		let images = (updated.images == null) ? [] : Object.assign([], updated.images)
