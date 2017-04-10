@@ -53,7 +53,7 @@ class Home extends Component {
 			content = (
 				<div className="container clearfix">
 					<div className="heading-block center">
-						<h1 style={{fontFamily:'Pathway Gothic One'}}>Community</h1>
+						<h1 style={{fontFamily:'Pathway Gothic One', fontWeight:200}}>Community</h1>
 					</div>
 
 					<div className="row">

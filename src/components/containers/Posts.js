@@ -17,7 +17,7 @@ class Posts extends Component {
 		return (
 			<div className="container clearfix">
 				<div className="heading-block center">
-					<h1 style={{fontFamily:'Pathway Gothic One'}}>Blog</h1>
+					<h1 style={{fontFamily:'Pathway Gothic One', fontWeight:200}}>Blog</h1>
 				</div>
 
 				<div className="postcontent nobottommargin clearfix">
