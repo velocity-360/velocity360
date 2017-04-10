@@ -160,12 +160,11 @@ router.post('/:resource', function(req, res, next) {
 //			return Microservice.createStripeAccount(profile, stripeToken)
 
 			var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-			return Microservice.createStripeAccount({ // requires stripeRef, profile, stripeToken values
+			return Microservice.createStripeAccount({ // requires stripeRef, client, stripeToken values
 				stripeRef: stripe,
-				profile: profile,
+				client: profile,
 				stripeToken: stripeToken
-			}) 
-			
+			})			
 		})
 		.then(function(profile){
 			profile['accountType'] = 'premium'
