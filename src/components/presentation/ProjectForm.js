@@ -84,8 +84,21 @@ class ProjectForm extends Component {
 		})
 	}
 
-	removeImage(image){
+	removeImage(image, event){
+		event.preventDefault()
+		console.log('removeImage: '+JSON.stringify(image))
 
+		let updated = Object.assign({}, this.state.updated)
+		let images = (updated.images == null) ? [] : Object.assign([], updated.images)
+		const index = images.indexOf(image)
+		if (index == -1)
+			return
+
+		images.splice(index, 1)
+		updated['images'] = images
+		this.setState({
+			updated: updated
+		})
 	}
 
 	render(){
@@ -105,7 +118,7 @@ class ProjectForm extends Component {
 									<a target="_blank" href={image}>
 										<img style={{marginBottom:4}} src={image+'=s256-c'} />
 									</a>
-									<a style={{fontSize:12, color:'red'}} href="#">remove</a>
+									<a style={{fontSize:12, color:'red'}} onClick={this.removeImage.bind(this, image)} href="#">remove</a>
 								</div>
 							)
 						})
