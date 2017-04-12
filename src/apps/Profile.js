@@ -19,7 +19,10 @@ class Profile extends Component {
 
 		this.props.fetchData('comment', {'source.id':profile.id})
 		.then(response => {
-			console.log('RESPONSE: '+JSON.stringify(response))
+			return this.props.fetchData('project', {'profile.id':profile.id})
+		})
+		.then(response => {
+			// console.log('RESPONSE: '+JSON.stringify(response))
 		})
 		.catch(err => {
 			console.log('ERROR: '+err.message)
@@ -29,10 +32,10 @@ class Profile extends Component {
 	render(){
 		const SidebarContainer = BaseContainer(Sidebar)
 		const selected = this.props.session.profile.selected
-		const menuItems = [
-			{name:'profile', page:'profile', selected:(selected=='profile')}
-			// {name:'site', page:'profile', selected:(selected=='site')}
-		]
+
+		let menuItems = [{name:'profile', page:'profile', selected:(selected=='profile')}]
+		if (this.props.projects.all != null)
+			menuItems.push({name:'projects', page:'profile', selected:(selected=='projects')})
 
 		const profile = this.props.profiles[this.props.session.profile.slug]
 		let content = null
@@ -88,9 +91,7 @@ class Profile extends Component {
 
 										<p style={{textAlign:'left'}} className="subtitle">
 											{ profile.tags.map((tag, i) => {
-													return (
-														<a style={localStyle.tag} href="#" key={tag}>{tag}</a>
-													)
+													return <a style={localStyle.tag} href="#" key={tag}>{tag}</a>
 												})
 											}
 										</p>
@@ -110,11 +111,69 @@ class Profile extends Component {
 			)
 		}
 
-		if (selected == 'site'){
+		if (selected == 'projects'){
 			content = (
-				<iframe style={{width:100+'%', minHeight:650}} src="https://ryanab.github.io"></iframe>
+				<section id="content" style={{background:'#f9f9f9'}}>
+					<div className="content-wrap">
+
+						<div className="container clearfix">
+							<div className="heading-block center">
+								<h1 style={{fontFamily:'Pathway Gothic One', fontWeight:200}}>Projects</h1>
+							</div>
+
+							<div className="row">
+
+								{ (this.props.projects.all == null) ? null : this.props.projects.all.map((project, i) => {
+										let image = null
+										if (project.images != null){
+											image = (project.images.length==0) ? null : (
+												<div className="fbox-icon">
+													<img style={{background:'#ededed'}} src={project.images[0]+'=s72-c'} alt={project.name+' | Velocity 360'} />
+												</div>
+											)
+										}
+
+										let tags = null
+										if (project.tags != null){
+											tags = (project.tags.length == 0) ? null : project.tags.map((tag, i) => {
+													return <a style={localStyle.tag} href="#" key={tag}>{tag}</a>
+												})
+										}
+
+										return (
+											<div key={project.id} className="col-md-4 col-sm-6 bottommargin">
+												<div className="feature-box fbox-center fbox-bg fbox-effect" style={{minHeight:320}}>
+													{ image }
+													<h3>{project.name}</h3>
+													{profile.username}
+													<hr />
+													<p style={{textAlign:'left', marginBottom:24}} className="subtitle">
+														{project.description}
+													</p>
+
+													<p style={{textAlign:'left'}} className="subtitle">
+														{tags}
+													</p>
+												</div>
+											</div>
+										)
+									})
+								}
+
+							</div>
+						</div>
+
+					</div>
+				</section>
 			)
 		}
+
+
+		// if (selected == 'site'){
+		// 	content = (
+		// 		<iframe style={{width:100+'%', minHeight:650}} src="https://ryanab.github.io"></iframe>
+		// 	)
+		// }
 
 
 		return (
@@ -123,7 +182,7 @@ class Profile extends Component {
 				<div id="wrapper" className="clearfix">
 					<SidebarContainer withSlack={true} items={menuItems} />
 					{ content }
-					{ (selected == 'site') ? null : (
+					{ (selected=='site' || selected=='projects') ? null : (
 							<section id="content" style={{background:'#f9f9f9'}}>
 								<div className="content-wrap">
 									<Tutorials />
@@ -154,6 +213,7 @@ const stateToProps = (state) => {
 	return {
 		profiles: state.profile,
 		comments: state.comment,
+		projects: state.project,
 		account: state.account,
 		session: state.session
 	}

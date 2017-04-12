@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
 
 	switch (action.type) {
 		case constants.COMMENTS_RECEIVED:
-			console.log('COMMENTS_RECEIVED: '+JSON.stringify(action.data))
+			// console.log('COMMENTS_RECEIVED: '+JSON.stringify(action.data))
 			newState['all'] = action.data
 			return newState
 
