@@ -2,11 +2,11 @@ var Microservice = require('velocity-microservice')
 
 module.exports = {
 	find: function(params, token){
-		return Microservice({site_id:process.env.SITE_ID}).fetch('post', params) // this returns a promise
+		return Microservice({site_id:process.env.SITE_ID}).fetch('project', params) // this returns a promise
 	},
 
 	findById: function(id, token){
-		return Microservice({site_id:process.env.SITE_ID}).fetchOne('post', id)
+		return Microservice({site_id:process.env.SITE_ID}).fetchOne('project', id)
 	},
 
 	create: function(params, token){
@@ -22,3 +22,6 @@ module.exports = {
 	}
 
 }
+
+
+

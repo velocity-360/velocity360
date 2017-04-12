@@ -4,6 +4,7 @@ import Post from './Post'
 import Tutorial from './Tutorial'
 import Account from './Account'
 import Profile from './Profile'
+import Project from './Project'
 
 export {
 
@@ -12,6 +13,7 @@ export {
 	Post,
 	Tutorial,
 	Account,
-	Profile
+	Profile,
+	Project
 	
 }

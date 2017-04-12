@@ -1,6 +1,7 @@
 var webpack = require("webpack")
 var path = require('path')
 var CommonsChunkPlugin = new require('webpack/lib/optimize/CommonsChunkPlugin')
+var chunks = ['home', 'post', 'tutorial', 'project', 'account', 'profile']
 
 module.exports = {
 
@@ -8,6 +9,7 @@ module.exports = {
 		home: './src/apps/client/Home.js',
 		post: './src/apps/client/Post.js',
 		tutorial: './src/apps/client/Tutorial.js',
+		project: './src/apps/client/Project.js',
 		account: './src/apps/client/Account.js',
 		profile: './src/apps/client/Profile.js'
 	},
@@ -19,7 +21,7 @@ module.exports = {
 	plugins: process.env.NODE_ENV === 'production' ? [
 		new CommonsChunkPlugin({
 			name: 'commons',
-			chunks: ['home', 'post', 'tutorial', 'account', 'profile']
+			chunks: chunks
 		}),
 	    new webpack.DefinePlugin({
 	        'process.env': {
@@ -36,7 +38,7 @@ module.exports = {
 	] : [
 		new CommonsChunkPlugin({
 			name: 'commons',
-			chunks: ['home', 'post', 'tutorial', 'account', 'profile']
+			chunks: chunks
 		})
 	],	
 	module: {

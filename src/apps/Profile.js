@@ -146,7 +146,9 @@ class Profile extends Component {
 											<div key={project.id} className="col-md-4 col-sm-6 bottommargin">
 												<div className="feature-box fbox-center fbox-bg fbox-effect" style={{minHeight:320}}>
 													{ image }
-													<h3>{project.name}</h3>
+													<h3>
+														<a href={'/project/'+project.slug}>{project.name}</a>
+													</h3>
 													{profile.username}
 													<hr />
 													<p style={{textAlign:'left', marginBottom:24}} className="subtitle">

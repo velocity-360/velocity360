@@ -16,6 +16,7 @@ var reactApps = {
 	tutorial: apps.Tutorial,
 	post: apps.Post,
 	account: apps.Account,
+	project: apps.Project,
 	profile: apps.Profile
 }
 
@@ -141,6 +142,10 @@ router.get('/:page/:slug', function(req, res, next) {
 				selected: req.query.selected || 'overview',
 				slug: req.params.slug
 			},
+			project: {
+				selected: req.query.selected || 'overview',
+				slug: req.params.slug
+			},
 			profile: {
 				selected: req.query.selected || 'profile',
 				slug: req.params.slug
@@ -160,8 +165,9 @@ router.get('/:page/:slug', function(req, res, next) {
 			reducer[entity.slug] = entity
 			tags['title'] = entity.title || entity.name || entity.username
 			tags['url'] = 'https://www.velocity360.io/'+page+'/'+entity.slug
-			tags['image'] = (entity.image.indexOf('http') == -1) ? 'https://media-service.appspot.com/site/images/'+entity.image+'?crop=260' : entity.image+'=s260-c'
 			tags['description'] = utils.TextUtils.truncateText(summary, 220)
+			if (entity.image != null)
+				tags['image'] = (entity.image.indexOf('http') == -1) ? 'https://media-service.appspot.com/site/images/'+entity.image+'?crop=260' : entity.image+'=s260-c'
 		})
 
 		initialData[page] = reducer

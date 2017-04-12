@@ -1,5 +1,5 @@
 import constants from '../constants'
-import { APIManager } from '../utils'
+import { APIManager, TextUtils } from '../utils'
 import Microservice from 'velocity-microservice'
 
 const sendMicroservice = (resource, params, actionType) => {
@@ -273,6 +273,7 @@ export default {
 	},
 
 	createProject: (params) => {
+		params['slug'] = TextUtils.slugVersion(params.name)+'-'+TextUtils.randomString(6)
 		return dispatch => {
 			return dispatch(sendMicroservice('project', params, constants.PROJECT_CREATED))
 		}
@@ -285,6 +286,9 @@ export default {
 	},
 
 	updateProject: (project, params) => {
+		if (params.slug == null)
+			params['slug'] = TextUtils.slugVersion(params.name)+'-'+TextUtils.randomString(6)
+		
 		return dispatch => {
 			return dispatch(putMicroservice('project', project, params, constants.PROJECT_UPDATED))
 		}
