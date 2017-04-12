@@ -199,14 +199,17 @@ class Account extends Component {
 			return
 		}
 
+		const admin = {
+			id: this.props.user.id,
+			username: this.props.user.username,
+			image: this.props.user.image,
+			slug: this.props.user.slug
+		}
+
 		var newProject = {
 			name: this.state.project.name.trim(),
-			profile: {
-				id: this.props.user.id,
-				username: this.props.user.username,
-				image: this.props.user.image,
-				slug: this.props.user.slug
-			}
+			colloborators:[admin],
+			profile: admin
 		}
 
 		this.props.postData('project', newProject)
@@ -296,47 +299,46 @@ class Account extends Component {
 		
 		if (selected == 'projects'){
 			content = (
-				<div className="row">
-					<div className="col-md-4 col-sm-6 bottommargin">
+				<div style={localStyle.bordered}>
+					<div className="row">
+						<div className="col-md-4 col-sm-6 nobottommargin">
 
-						<div id="home-recent-news">
-							<div className="spost clearfix">
-								<div className="entry-c">
-									<div className="entry-title">
-										<input onFocus={this.setProjectName.bind(this, 'name')} onChange={this.setProjectName.bind(this, 'name')} style={{width:100+'%', marginBottom:12}} type="text" placeholder="Project Name" />
-										<button onClick={this.createProject.bind(this)}>Add Project</button>
+							<div id="home-recent-news" style={{padding:24}}>
+								<div className="spost clearfix">
+									<div className="entry-c">
+										<div className="entry-title">
+											<input onFocus={this.setProjectName.bind(this, 'name')} onChange={this.setProjectName.bind(this, 'name')} style={{width:100+'%', marginBottom:12, marginTop:16}} type="text" placeholder="Project Name" />
+											<button onClick={this.createProject.bind(this)}>Add Project</button>
+										</div>
 									</div>
 								</div>
-							</div>
 
-							{ (this.props.projects.all == null) ? null : this.props.projects.all.map((project, i) => {
-									return (
-										<div key={project.id} className="spost clearfix">
-											<div className="entry-c">
-												<div className="entry-title">
-													<h4>
-														<a onClick={this.selectProject.bind(this, project)} href="#">{project.name}</a>
-													</h4>
+								{ (this.props.projects.all == null) ? null : this.props.projects.all.map((project, i) => {
+										return (
+											<div key={project.id} className="spost clearfix">
+												<div className="entry-c">
+													<div className="entry-title">
+														<h4>
+															<a onClick={this.selectProject.bind(this, project)} href="#">{project.name}</a>
+														</h4>
+													</div>
 												</div>
-												<ul className="entry-meta">
-													<li>Date</li>
-												</ul>
 											</div>
-										</div>
-									)
-								})
-							}
+										)
+									})
+								}
+							</div>
 						</div>
-					</div>
 
-					<div className="col-md-8 col-sm-6 bottommargin">
-						{ (this.state.project.id == null) ? null : (
-							<ProjectForm 
-								onSubmit={this.updateProject.bind(this)}
-								onUpload={this.uploadImage.bind(this)}
-								onDeleteProject={this.deleteProject.bind(this)}
-								{...this.state.project} />
-						)}
+						<div className="col-md-8 col-sm-6 nobottommargin" style={{borderLeft:'1px solid #ddd'}}>
+							{ (this.state.project.id == null) ? null : (
+								<ProjectForm 
+									onSubmit={this.updateProject.bind(this)}
+									onUpload={this.uploadImage.bind(this)}
+									onDeleteProject={this.deleteProject.bind(this)}
+									{...this.state.project} />
+							)}
+						</div>
 					</div>
 
 				</div>
@@ -393,6 +395,12 @@ class Account extends Component {
 }
 
 const localStyle = {
+	bordered: {
+		background: '#fff',
+		border: '1px solid #ddd',
+		// padding: 24,
+		borderRadius: 3
+	},
 	title: {
 		color:'#fff',
 		fontFamily: 'Pathway Gothic One',

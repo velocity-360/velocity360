@@ -105,7 +105,7 @@ class ProjectForm extends Component {
 		const updated = this.state.updated
 
 		return (
-			<div style={localStyle.profile}>
+			<div style={localStyle.main}>
 				<input value={updated.name} onChange={this.updateProject.bind(this, 'name')} type="text" placeholder="Project Name" style={localStyle.input} />
 				<input value={updated.tags} onChange={this.updateProject.bind(this, 'tags')} type="text" placeholder="Tags" style={localStyle.input} />
 				<input value={updated.github} onChange={this.updateProject.bind(this, 'github')} type="text" placeholder="GitHub Repo" style={localStyle.input} />
@@ -144,11 +144,8 @@ class ProjectForm extends Component {
 }
 
 const localStyle = {
-	profile: {
-		background: '#fff',
-		border: '1px solid #ddd',
-		padding: 24,
-		borderRadius: 3
+	main: {
+		padding: 24
 	},
 	input: {
 		height: 32,

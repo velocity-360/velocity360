@@ -161,7 +161,7 @@ router.get('/:page/:slug', function(req, res, next) {
 	.then(function(entities){
 		var reducer = {}
 		entities.forEach(function(entity, i){
-			var summary = entity.description || entity.preview || entity.bio
+			var summary = entity.description || entity.preview || entity.bio || ''
 			reducer[entity.slug] = entity
 			tags['title'] = entity.title || entity.name || entity.username
 			tags['url'] = 'https://www.velocity360.io/'+page+'/'+entity.slug
