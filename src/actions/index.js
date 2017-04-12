@@ -273,7 +273,7 @@ export default {
 	},
 
 	createProject: (params) => {
-		params['slug'] = TextUtils.slugVersion(params.name)+'-'+TextUtils.randomString(6)
+		params['slug'] = TextUtils.slugVersion(params.name)+'-'+TextUtils.randomString(6).toLowerCase()
 		return dispatch => {
 			return dispatch(sendMicroservice('project', params, constants.PROJECT_CREATED))
 		}
@@ -287,7 +287,7 @@ export default {
 
 	updateProject: (project, params) => {
 		if (params.slug == null)
-			params['slug'] = TextUtils.slugVersion(params.name)+'-'+TextUtils.randomString(6)
+			params['slug'] = TextUtils.slugVersion(params.name)+'-'+TextUtils.randomString(6).toLowerCase()
 		
 		return dispatch => {
 			return dispatch(putMicroservice('project', project, params, constants.PROJECT_UPDATED))
