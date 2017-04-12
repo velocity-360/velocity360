@@ -34,8 +34,10 @@ class Profile extends Component {
 		const selected = this.props.session.profile.selected
 
 		let menuItems = [{name:'profile', page:'profile', selected:(selected=='profile')}]
-		if (this.props.projects.all != null)
-			menuItems.push({name:'projects', page:'profile', selected:(selected=='projects')})
+		if (this.props.projects.all != null){
+			if (this.props.projects.all.length > 0)
+				menuItems.push({name:'projects', page:'profile', selected:(selected=='projects')})
+		}
 
 		const profile = this.props.profiles[this.props.session.profile.slug]
 		let content = null
