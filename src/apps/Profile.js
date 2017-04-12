@@ -151,7 +151,7 @@ class Profile extends Component {
 													<h3>
 														<a href={'/project/'+project.slug}>{project.name}</a>
 													</h3>
-													{profile.username}
+													{'Admin'}
 													<hr />
 													<p style={{textAlign:'left', marginBottom:24}} className="subtitle">
 														{project.description}
