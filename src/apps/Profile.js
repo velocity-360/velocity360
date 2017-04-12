@@ -130,7 +130,9 @@ class Profile extends Component {
 										if (project.images != null){
 											image = (project.images.length==0) ? null : (
 												<div className="fbox-icon">
-													<img style={{background:'#ededed'}} src={project.images[0]+'=s72-c'} alt={project.name+' | Velocity 360'} />
+													<a href={'/project/'+project.slug}>
+														<img style={{background:'#ededed'}} src={project.images[0]+'=s72-c'} alt={project.name+' | Velocity 360'} />
+													</a>
 												</div>
 											)
 										}
