@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Nav, Sidebar, Footer } from '../components/presentation'
 import { BaseContainer } from '../components/containers'
+import { TextUtils } from '../utils'
 
 class Project extends Component {
 
@@ -14,6 +15,9 @@ class Project extends Component {
 			{name:'collaborators', page:'project', selected:(selected=='collaborators')}
 		]
 
+		const project = this.props.projects[this.props.session.project.slug]
+		// console.log('PROEJECT: '+JSON.stringify(project))
+
 		return (
 			<div>
 				<Nav user={this.props.user} />
@@ -24,37 +28,50 @@ class Project extends Component {
 					<section id="content">
 						<div className="content-wrap">
 							<div className="container clearfix">
+								<div className="col_two_third col_last">
+									<div className="tabs tabs-bb clearfix ui-tabs ui-widget ui-widget-content ui-corner-all" id="tab-9">
+										<ul className="tab-nav clearfix ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+											<li className="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="-1" aria-controls="tabs-34" aria-labelledby="ui-id-18" aria-selected="true" aria-expanded="false"><a href="#tabs-34" className="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-18">Description</a></li>
+											<li className="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-35" aria-labelledby="ui-id-19" aria-selected="false" aria-expanded="false"><a href="#tabs-35" className="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-19">Images</a></li>
+											<li className="hidden-phone ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-36" aria-labelledby="ui-id-20" aria-selected="false" aria-expanded="false"><a href="#tabs-36" className="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-20">Activity</a></li>
+										</ul>
+
+										<div className="tab-container">
+											<div className="tab-content clearfix ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-34" aria-labelledby="ui-id-18" role="tabpanel" aria-hidden="true" style={{display:'none'}}>
+												<p>{project.description}</p>
+											</div>
+											<div className="tab-content clearfix ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-35" aria-labelledby="ui-id-19" role="tabpanel" aria-hidden="true" style={{display:'none'}}>
+
+												{ (project.images == null) ? null : project.images.map((image, i) => {
+														return (
+															<a target="_blank" key={image} href={image} data-lightbox="gallery-item">
+																<img src={image+'=s220-c'} alt="" style={{width:126}} />
+															</a>
+
+														)
+													})
+												}
+
+											</div>
+											<div className="tab-content clearfix ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-36" aria-labelledby="ui-id-20" role="tabpanel" aria-hidden="true" style={{display:'none'}}>
+
+							<div style={{border:'none', padding:16, background:'#f9f9f9', marginBottom:16}}>
+								<a href="#"><strong>Username</strong></a>
+								<span style={{fontWeight:200, fontSize:12, float:'right'}}>April 13</span>
+								<p dangerouslySetInnerHTML={{ __html: TextUtils.convertToHtml('comment text') }} style={{marginBottom:0, marginTop:4}}></p>
+							</div>
+
+							<div style={{border:'none', padding:16, background:'#f9f9f9', marginBottom:16}}>
+								<a href="#"><strong>Username</strong></a>
+								<span style={{fontWeight:200, fontSize:12, float:'right'}}>April 13</span>
+								<p dangerouslySetInnerHTML={{ __html: TextUtils.convertToHtml('comment text') }} style={{marginBottom:0, marginTop:4}}></p>
+							</div>
 
 
-		<div className="row">
-			<div className="col-md-4 col-sm-6 bottommargin">
-				<div className="feature-box fbox-center fbox-bg fbox-effect" style={{height:320}}>
-					<div className="fbox-icon">
-						<a href="#">
-							<img style={{background:'#fff'}} src="https://media-service.appspot.com/site/images/60KjE_z8?crop=120" alt="" />
-						</a>
-					</div>
-					<h3>
-						<a style={{color:'#333'}} href="#">Project Title</a>
-					</h3>
-					<hr />
-					<p className="subtitle">
-						<a style={{color:'#777'}} href="#">
-							description
-						</a>
-					</p>
-				</div>
-
-			</div>
-			<div className="col-md-8 col-sm-6 bottommargin" style={{paddingTop:48}}>
-				<div className="fancy-title title-border">
-					<h4>Acitivity</h4>
-				</div>
-			</div>
-
-		</div>
-
-
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</section>
