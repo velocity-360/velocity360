@@ -289,6 +289,7 @@ class Account extends Component {
 				<div>
 					<p>Manage your profile details:</p>
 					<AccountForm 
+						onChangePassword={this.toggleModal.bind(this)}
 						onChange={this.onChangeProfile.bind(this)}
 						onSubmit={this.updateProfile.bind(this)}
 						onUpload={this.uploadImage.bind(this)}

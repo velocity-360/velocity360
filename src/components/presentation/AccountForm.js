@@ -12,6 +12,7 @@ export default (props) => {
 					<input defaultValue={initial.lastName} type="text" onChange={props.onChange.bind(this, 'lastName')} placeholder="Last Name" style={localStyle.input} />
 					<input defaultValue={initial.username} type="text" onChange={props.onChange.bind(this, 'username')} placeholder="Username" style={localStyle.input} />
 					<input defaultValue={initial.tags} type="text" onChange={props.onChange.bind(this, 'tags')} placeholder="Tags (node, react, redux, etc)" style={localStyle.input} />
+					<a href="#" onClick={props.onChangePassword.bind(this)} style={{marginLeft:0, marginTop:16}} className="button button-large button-border button-rounded">Change Password</a>
 					<textarea defaultValue={initial.bio} onChange={props.onChange.bind(this, 'bio')} placeholder="Bio" style={localStyle.textarea}></textarea>
 					<div className="row">
 						<div className="col-md-6">
