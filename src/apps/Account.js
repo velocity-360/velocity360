@@ -57,7 +57,10 @@ class Account extends Component {
 		})		
 	}	
 
-    toggleModal(){
+    toggleModal(event){
+    	if (event != null)
+    		event.preventDefault()
+
         this.setState({
             showModal: !this.state.showModal
         })
