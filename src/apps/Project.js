@@ -11,7 +11,7 @@ class Project extends Component {
 		const selected = this.props.session.project.selected
 		const menuItems = [
 			{name:'overview', page:'project', selected:(selected=='overview')},
-			{name:'comments', page:'project', selected:(selected=='comments')}
+			{name:'collaborators', page:'project', selected:(selected=='collaborators')}
 		]
 
 		return (
@@ -24,11 +24,37 @@ class Project extends Component {
 					<section id="content">
 						<div className="content-wrap">
 							<div className="container clearfix">
-								<div className="col_two_third postcontent nobottommargin clearfix">
 
 
+		<div className="row">
+			<div className="col-md-4 col-sm-6 bottommargin">
+				<div className="feature-box fbox-center fbox-bg fbox-effect" style={{height:320}}>
+					<div className="fbox-icon">
+						<a href="#">
+							<img style={{background:'#fff'}} src="https://media-service.appspot.com/site/images/60KjE_z8?crop=120" alt="" />
+						</a>
+					</div>
+					<h3>
+						<a style={{color:'#333'}} href="#">Project Title</a>
+					</h3>
+					<hr />
+					<p className="subtitle">
+						<a style={{color:'#777'}} href="#">
+							description
+						</a>
+					</p>
+				</div>
 
-								</div>
+			</div>
+			<div className="col-md-8 col-sm-6 bottommargin" style={{paddingTop:48}}>
+				<div className="fancy-title title-border">
+					<h4>Acitivity</h4>
+				</div>
+			</div>
+
+		</div>
+
+
 							</div>
 						</div>
 					</section>
