@@ -31,9 +31,9 @@ class Project extends Component {
 								<div className="col_two_third col_last">
 									<div className="tabs tabs-bb clearfix ui-tabs ui-widget ui-widget-content ui-corner-all" id="tab-9">
 										<ul className="tab-nav clearfix ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
-											<li className="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="-1" aria-controls="tabs-34" aria-labelledby="ui-id-18" aria-selected="true" aria-expanded="false"><a href="#tabs-34" className="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-18">Description</a></li>
-											<li className="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-35" aria-labelledby="ui-id-19" aria-selected="false" aria-expanded="false"><a href="#tabs-35" className="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-19">Images</a></li>
-											<li className="hidden-phone ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-36" aria-labelledby="ui-id-20" aria-selected="false" aria-expanded="false"><a href="#tabs-36" className="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-20">Activity</a></li>
+											<li className="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabIndex="-1" aria-controls="tabs-34" aria-labelledby="ui-id-18" aria-selected="true" aria-expanded="false"><a href="#tabs-34" className="ui-tabs-anchor" role="presentation" tabIndex="-1" id="ui-id-18">Description</a></li>
+											<li className="ui-state-default ui-corner-top" role="tab" tabIndex="-1" aria-controls="tabs-35" aria-labelledby="ui-id-19" aria-selected="false" aria-expanded="false"><a href="#tabs-35" className="ui-tabs-anchor" role="presentation" tabIndex="-1" id="ui-id-19">Images</a></li>
+											<li className="hidden-phone ui-state-default ui-corner-top" role="tab" tabIndex="-1" aria-controls="tabs-36" aria-labelledby="ui-id-20" aria-selected="false" aria-expanded="false"><a href="#tabs-36" className="ui-tabs-anchor" role="presentation" tabIndex="-1" id="ui-id-20">Activity</a></li>
 										</ul>
 
 										<div className="tab-container">
@@ -55,16 +55,20 @@ class Project extends Component {
 											</div>
 											<div className="tab-content clearfix ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-36" aria-labelledby="ui-id-20" role="tabpanel" aria-hidden="true" style={{display:'none'}}>
 
-							<div style={{border:'none', padding:16, background:'#f9f9f9', marginBottom:16}}>
-								<a href="#"><strong>Username</strong></a>
-								<span style={{fontWeight:200, fontSize:12, float:'right'}}>April 13</span>
-								<p dangerouslySetInnerHTML={{ __html: TextUtils.convertToHtml('comment text') }} style={{marginBottom:0, marginTop:4}}></p>
-							</div>
+							<div style={{border:'1px solid #ddd', height:450, background:'#ededed'}}>
 
-							<div style={{border:'none', padding:16, background:'#f9f9f9', marginBottom:16}}>
-								<a href="#"><strong>Username</strong></a>
-								<span style={{fontWeight:200, fontSize:12, float:'right'}}>April 13</span>
-								<p dangerouslySetInnerHTML={{ __html: TextUtils.convertToHtml('comment text') }} style={{marginBottom:0, marginTop:4}}></p>
+								<div style={{border:'none', padding:16, background:'#f9f9f9', borderBottom:'1px solid #ddd'}}>
+									<a href="#"><strong>Username</strong></a>
+									<span style={{fontWeight:200, fontSize:12, float:'right'}}>April 13</span>
+									<p dangerouslySetInnerHTML={{ __html: TextUtils.convertToHtml('comment text') }} style={{marginBottom:0, marginTop:4}}></p>
+								</div>
+
+								<div style={{border:'none', padding:16, background:'#f9f9f9', borderBottom:'1px solid #ddd'}}>
+									<a href="#"><strong>Username</strong></a>
+									<span style={{fontWeight:200, fontSize:12, float:'right'}}>April 13</span>
+									<p dangerouslySetInnerHTML={{ __html: TextUtils.convertToHtml('comment text') }} style={{marginBottom:0, marginTop:4}}></p>
+								</div>
+
 							</div>
 
 
