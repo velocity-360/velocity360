@@ -50,7 +50,8 @@ app.use(session({
     saveUninitialized: true,
     expires: new Date(Date.now() + (30 * 86400 * 1000)),
     cookie: {
-        domain: (process.env.ENVIRONMENT == 'dev') ? 'localhost' : '.velocity360.io'
+        path: '/',
+        domain: (process.env.ENVIRONMENT == 'dev') ? 'localhost' : 'velocity360.io',
     }
     // store: new MongoStore({
     //     db: db
