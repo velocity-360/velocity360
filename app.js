@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
 var sessions = require('client-sessions')
+var session = require('express-session')
 require('dotenv').config()
 
 var routes = require('./routes/index')
@@ -36,12 +37,26 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
-app.use(sessions({
-  cookieName: 'session',
-  secret: process.env.SESSION_SECRET,
-  duration: 24*60*60*1000, // 1 day
-  activeDuration:30*60*1000
+// app.use(sessions({
+//   cookieName: 'session',
+//   secret: process.env.SESSION_SECRET,
+//   duration: 24*60*60*1000, // 1 day
+//   activeDuration:30*60*1000
+// }))
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    expires: new Date(Date.now() + (30 * 86400 * 1000)),
+    cookie: {
+        domain: (process.env.ENVIRONMENT == 'dev') ? 'localhost' : '.velocity360.io'
+    }
+    // store: new MongoStore({
+    //     db: db
+    // })
 }))
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', routes)

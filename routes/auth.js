@@ -25,7 +25,8 @@ router.get('/:action', function(req, res, next) {
 	}
 
 	if (action == 'logout') {
-		req.session.reset()
+		// req.session.reset() // client-sessions
+		req.session.destroy() // express-session
 		res.redirect('/')
 		return
 	}
