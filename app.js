@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
 var sessions = require('client-sessions')
-// var session = require('express-session')
 require('dotenv').config()
 
 var routes = require('./routes/index')
