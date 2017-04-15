@@ -47,7 +47,7 @@
     "serve-favicon": "~2.3.0",
     "stripe": "^4.17.0",
     "superagent": "^3.5.2",
-    "velocity-microservice": "^1.0.4",
+    "turbo360": "^1.0.0",
     "webpack": "^2.3.2"
   }
 }
