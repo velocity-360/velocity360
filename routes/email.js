@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var controllers = require('../controllers')
-var Microservice = require('velocity-microservice')({site_id:process.env.SITE_ID})
+var Microservice = require('turbo360')({site_id:process.env.SITE_ID})
 
 router.get('/:template', function(req, res, next) {
 	var template = req.params.template

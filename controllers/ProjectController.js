@@ -1,4 +1,3 @@
-//var Microservice = require('velocity-microservice')
 var Microservice = require('turbo360')
 
 module.exports = {

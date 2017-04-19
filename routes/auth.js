@@ -1,8 +1,8 @@
 var express = require('express')
 var router = express.Router()
-var Microservice = require('velocity-microservice')({site_id:process.env.SITE_ID})
 var controllers = require('../controllers')
 var utils = require('../utils')
+var Microservice = require('turbo360')({site_id:process.env.SITE_ID})
 
 router.get('/:action', function(req, res, next) {
 	var action = req.params.action
