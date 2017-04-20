@@ -4,29 +4,8 @@ var Promise = require('bluebird')
 var Microservice = require('turbo360')({site_id:process.env.SITE_ID})
 var controllers = require('../controllers')
 
-// function createStripeCharge(customerId, amount, description){
-//     return new Promise(function (resolve, reject){
-// 		var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-// 		stripe.charges.create({
-// 			amount: amount*100, // amount in cents
-// 			currency: 'usd',
-// 			customer: customerId,
-// 			description: description,
-// 		}, function(err, charge) {
-// 			if (err){ // check for `err`
-// 	            reject(err)
-// 	            return
-// 			}
-
-// 	    	resolve(charge)
-// 		})
-//     })
-// }
-
-
 function createProfile(name, email){
 	var parts = name.split(' ')
-
 	return controllers.profile.create({
 		email: email,
 		firstName: parts[0],
@@ -37,26 +16,6 @@ function createProfile(name, email){
 
 router.post('/:resource', function(req, res, next) {
 	var resource = req.params.resource
-
-// 	if (resource == 'register') { // new user signing up as premium subscriber
-// //		console.log('REGISTER: '+JSON.stringify(req.body))
-// 		var params = {email: req.body.email}
-
-// 		controllers.profile.create(params)
-// 		.then(function(profile){
-// 			// return Microservice.createStripeAccount(profile, req.body.stripeToken, null)
-// 			var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-// 			return Microservice.createStripeAccount({ // requires stripeRef, profile, stripeToken values
-// 				stripeRef: stripe,
-// 				profile: profile,
-// 				stripeToken: stripeToken
-// 			})
-// 		})
-// 		.catch(function(err){
-// 			res.send({'confirmation':'fail', 'message':err.message})
-// 			return
-// 		})
-// 	}
 
 	if (resource == 'charge') {
 		var customerName = ''
@@ -136,7 +95,6 @@ router.post('/:resource', function(req, res, next) {
 
 	// Apply a credit card to a profile:
 	if (resource == 'card') {
-		// req.body = {stripeToken: token.id, email: token.email, name: token.name}
 		var stripeToken = req.body.stripeToken
 		if (stripeToken == null){
 			res.json({confirmation:'fail', message:'Missing stripeToken parameter'})
@@ -156,9 +114,6 @@ router.post('/:resource', function(req, res, next) {
 			return (profiles.length == 0) ? controllers.profile.create(req.body) : profile[0]
 		})
 		.then(function(profile){
-			// console.log('CREATE STRIPE CUSTOMER: '+JSON.stringify(profile))
-//			return Microservice.createStripeAccount(profile, stripeToken)
-
 			var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 			return Microservice.createStripeAccount({ // requires stripeRef, client, stripeToken values
 				stripeRef: stripe,
@@ -180,7 +135,6 @@ router.post('/:resource', function(req, res, next) {
 			req.session.user = profile._id.toString() // login as user
 			res.json({confirmation:'success', user:profile.summary()})
 
-			// EmailManager.sendEmail(process.env.BASE_EMAIL, 'dkwon@velocity360.io', 'New Premium Subscriber', JSON.stringify(profile.summary()))
 			Microservice.sendEmail({
 				content: JSON.stringify(profile.summary()),
 				fromemail: process.env.BASE_EMAIL,
