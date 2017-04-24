@@ -91,9 +91,7 @@ router.get('/:page', function(req, res, next) {
 
 		controllers.account.currentUser(req)
 		.then(function(user){
-			var reducer = {currentUser: user}
-
-			initialData['account'] = reducer
+			initialData['account'] = {currentUser: user}
 			var initialState = store.configureStore(initialData)
 
 			var component = React.createElement(reactApps['account'])
@@ -127,9 +125,13 @@ router.get('/:page', function(req, res, next) {
 
 		controllers.account.currentUser(req)
 		.then(function(user){
-			var reducer = {currentUser: user}
+			initialData['account'] = {currentUser: user}
+			return controllers.course.find({})
+		})
+		.then(function(entities){
+			// console.log('COURSES: '+JSON.stringify(entities))
+			initialData['course'] = {all: entities}
 
-			initialData['account'] = reducer
 			var initialState = store.configureStore(initialData)
 
 			var component = React.createElement(reactApps[req.params.page])
@@ -146,9 +148,7 @@ router.get('/:page', function(req, res, next) {
 				confirmation: 'fail',
 				message: err.message
 			})
-		}) 
-
-
+		})
     }
 
 })

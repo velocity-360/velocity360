@@ -14,6 +14,8 @@ class Courses extends Component {
 			{name:'courses', page:'courses', selected:(selected=='courses')}
 		]
 
+		const courses = this.props.courses.all || []
+
 		// const MembershipHOC = BaseContainer(Membership)
 
 		return (
@@ -33,12 +35,62 @@ class Courses extends Component {
 								</div>
 
 
-								<div className="row">
+								{ courses.map((course, i) => {
+										return (
+											<div key={course.id} className="row">
+												<div className="col-md-4 col-sm-6 bottommargin">
+													<div className="feature-box fbox-center fbox-bg fbox-effect" style={{minHeight:320}}>
+														<div className="fbox-icon">
+															<img style={{background:'#ededed'}} src={'https://media-service.appspot.com/site/images/'+course.image+'?crop=120'} alt={course.title+' | Velocity 360'} />
+														</div>
+														<h3>{course.title}</h3>
+														<span style={{fontWeight:400, fontSize:12}}>{course.dates}</span><br />
+														<span style={{fontWeight:400, fontSize:12}}>${ TextUtils.numberWithCommas(course.tuition) }</span>
+														<hr />
+														<p style={{textAlign:'left', marginBottom:24}} className="subtitle">
+															{course.description}
+														</p>
+
+														<p style={{textAlign:'left'}} className="subtitle">
+															{ course.tags.map((tag, i) => {
+																	return <a style={localStyle.tag} href="#" key={tag}>{tag}</a>
+																})
+															}
+														</p>
+													</div>
+												</div>
+
+												<div className="col-md-8 col-sm-6 bottommargin" style={{paddingTop:48}}>
+													<div className="fancy-title title-border">
+														<h4 style={{background:'#f9f9f9'}}>Units</h4>
+													</div>
+													<div id="home-recent-news">
+														{ course.units.map((unit, j) => {
+																return (
+																	<div key={unit.topic} className="spost clearfix">
+																		<div className="entry-c">
+																			<div className="entry-title">
+																				<h4><a href="#">{unit.topic}</a></h4>
+																			</div>
+																			<ul className="entry-meta">
+																				<li>{ TextUtils.truncateText(unit.description, 120) }</li>
+																			</ul>
+																		</div>
+																	</div>
+
+																)
+															})
+
+														}
 
 
+													</div>
+												</div>
 
-								</div>
-
+											</div>
+										)
+									})
+								}
 
 							</div>
 						</div>
@@ -49,6 +101,17 @@ class Courses extends Component {
 				</div>
 			</div>
 		)
+	}
+}
+
+const localStyle = {
+	tag: {
+		fontSize: 12,
+		padding: 4,
+		marginRight: 8,
+		marginBottom: 8,
+		display: 'inline-block',
+		background: '#ededed'
 	}
 }
 
