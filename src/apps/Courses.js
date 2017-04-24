@@ -48,7 +48,7 @@ class Courses extends Component {
 														<span style={{fontWeight:400, fontSize:12}}>${ TextUtils.numberWithCommas(course.tuition) }</span>
 														<hr />
 														<p style={{textAlign:'left', marginBottom:24}} className="subtitle">
-															{course.description}
+															{TextUtils.truncateText(course.description, 400)}
 														</p>
 
 														<p style={{textAlign:'left'}} className="subtitle">
