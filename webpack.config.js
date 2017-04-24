@@ -1,7 +1,7 @@
 var webpack = require("webpack")
 var path = require('path')
 var CommonsChunkPlugin = new require('webpack/lib/optimize/CommonsChunkPlugin')
-var chunks = ['home', 'post', 'tutorial', 'project', 'account', 'profile']
+var chunks = ['home', 'post', 'tutorial', 'project', 'account', 'profile', 'courses']
 
 module.exports = {
 
@@ -9,6 +9,7 @@ module.exports = {
 		home: './src/apps/client/Home.js',
 		post: './src/apps/client/Post.js',
 		tutorial: './src/apps/client/Tutorial.js',
+		courses: './src/apps/client/Courses.js',
 		project: './src/apps/client/Project.js',
 		account: './src/apps/client/Account.js',
 		profile: './src/apps/client/Profile.js'

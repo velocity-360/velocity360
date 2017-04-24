@@ -9,11 +9,13 @@ var controllers = require('../controllers')
 var utils = require('../utils')
 
 var staticPages = {
-	about: 'about'
+	about: 'about',
+	login: 'login'
 }
 
 var reactApps = {
 	tutorial: apps.Tutorial,
+	courses: apps.Courses,
 	post: apps.Post,
 	account: apps.Account,
 	project: apps.Project,
@@ -70,42 +72,6 @@ router.get('/', function(req, res, next) {
 	})
 })
 
-router.get('/account', function(req, res, next) {
-	var initialData = {
-		session:{
-			page:'account',
-			account: {
-				selected: req.query.selected || 'profile'
-			}
-		}
-	}	
-
-	controllers.account.currentUser(req)
-	.then(function(user){
-		var reducer = {
-			currentUser: user
-		}
-
-		initialData['account'] = reducer
-		var initialState = store.configureStore(initialData)
-
-		var component = React.createElement(reactApps['account'])
-		var provider = React.createElement(apps.ServerEntry, {component:component, store:initialState})
-
-	    res.render(template, {
-	    	react: ReactDOMServer.renderToString(provider),
-	    	initial: JSON.stringify(initialState.getState()),
-	    	bundle: 'account'
-	    })
-	})
-	.catch(function(err){
-		res.json({
-			confirmation: 'fail',
-			message: err.message
-		})
-	})
-
-})
 
 router.get('/:page', function(req, res, next) {
 	if (staticPages[req.params.page] != null){
@@ -113,7 +79,77 @@ router.get('/:page', function(req, res, next) {
 		return
 	}
 
-    res.render(req.params.page, null)
+    if (req.params.page == 'account'){
+		var initialData = {
+			session:{
+				page: req.params.page,
+				account: {
+					selected: req.query.selected || 'profile'
+				}
+			}
+		}	
+
+		controllers.account.currentUser(req)
+		.then(function(user){
+			var reducer = {currentUser: user}
+
+			initialData['account'] = reducer
+			var initialState = store.configureStore(initialData)
+
+			var component = React.createElement(reactApps['account'])
+			var provider = React.createElement(apps.ServerEntry, {component:component, store:initialState})
+
+		    res.render(template, {
+		    	react: ReactDOMServer.renderToString(provider),
+		    	initial: JSON.stringify(initialState.getState()),
+		    	bundle: 'account'
+		    })
+		})
+		.catch(function(err){
+			res.json({
+				confirmation: 'fail',
+				message: err.message
+			})
+		})    	
+    }
+
+
+    if (req.params.page == 'courses'){
+		var initialData = {
+			session:{
+				page: req.params.page,
+				courses: {
+					selected: 'courses'
+				}
+			}
+		}
+
+
+		controllers.account.currentUser(req)
+		.then(function(user){
+			var reducer = {currentUser: user}
+
+			initialData['account'] = reducer
+			var initialState = store.configureStore(initialData)
+
+			var component = React.createElement(reactApps[req.params.page])
+			var provider = React.createElement(apps.ServerEntry, {component:component, store:initialState})
+
+		    res.render(template, {
+		    	react: ReactDOMServer.renderToString(provider),
+		    	initial: JSON.stringify(initialState.getState()),
+		    	bundle: req.params.page
+		    })
+		})
+		.catch(function(err){
+			res.json({
+				confirmation: 'fail',
+				message: err.message
+			})
+		}) 
+
+
+    }
 
 })
 
