@@ -75,7 +75,7 @@ class Courses extends Component {
 																				<h4><a href={href}>{unit.topic}</a></h4>
 																			</div>
 																			<ul className="entry-meta">
-																				<li>{ TextUtils.truncateText(unit.description, 120) }</li>
+																				<li>{ TextUtils.truncateText(unit.description, 70) }</li>
 																			</ul>
 																		</div>
 																	</div>
