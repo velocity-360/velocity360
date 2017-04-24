@@ -6,7 +6,6 @@ var initialState = {
 
 export default (state = initialState, action) => {
 	let newState = Object.assign({}, state)
-	let updatedList = (state.all) ? Object.assign([], state.all) : []
 
 	switch (action.type) {
 		case constants.COURSES_RECEIVED:
@@ -19,13 +18,13 @@ export default (state = initialState, action) => {
 			})
 
 			newState['all'] = updatedList
-			if (action.params == null)
-				return newState
+			// if (action.params == null)
+			// 	return newState
 
-			keys.forEach((key, i) => { // ignore slug and id
-				let array = (newState[key]) ? Object.assign([], newState[key]) : []
+			// keys.forEach((key, i) => { // ignore slug and id
+			// 	let array = (newState[key]) ? Object.assign([], newState[key]) : []
 
-			})
+			// })
 
 			return newState
 

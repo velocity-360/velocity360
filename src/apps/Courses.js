@@ -55,7 +55,7 @@ class Courses extends Component {
 const stateToProps = (state) => {
 	return {
 		profiles: state.profile,
-		comments: state.comment,
+		courses: state.course,
 		session: state.session
 	}
 }
