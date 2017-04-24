@@ -36,6 +36,7 @@ class Courses extends Component {
 
 
 								{ courses.map((course, i) => {
+										const href = '/course/'+course.slug
 										return (
 											<div key={course.id} className="row">
 												<div className="col-md-4 col-sm-6 bottommargin">
@@ -43,7 +44,7 @@ class Courses extends Component {
 														<div className="fbox-icon">
 															<img style={{background:'#ededed'}} src={'https://media-service.appspot.com/site/images/'+course.image+'?crop=120'} alt={course.title+' | Velocity 360'} />
 														</div>
-														<h3>{course.title}</h3>
+														<h3><a href={href}>{course.title}</a></h3>
 														<span style={{fontWeight:400, fontSize:12}}>{course.dates}</span><br />
 														<span style={{fontWeight:400, fontSize:12}}>${ TextUtils.numberWithCommas(course.tuition) }</span>
 														<hr />
@@ -57,6 +58,7 @@ class Courses extends Component {
 																})
 															}
 														</p>
+														<a href={href} style={{marginLeft:0, marginTop:16}} className="button button-rounded button-large button-dirtygreen"><span>Course Details</span></a>
 													</div>
 												</div>
 
@@ -70,7 +72,7 @@ class Courses extends Component {
 																	<div key={unit.topic} className="spost clearfix">
 																		<div className="entry-c">
 																			<div className="entry-title">
-																				<h4><a href="#">{unit.topic}</a></h4>
+																				<h4><a href={href}>{unit.topic}</a></h4>
 																			</div>
 																			<ul className="entry-meta">
 																				<li>{ TextUtils.truncateText(unit.description, 120) }</li>
@@ -80,7 +82,6 @@ class Courses extends Component {
 
 																)
 															})
-
 														}
 
 
