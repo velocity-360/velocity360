@@ -56,9 +56,7 @@ app.controller('CourseController', ['$scope', 'generalService', 'accountService'
 
 			$scope.updateCourse(null);
 		});
-
 	}
-
 
 	$scope.selectUnit = function(unit){
 		$scope.unit = unit;
@@ -101,18 +99,6 @@ app.controller('CourseController', ['$scope', 'generalService', 'accountService'
 			return
 
 		$scope.course['tags'] = convertStringToArray(tagString)
-
-		// var tags = [];
-		// var t = tagString.split(',');
-		// for (var i=0; i<t.length; i++){
-		// 	var tag = t[i];
-		// 	if (tag.length == 0)
-		// 		continue;
-
-		// 	tags.push(tag.trim())
-		// }
-
-		// $scope.course['tags'] = tags;
 	}
 
 	function processPromoString(){
@@ -150,7 +136,6 @@ app.controller('CourseController', ['$scope', 'generalService', 'accountService'
 			if (completion != null)
 				completion();
 		});
-
 	}
 
 	$scope.updateCourse = function(completion){
@@ -165,7 +150,8 @@ app.controller('CourseController', ['$scope', 'generalService', 'accountService'
 				return;
 			}
 
-			console.log('Update Course: '+JSON.stringify(response));
+			// console.log('Update Course: '+JSON.stringify(response));
+			alert('Course Updated')
 			if (completion != null)
 				completion();
 		});
