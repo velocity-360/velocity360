@@ -58,7 +58,7 @@ class Courses extends Component {
 																})
 															}
 														</p>
-														<a href={href} style={{marginLeft:0, marginTop:16}} className="button button-rounded button-large button-dirtygreen"><span>Course Details</span></a>
+														<a href={href} style={{marginLeft:0, marginTop:16}} className="button button-rounded button-large button-dirtygreen"><span>Read More</span></a>
 													</div>
 												</div>
 
@@ -75,7 +75,7 @@ class Courses extends Component {
 																				<h4><a href={href}>{unit.topic}</a></h4>
 																			</div>
 																			<ul className="entry-meta">
-																				<li>{ TextUtils.truncateText(unit.description, 70) }</li>
+																				<li><a href={href}>{ TextUtils.truncateText(unit.description, 70) }</a></li>
 																			</ul>
 																		</div>
 																	</div>
