@@ -25,17 +25,21 @@ class Courses extends Component {
 					<section id="content" style={{background:'#f9f9f9'}}>
 						<div className="content-wrap">
 							<div className="container clearfix">
-								<div className="col_three_fourth postcontent nobottommargin clearfix">
-
-									<div id="posts" className="events small-thumbs">
-										<div className="entry-title">
-											<h1>Live Courses</h1>
-										</div>
-										<hr />
-
+								<div id="posts" className="events small-thumbs">
+									<div className="entry-title">
+										<h1>Live Courses</h1>
 									</div>
+									<hr />
+								</div>
+
+
+								<div className="row">
+
+
 
 								</div>
+
+
 							</div>
 						</div>
 
