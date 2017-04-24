@@ -1,5 +1,6 @@
 var accountController = require('./AccountController')
 var tutorialController = require('./TutorialController')
+var courseController = require('./CourseController')
 var profileController = require('./ProfileController')
 var subscriberController = require('./SubscriberController')
 var postController = require('./PostController')
@@ -12,6 +13,7 @@ module.exports = {
 	profile: profileController,
 	subscriber: subscriberController,
 	post: postController,
-	project: projectController
+	project: projectController,
+	course: courseController
 	
 }

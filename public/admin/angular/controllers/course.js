@@ -21,7 +21,7 @@ app.controller('CourseController', ['$scope', 'generalService', 'accountService'
 			}
 
 			console.log('CourseController: '+JSON.stringify(response))
-			$scope.course = response.course
+			$scope.course = response.result
 			$scope.course['tagString'] = $scope.course.tags.toString()
 			$scope.course['promoCodesString'] = $scope.course.promoCodes.toString()
 		});

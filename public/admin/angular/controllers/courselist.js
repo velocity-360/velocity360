@@ -14,14 +14,8 @@ app.controller('CoursesController', ['$scope', 'generalService', 'accountService
 			}
 
 			console.log('CoursesController: '+JSON.stringify(response));
-			$scope.courses = response.courses;
+			$scope.courses = response.results;
 		});
 	}
-
-
-
-	
-	
-	
 
 }]);
