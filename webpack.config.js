@@ -9,6 +9,7 @@ module.exports = {
 		home: './src/apps/client/Home.js',
 		post: './src/apps/client/Post.js',
 		tutorial: './src/apps/client/Tutorial.js',
+		course: './src/apps/client/Course.js',
 		courses: './src/apps/client/Courses.js',
 		project: './src/apps/client/Project.js',
 		account: './src/apps/client/Account.js',
