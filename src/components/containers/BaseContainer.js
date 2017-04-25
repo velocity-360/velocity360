@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions'
-import { Stripe, APIManager } from '../../utils'
+import { Stripe, TextUtils, APIManager } from '../../utils'
+
 
 const BaseContainer = (Container) => {
 
@@ -148,23 +149,20 @@ const BaseContainer = (Container) => {
 		}
 
 	    showStripeModal(product, event){
+	    	console.log('Show Strip Modal: '+JSON.stringify(product))
 	        event.preventDefault()
-//	        this.props.toggleLoading(true)
 
 	        if (product.schema == 'subscription'){
 	            Stripe.initializeWithText('Subscribe', (token) => {
 	                this.props.submitStripeCard(token)
 	                .then(response => {
 	                	window.location.href = '/account'
-	                    // console.log('TEST: '+JSON.stringify(response))
-//	                    this.props.toggleLoading(false)
 	                })
 	                .catch(err => {
 	                	alert(err.message)
 	                })
 	            }, () => {
 	                setTimeout(() => {
-//	                    this.props.toggleLoading(false)
 	                }, 100)
 	            })
 
@@ -175,20 +173,18 @@ const BaseContainer = (Container) => {
             Stripe.initializeWithText('Purchase', (token) => {
                 this.props.submitStripeCharge(token, product)
                 .then(response => {
-	                	window.location.href = '/account'
-//                    console.log('TEST: '+JSON.stringify(response))
-//                    this.props.toggleLoading(false)
+	                window.location.href = '/account'
                 })
                 .catch(err => {
-
+	                alert(err.message)
                 })
             }, () => {
                 setTimeout(() => {
-//                    this.props.toggleLoading(false)
                 }, 100)
             })
 
-            Stripe.showModalWithText(product.title+' - $'+product.price)
+            const price = product.price || product.tuition || product.deposit // courses have tution or deposit
+            Stripe.showModalWithText(product.title+' - $'+TextUtils.numberWithCommas(price))
 	    }
 
 		selectMenuItem(item, event){
@@ -243,10 +239,6 @@ const BaseContainer = (Container) => {
 		updateData(resource, entity, params){ // 'entity' is the original object being updated, params is updates
 			if (this.props.account.currentUser == null){ // every update requires login
 				alert('Please register or log in.')
-				// Alert.showAlert({
-				// 	title: 'Oops',
-				// 	text: 'Please register or log in.'
-				// })
 				return
 			}
 

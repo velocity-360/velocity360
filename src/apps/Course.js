@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Nav, Sidebar, Membership, Footer } from '../components/presentation'
+import { Nav, Sidebar, Enroll, Footer } from '../components/presentation'
 import { BaseContainer } from '../components/containers'
 
 class Course extends Component {
@@ -19,7 +19,7 @@ class Course extends Component {
 		]
 
 		const course = this.props.courses[this.props.session.course.slug]
-		const MembershipHOC = BaseContainer(Membership)
+		const EnrollHOC = BaseContainer(Enroll)
 
 		return (
 			<div>
@@ -30,13 +30,11 @@ class Course extends Component {
 
 						<div className="content-wrap">
 							<div className="container clearfix">
+								<div className="heading-block center">
+									<h1 style={{fontFamily:'Pathway Gothic One', fontWeight:200}}>{course.title}</h1>
+								</div>
 
 								<div className="col_full bottommargin-lg clearfix">
-									<div className="entry-title">
-										<h1 style={{background:'#fff'}}>{course.title}</h1>
-									</div>
-									<hr />
-
 									<div className="ipost clearfix">
 										<div className="col_two_third nobottommargin">
 											<div className="entry-content description">
@@ -61,11 +59,11 @@ class Course extends Component {
 						<div className="content-wrap">
 							<div className="container clearfix">
 
+								<div className="heading-block center topmargin">
+									<h1 style={{fontFamily:'Pathway Gothic One', fontWeight:200}}>Units</h1>
+								</div>
+
 								<div className="col_full bottommargin-lg topmargin clearfix">
-									<div className="entry-title">
-										<h1>Units</h1>
-									</div>
-									<hr />
 
 									<div className="row">
 										{ course.units.map((unit, i) => {
@@ -89,10 +87,9 @@ class Course extends Component {
 
 					<section style={{background:'#fff'}}>
 						<div className="content-wrap topmargin">
-							<MembershipHOC />
+							<EnrollHOC {...course} />
 						</div>
 					</section>
-
 
 					<Footer />
 				</div>
@@ -103,7 +100,6 @@ class Course extends Component {
 
 const stateToProps = (state) => {
 	return {
-		// account: state.account,
 		session: state.session,
 		courses: state.course
 	}

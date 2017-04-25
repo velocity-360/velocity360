@@ -2,6 +2,7 @@ import Nav from './Nav'
 import Footer from './Footer'
 import Sidebar from './Sidebar'
 import Membership from './Membership'
+import Enroll from './Enroll'
 import TutorialPreview from './TutorialPreview'
 import PostPreview from './PostPreview'
 import Detail from './Detail'
@@ -20,6 +21,7 @@ export {
 	Footer,
 	Sidebar,
 	Membership,
+	Enroll,
 	TutorialPreview,
 	PostPreview,
 	Detail,
