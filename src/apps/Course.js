@@ -24,40 +24,74 @@ class Course extends Component {
 		return (
 			<div>
 				<Nav user={this.props.user} />
-				<div id="wrapper" className="clearfix" style={{background:'#f9f9f9'}}>
+				<div id="wrapper" className="clearfix" style={{background:'#fff'}}>
 					<SidebarContainer withSlack={true} items={menuItems} />
-						<section id="content" style={{background:'#f9f9f9'}}>
+					<section id="content" style={{background:'#fff'}}>
 
-							<div className="content-wrap">
-								<div className="container clearfix">
+						<div className="content-wrap">
+							<div className="container clearfix">
 
+								<div className="col_full bottommargin-lg clearfix">
+									<div className="entry-title">
+										<h1 style={{background:'#fff'}}>{course.title}</h1>
+									</div>
+									<hr />
 
-							<div className="col_full bottommargin-lg clearfix">
-								<div className="entry-title">
-									<h1 style={{background:'#f9f9f9'}}>{course.title}</h1>
-								</div>
-								<hr />
+									<div className="ipost clearfix">
+										<div className="col_two_third nobottommargin">
+											<div className="entry-content description">
+												<p dangerouslySetInnerHTML={{ __html:course.description }}></p>
+											</div>
+										</div>
 
-								<div className="ipost clearfix">
-									<div className="col_two_third nobottommargin">
-										<div className="entry-content description">
-											<p dangerouslySetInnerHTML={{ __html:course.description }}></p>
+										<div className="col_one_third nobottommargin col_last">
+											<div className="entry-image topmargin">
+												<img className="image_fade" src={'https://media-service.appspot.com/site/images/'+course.image+'?crop=512'} alt={course.title+' | Velocity 360'} />
+											</div>
 										</div>
 									</div>
+								</div>
 
-									<div className="col_one_third nobottommargin col_last">
-										<div className="entry-image topmargin">
-											<img className="image_fade" src={'https://media-service.appspot.com/site/images/'+course.image+'?crop=512'} alt={course.title+' | Velocity 360'} />
-										</div>
+							</div>
+						</div>
+					</section>
+
+
+					<section style={{background:'#f9f9f9'}}>
+
+						<div className="content-wrap">
+							<div className="container clearfix">
+
+								<div className="col_full bottommargin-lg topmargin clearfix">
+									<div className="entry-title">
+										<h1>Units</h1>
 									</div>
+									<hr />
+
+									<div className="row">
+										{ course.units.map((unit, i) => {											
+												return (
+													<div key={i} className="col-md-4 notopmargin">
+														<div className="feature-box fbox-center fbox-bg fbox-effect" style={{height:320, paddingTop:32}}>
+															<h3>{unit.topic}</h3>
+															<hr />
+															<p className="subtitle">{unit.description}</p>
+														</div>
+													</div>
+												)
+											})
+										}
+
+									</div>
+
 								</div>
+
 							</div>
+						</div>
+					</section>
 
 
-								</div>
-							</div>
 
-						</section>
 					<Footer />
 				</div>
 			</div>

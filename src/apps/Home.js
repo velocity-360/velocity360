@@ -115,12 +115,12 @@ class Home extends Component {
 											</div>
 										)
 									})
-								}							
+								}
 							
 							</div>
 						</div>
 					</div>
-				</div>				
+				</div>
 			)
 		}
 
@@ -140,7 +140,7 @@ class Home extends Component {
 
 					<section id="content" style={{background:'#f9f9f9'}}>
 						<div className="content-wrap">
-							<MembershipHOC />						
+							<MembershipHOC />
 						</div>
 					</section>
 
