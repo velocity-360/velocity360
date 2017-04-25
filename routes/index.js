@@ -10,7 +10,8 @@ var utils = require('../utils')
 
 var staticPages = {
 	about: 'about',
-	login: 'login'
+	login: 'login',
+	turbo: 'turbo'
 }
 
 var reactApps = {
