@@ -4,6 +4,7 @@ import Post from './Post'
 import Tutorial from './Tutorial'
 import Account from './Account'
 import Courses from './Courses'
+import Course from './Course'
 import Profile from './Profile'
 import Project from './Project'
 
@@ -15,6 +16,7 @@ export {
 	Tutorial,
 	Account,
 	Courses,
+	Course,
 	Profile,
 	Project
 	

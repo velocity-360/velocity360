@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Nav, Sidebar, Membership, Footer } from '../components/presentation'
+import { Nav, Sidebar, Footer } from '../components/presentation'
 import { BaseContainer } from '../components/containers'
 import { TextUtils } from '../utils'
 

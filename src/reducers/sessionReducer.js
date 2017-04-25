@@ -9,6 +9,10 @@ var initialState = {
 		selected: 'overview',
 		slug: ''
 	},
+	course: {
+		selected: 'overview',
+		slug: ''
+	},
 	post: {
 		selected: 'overview',
 		slug: ''

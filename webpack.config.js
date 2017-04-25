@@ -1,7 +1,7 @@
 var webpack = require("webpack")
 var path = require('path')
 var CommonsChunkPlugin = new require('webpack/lib/optimize/CommonsChunkPlugin')
-var chunks = ['home', 'post', 'tutorial', 'project', 'account', 'profile', 'courses']
+var chunks = ['home', 'post', 'tutorial', 'project', 'account', 'profile', 'courses', 'course']
 
 module.exports = {
 
