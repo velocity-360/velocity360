@@ -173,6 +173,11 @@ const BaseContainer = (Container) => {
             Stripe.initializeWithText('Purchase', (token) => {
                 this.props.submitStripeCharge(token, product)
                 .then(response => {
+                	if (product.schema == 'course'){
+                		// show pop up confirmation here
+                		return
+                	}
+
 	                window.location.href = '/account'
                 })
                 .catch(err => {
