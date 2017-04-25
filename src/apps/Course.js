@@ -45,7 +45,7 @@ class Course extends Component {
 										</div>
 
 										<div className="col_one_third nobottommargin col_last">
-											<div className="entry-image topmargin">
+											<div className="entry-image topmargin-sm">
 												<img className="image_fade" src={'https://media-service.appspot.com/site/images/'+course.image+'?crop=512'} alt={course.title+' | Velocity 360'} />
 											</div>
 										</div>
