@@ -38,7 +38,7 @@ class Course extends Component {
 								</div>
 								<hr />
 
-								<div className="ipost clearfix bottommargin-sm topmargin">
+								<div className="ipost clearfix">
 									<div className="col_two_third nobottommargin">
 										<div className="entry-content description">
 											<p dangerouslySetInnerHTML={{ __html:course.description }}></p>
@@ -46,7 +46,7 @@ class Course extends Component {
 									</div>
 
 									<div className="col_one_third nobottommargin col_last">
-										<div className="entry-image">
+										<div className="entry-image topmargin">
 											<img className="image_fade" src={'https://media-service.appspot.com/site/images/'+course.image+'?crop=512'} alt={course.title+' | Velocity 360'} />
 										</div>
 									</div>
