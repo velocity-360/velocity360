@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Nav, Sidebar, Footer } from '../components/presentation'
+import { Nav, Sidebar, Membership, Footer } from '../components/presentation'
 import { BaseContainer } from '../components/containers'
 
 class Course extends Component {
@@ -19,8 +19,8 @@ class Course extends Component {
 		]
 
 		const course = this.props.courses[this.props.session.course.slug]
+		const MembershipHOC = BaseContainer(Membership)
 
-		// const MembershipHOC = BaseContainer(Membership)
 		return (
 			<div>
 				<Nav user={this.props.user} />
@@ -58,7 +58,6 @@ class Course extends Component {
 
 
 					<section style={{background:'#f9f9f9'}}>
-
 						<div className="content-wrap">
 							<div className="container clearfix">
 
@@ -69,10 +68,10 @@ class Course extends Component {
 									<hr />
 
 									<div className="row">
-										{ course.units.map((unit, i) => {											
+										{ course.units.map((unit, i) => {
 												return (
 													<div key={i} className="col-md-4 notopmargin">
-														<div className="feature-box fbox-center fbox-bg fbox-effect" style={{height:320, paddingTop:32}}>
+														<div className="feature-box fbox-center fbox-bg fbox-effect" style={{height:340, paddingTop:36}}>
 															<h3>{unit.topic}</h3>
 															<hr />
 															<p className="subtitle">{unit.description}</p>
@@ -83,13 +82,16 @@ class Course extends Component {
 										}
 
 									</div>
-
 								</div>
-
 							</div>
 						</div>
 					</section>
 
+					<section style={{background:'#fff'}}>
+						<div className="content-wrap topmargin">
+							<MembershipHOC />
+						</div>
+					</section>
 
 
 					<Footer />
