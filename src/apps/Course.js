@@ -11,13 +11,6 @@ class Course extends Component {
 		}
 	}
 
-	// alertTest(){
-	// 	Alert.showConfirmation({
-	// 		title: 'Confirmation Test',
-	// 		text: 'This is the Confirmation Test'
-	// 	})
-	// }
-
 	render(){
 		const SidebarContainer = BaseContainer(Sidebar)
 		const selected = this.props.session.course.selected
