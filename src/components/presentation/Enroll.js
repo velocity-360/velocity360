@@ -17,7 +17,7 @@ export default (props) => {
 
 			<div className="row clear-bottommargin">
 				<div className="col-md-6 col-sm-6 bottommargin">
-					<div className="promo promo-border promo-mini" style={{background:'#fff'}}>
+					<div className="promo promo-border promo-mini" style={{background:'#fff', height:300}}>
 						<h3>Deposit</h3>
 						${ TextUtils.numberWithCommas(props.deposit) }
 						<hr />
@@ -27,7 +27,7 @@ export default (props) => {
 				</div>
 
 				<div className="col-md-6 col-sm-6 bottommargin">
-					<div className="promo promo-border promo-mini" style={{background:'#fff'}}>
+					<div className="promo promo-border promo-mini" style={{background:'#fff', height:300}}>
 						<h3>Full Tuition</h3>
 						${ TextUtils.numberWithCommas(props.tuition) }
 						<hr />

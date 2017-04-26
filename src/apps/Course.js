@@ -88,6 +88,23 @@ class Course extends Component {
 					<section style={{background:'#fff'}}>
 						<div className="content-wrap topmargin">
 							<EnrollHOC {...course} />
+
+							<div className="container clearfix entry-content bottommargin-lg">
+								<div className="col_full col_last">
+									<img style={{float:'left', maxWidth:320, padding:3, border:'1px solid #ddd', marginRight:12}} src="/images/wework.jpg" />
+									<p>
+										<h3>Location</h3>
+										Classes are conducted at our convenient midtown <a target="_blank" style={{color:'red'}} href="https://www.wework.com/buildings/times-square--new-york-city--NY">WeWork</a> location:
+										<br /><br />
+										<span style={{fontSize:18}}>1460 Broadway</span>
+										<br />
+										<span style={{fontSize:18}}>New York, NY 10036</span>
+									</p>
+
+
+								</div>
+							</div>
+
 						</div>
 					</section>
 
