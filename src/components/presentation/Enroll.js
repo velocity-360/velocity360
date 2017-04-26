@@ -21,7 +21,7 @@ export default (props) => {
 						<h3>Deposit</h3>
 						${ TextUtils.numberWithCommas(props.deposit) }
 						<hr />
-						<p>Join as a premium member for $19.99 each month and receive unlimited access to all tutorials, code samples, and forums on the site.</p>
+						<p>Submit a deposit today to reserve your spot in the next section of {props.title}. The remainder of the tuition is due on the first day of the course.</p>
 						<a onClick={props.showStripeModal.bind(this, depositOnly)} href="#" className="button button-circle button-dark">Enroll</a>
 					</div>
 				</div>
@@ -31,7 +31,7 @@ export default (props) => {
 						<h3>Full Tuition</h3>
 						${ TextUtils.numberWithCommas(props.tuition) }
 						<hr />
-						<p>Join as a premium member for $19.99 each month and receive unlimited access to all tutorials, code samples, and forums on the site.</p>
+						<p>Submit full tution today and receive a $200 discount.</p>
 						<a onClick={props.showStripeModal.bind(this, tuitionOnly)} href="#" className="button button-circle button-dark">Enroll</a>
 					</div>
 				</div>
