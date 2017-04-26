@@ -42,7 +42,7 @@ class Courses extends Component {
 												<div className="col-md-4 col-sm-6 bottommargin">
 													<div className="feature-box fbox-center fbox-bg fbox-effect" style={{minHeight:320}}>
 														<div className="fbox-icon">
-															<img style={{background:'#ededed'}} src={'https://media-service.appspot.com/site/images/'+course.image+'?crop=120'} alt={course.title+' | Velocity 360'} />
+															<a href={href}><img style={{background:'#ededed'}} src={'https://media-service.appspot.com/site/images/'+course.image+'?crop=120'} alt={course.title+' | Velocity 360'} /></a>
 														</div>
 														<h3><a href={href}>{course.title}</a></h3>
 														<span style={{fontWeight:400, fontSize:12}}>{course.dates}</span><br />
