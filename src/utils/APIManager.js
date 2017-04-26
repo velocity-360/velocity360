@@ -176,7 +176,7 @@ export default {
 
 	submitStripeCharge: (token, product) => {
 		return new Promise((resolve, reject) => {
-			var price = product.price || product.tuition
+			var price = product.price || product.tuition || product.deposit
 			var body = {
 				stripeToken: token.id,
 				email: token.email,
