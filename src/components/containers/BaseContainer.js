@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions'
-import { Stripe, TextUtils, APIManager } from '../../utils'
+import { Stripe, TextUtils, Alert, APIManager } from '../../utils'
 
 
 const BaseContainer = (Container) => {
@@ -225,7 +225,6 @@ const BaseContainer = (Container) => {
 			if (resource == 'project'){
 				return this.props.fetchProjects(params)
 			}
-
 		}
 
 		postData(resource, params, event){

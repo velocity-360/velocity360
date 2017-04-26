@@ -31,6 +31,7 @@ gulp.task('css', ['less'], function(){
                 './public/css/components/bs-datatable.css',
                 './public/css/responsive.css',
                 './public/css/social-share-kit/social-share-kit.css',
+                './public/css/sweetalert.css',
                 './public/css/custom.css'
             ]
         )
@@ -72,6 +73,7 @@ gulp.task('js', function(){
                 './public/js/components/bs-datatable.js',
                 './public/js/functions.js',
                 './public/js/social-share-kit.min.js',
+                './public/js/sweetalert.min.js',
                 './public/js/custom.js'
             ]
         )
