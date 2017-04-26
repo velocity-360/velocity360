@@ -177,7 +177,7 @@ const BaseContainer = (Container) => {
                 		// show pop up confirmation here
 						Alert.showConfirmation({
 							title: 'Success!',
-							text: 'Thanks for enrolling in the '+product.title+'.'
+							text: 'Thanks for enrolling in the '+product.title+'. Check your email shortly for confirmation. See you on '+product.dates.split('-')[0].trim()+'!'
 						})
 
                 		return
