@@ -175,6 +175,11 @@ const BaseContainer = (Container) => {
                 .then(response => {
                 	if (product.schema == 'course'){
                 		// show pop up confirmation here
+						Alert.showConfirmation({
+							title: 'Success!',
+							text: 'Thanks for enrolling in the '+product.title+'.'
+						})
+
                 		return
                 	}
 
