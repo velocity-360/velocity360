@@ -81,6 +81,10 @@ module.exports = {
 					reject(err)
 					return
 				}
+
+				if (profile == null){
+					reject(new Error('Profile Not Found'))
+				}
 				
 				resolve(profile.summary())
 			})
