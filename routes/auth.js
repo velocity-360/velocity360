@@ -26,7 +26,19 @@ router.get('/:action', function(req, res, next) {
 
 	if (action == 'logout') {
 		req.session.reset() // client-sessions
-		// req.session.destroy() // express-session
+
+		var redirect = req.query.redirect
+		if (redirect == null){
+			// req.session.destroy() // express-session
+			res.redirect('/')
+			return
+		}
+
+		if (redirect == 'turbo'){
+			res.redirect('http://turbo.velocity360.io')
+			return
+		}
+
 		res.redirect('/')
 		return
 	}
