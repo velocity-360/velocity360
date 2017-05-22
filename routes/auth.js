@@ -35,7 +35,7 @@ router.get('/:action', function(req, res, next) {
 		}
 
 		if (redirect == 'turbo'){
-			res.redirect('http://turbo.velocity360.io')
+			res.redirect('http://www.turbo360.co')
 			return
 		}
 
