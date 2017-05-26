@@ -11,81 +11,19 @@
 	<title>Become a Full Stack Developer | Velocity 360</title>
 </head>
 
-<body class="stretched" data-loader="11" data-loader-color="#543456">
+<body class="stretched" data-loader="11" data-loader-color="#543456" onLoad="fetchRecentPosts()">
 	<div id="wrapper" class="clearfix">
-
-		<header id="header" class="full-header border-full-header static-sticky sticky-header" data-sticky-class="not-dark" data-sticky-offset="full" data-sticky-offset-negative="100">
-			<div id="header-wrap">
-				<div class="container clearfix" style="padding-right:0px">
-
-					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-					<div id="logo">
-						<a href="/" class="standard-logo" data-dark-logo="/images/canvasone-dark.png"><img src="/images/canvasone.png" alt="Canvas Logo"></a>
-						<a href="/" class="retina-logo" data-dark-logo="/images/canvasone-dark@2x.png"><img src="/images/canvasone@2x.png" alt="Canvas Logo"></a>
-					</div>
-
-					<nav id="primary-menu">
-						<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="65">
-							<li><a href="/"><div>Home</div></a></li>
-							<li><a href="/tutorials"><div>Tutorials</div></a></li>
-							<li><a href="/blog"><div>Blog</div></a></li>
-							<li><a href="/create" style="background:#260354"><div style="color:#fff">Log In</div></a></li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</header>
+		{{>nav}}
 
 		<section id="content">
 			<div class="content-wrap nopadding">
 				<div id="section-about" class="center page-section">
 					<div class="container clearfix">
 						<h2 class="divcenter bottommargin font-body" style="max-width:700px;font-size:40px;font-family:Pathway Gothic One !important">Blog</h2>
-						<img src="/images/art-2.jpg" />
+						<img src="/images/rocket.png" />
 						<hr />
-
-						<p class="lead divcenter bottommargin" style="max-width: 800px;">
-							The only constant in technology is change. While other coding schools continue to teach outdated technologies (Rails, Angular 1.x), Velocity 360 prepares students for the tech world of tomorrow. In our web development courses, you will learn React, Redux, Node, ES6, Babel, Webpack, and more. These skills are essential for the web developer of tomorrow.
-						</p>
 						<div class="clear"></div>
-
-						<div class="row topmargin-sm divcenter" style="max-width:1000px">
-							<div class="col_one_third">
-								<div style="height:320px" class="feature-box fbox-center fbox-bg fbox-light fbox-effect">
-									<div class="fbox-icon">
-										<a href="#"><i class="i-alt">1</i></a>
-									</div>
-									<h3>Professional Instruction</h3>
-									<p class="lead" style="color:#333;font-size:16px">
-										Our instructors currently work as professionals in the field. You will learn from those who work on the most job-relevant areas day in, day out.
-									</p>
-								</div>
-							</div>
-
-							<div class="col_one_third">
-								<div style="height:320px" class="feature-box fbox-center fbox-bg fbox-light fbox-effect">
-									<div class="fbox-icon">
-										<a href="#"><i class="i-alt">2</i></a>
-									</div>
-									<h3>Real Projects</h3>
-									<p class="lead" style="color:#333;font-size:16px">
-										Learn to build real projects through our intensive, project-driven curriculum. Our 8-week React Redux course builds real, full stack apps such as <a target="_blank" style="color:red" href="http://atlas-osjplh.velocity360.io/">this</a> one.
-									</p>
-								</div>
-							</div>
-
-							<div class="col_one_third col_last">
-								<div style="height:320px" class="feature-box fbox-center fbox-bg fbox-light fbox-effect">
-									<div class="fbox-icon">
-										<a href="#"><i class="i-alt">3</i></a>
-									</div>
-									<h3>Video Archive</h3>
-									<p class="lead" style="color:#333;font-size:16px">
-										Every session is recorded and archived for future reference. Students who need reinforcement or extra practice can always refer to archive to review the concepts covered in class.
-									</p>
-								</div>
-							</div>
-						</div>
+						<div id="posts" class="row topmargin-sm divcenter" style="max-width:1000px"></div>
 					</div>
 				</div>
 
@@ -97,7 +35,6 @@
 					<div class="col-md-8 center col-padding" style="background-color:#f9f9f9;height:711px;">
 						<div>
 							<h2 class="divcenter bottommargin font-body" style="max-width:700px;font-size:40px;font-family:Pathway Gothic One !important">Upcoming Courses</h2>
-
 							<p class="lead divcenter bottommargin" style="max-width:600px">
 								Join our in-person courses to accelerate your learning. Our classes are small (avg size 8 students) and the pace is tailored for the group as a whole.
 							</p>
@@ -141,40 +78,7 @@
 					</div>
 				</div>
 
-
-				<div id="events" class="page-section center notoppadding">
-					<div class="section nobottommargin notopmargin" style="background:#fff">
-						<div class="container clearfix">
-							<h2 class="divcenter bottommargin font-body" style="text-align:center;max-width:700px;font-size:40px;font-family:Pathway Gothic One !important">Events</h2>
-							<img src="/images/art-4.jpg" />
-							<hr />
-
-							<div class="row">
-								<div class="col-md-8 col-md-offset-2">
-
-									<div class="panel panel-default">
-										<div class="panel-heading">Schedule</div>
-										<div class="panel-body">
-											<p class="lead divcenter" style="line-height:1.4">
-												Stop by for a workshop, demo or project showcase.<br />
-												All events are held our central <a target="_blank" style="color:red" href="https://www.wework.com/buildings/times-square--new-york-city--NY">WeWork</a> location in Midtown:<br />
-												1460 Broadway, New York, NY 10036
-											</p>
-										</div>
-
-										<table class="table" style="text-align:left">
-											<tbody id="rows"></tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-
-
-				<div id="section-blog" class="page-section notoppadding notopmargin">
+				<div id="section-blog" class="page-section notopmargin">
 					<div class="section nobottommargin notopmargin notoppadding" style="background:#fff">
 						<div class="container clearfix">
 							<h2 class="divcenter bottommargin font-body" style="text-align:center;max-width:700px;font-size:40px;font-weight:100;font-family:Pathway Gothic One !important">Online Membership</h2>
@@ -258,111 +162,11 @@
 							</div>
 						</div>
 					</div>
-				</div>				
-
+				</div>
 			</div>
 		</section>
 
-		<footer id="footer" class="dark">
-			<div class="container">
-				<div class="footer-widgets-wrap clearfix">
-					<div class="row">
-					<div class="col-md-4 col-md-offset-2">
-						<div class="widget widget_links clearfix">
-							<img src="/images/canvasone-dark.png" alt="" class="footer-logo">
-							<ul class="bottommargin-sm">
-								<li><a href="#">Courses</a></li>
-								<li><a href="#">Tutorials</a></li>
-								<li><a href="#">Blog</a></li>
-								<li><a href="mailto:katrina@velocity360.io">Contact</a></li>
-							</ul>
-
-							<form method="post" class="bottommargin-sm">
-								<div class="input-group divcenter">
-									<span class="input-group-addon"><i class="icon-email2"></i></span>
-									<input type="email" id="widget-subscribe-form-email" name="widget-subscribe-form-email" class="form-control required email" placeholder="Enter your Email" aria-required="true">
-									<span class="input-group-btn">
-										<button class="btn btn-success" type="submit">Subscribe</button>
-									</span>
-								</div>
-							</form>
-							<div class="widget-subscribe-form-result"></div>
-							<h5 style="font-weight:100">Subscribe to Our Newsletter for course announcements, events and tutorials.</h5>
-						</div>
-					</div>
-
-					<div class="col-md-4">
-						<div class="widget clearfix">
-							<h4>Recent Activity</h4>
-
-							<div id="post-list-footer">
-								<div class="spost clearfix">
-									<div class="entry-c">
-										<div class="entry-title">
-											<h4><a href="#">Lorem ipsum dolor sit amet, consectetur</a></h4>
-										</div>
-										<ul class="entry-meta">
-											<li>10th July 2017</li>
-										</ul>
-									</div>
-								</div>
-
-								<div class="spost clearfix">
-									<div class="entry-c">
-										<div class="entry-title">
-											<h4><a href="#">Elit Assumenda vel amet dolorum quasi</a></h4>
-										</div>
-										<ul class="entry-meta">
-											<li>10th July 2017</li>
-										</ul>
-									</div>
-								</div>
-
-								<div class="spost clearfix">
-									<div class="entry-c">
-										<div class="entry-title">
-											<h4><a href="#">Debitis nihil placeat, illum est nisi</a></h4>
-										</div>
-										<ul class="entry-meta">
-											<li>10th July 2017</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					</div>
-				</div>
-			</div>
-
-			<div id="copyrights">
-				<div class="container clearfix">
-					<div class="col_half">
-						Copyrights &copy; 2017. All Rights Reserved by The Grid Media, LLC
-					</div>
-
-					<div class="col_half col_last tright">
-						<div class="fright clearfix">
-							<a target="_blank" href="https://www.facebook.com/Velocity-360-1631852427085987" class="social-icon si-small si-borderless si-facebook">
-								<i class="icon-facebook"></i>
-								<i class="icon-facebook"></i>
-							</a>
-
-							<a target="_blank" href="https://twitter.com/Velocity360_io" class="social-icon si-small si-borderless si-twitter">
-								<i class="icon-twitter"></i>
-								<i class="icon-twitter"></i>
-							</a>
-
-							<a target="_blank" href="https://www.instagram.com/hashtagbeauty_us/" class="social-icon si-small si-borderless si-instagram">
-								<i class="icon-instagram"></i>
-								<i class="icon-instagram"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
+		{{>footer}}
 	</div>
 
 	<script type="text/javascript" src="/dist/js/vendor.min.js"></script>
