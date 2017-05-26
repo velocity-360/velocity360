@@ -46,3 +46,7 @@
     font-weight: 400;
     letter-spacing: 1px;	
 }
+
+.meetup img {
+	max-width: 320px
+}
