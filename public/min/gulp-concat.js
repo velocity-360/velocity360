@@ -4542,7 +4542,7 @@ var login = function(event){
     		}
 
     		if (redirect == 'turbo')
-        		window.location.href = 'http://turbo.velocity360.io/'
+        		window.location.href = 'http://www.turbo360.co/'
 
         }
     })
