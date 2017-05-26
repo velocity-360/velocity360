@@ -36,7 +36,6 @@ var register = function(event){
 
 var renderEvents = function(){
 	// console.log('RenderEvents: '+JSON.stringify(events))
-
 	if (events.length == 0){
 		$('#rows').html('<tr><td><div class="meetup" style="padding:24px;text-align:center"><h2>No Scheduled Events</h2></div></td></tr>')
 		return
@@ -62,6 +61,7 @@ var fetchRecentPosts = function(){
 
 		// console.log('RECENT POSTS: '+JSON.stringify(response.results))
 		var posts = ''
+		var blog = ''
 		response.results.forEach(function(post, i){
 			posts += '<div class="spost clearfix">'
 			posts += '<div class="entry-c">'
@@ -70,9 +70,19 @@ var fetchRecentPosts = function(){
 			posts += '</div>'
 			posts += '<ul class="entry-meta"><li>'+post.dateString+'</li></ul>'
 			posts += '</div></div>'
+
+			// blog page:
+			var index = i+1
+			blog += (index%3==0) ? '<div class="col_one_third col_last">' : '<div class="col_one_third">'
+			blog += '<div style="height:380px" class="feature-box fbox-center fbox-bg fbox-light fbox-effect">'
+			blog += '<div class="fbox-icon"><a href="#"><img src="'+post.image+'=s160-c" /></a></div>'
+			blog += '<a href="#"><h3>'+post.title+'</h3></a>'
+			blog += '<p class="lead" style="color:#333;font-size:16px">'+post.preview+'</p>'
+			blog += '</div></div>'
 		})
 
 		$('#post-list-footer').html(posts)
+		$('#posts').html(blog)
 	})
 }
 
