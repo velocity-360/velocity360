@@ -23,13 +23,18 @@ gulp.task('css', ['less'], function(){
             [
                 './public/css/bootstrap.css',
                 './public/css/style.css',
+                './public/css/onepage.css',
                 './public/css/swiper.css',
                 './public/css/dark.css',
                 './public/css/font-icons.css',
+                './public/css/et-line.css',
                 './public/css/animate.css',
                 './public/css/magnific-popup.css',
                 './public/css/components/bs-datatable.css',
+                './public/css/one-page-fonts.css',
                 './public/css/responsive.css',
+                './public/css/font-awesome.css',
+                './public/css/bootstrap-social.css',
                 './public/css/social-share-kit/social-share-kit.css',
                 './public/css/sweetalert.css',
                 './public/css/custom.css'
@@ -64,8 +69,17 @@ gulp.task('copy-images', function(){
 
 gulp.task('style', ['css', 'copy-fonts', 'copy-sharekit', 'copy-images'], function(){})
 
+gulp.task('app', function(){
+    return gulp.src(
+            ['./public/js/app.js']
+        )
+        .pipe(gp_rename('app.min.js'))
+        .pipe(gp_uglify())
+        .pipe(gulp.dest('./public/dist/js/'))
+});
 
-gulp.task('js', function(){
+
+gulp.task('js', ['app'], function(){
     return gulp.src(
             [
                 './public/js/jquery.js',
