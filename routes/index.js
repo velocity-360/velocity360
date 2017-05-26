@@ -9,10 +9,10 @@ var controllers = require('../controllers')
 var utils = require('../utils')
 
 var staticPages = {
-	about: 'about',
+	landing: 'landing',
+	tutorials: 'tutorials',
 	login: 'login',
-	turbo: 'turbo',
-	landing: 'landing'
+	blog: 'blog'
 }
 
 var reactApps = {
@@ -152,7 +152,6 @@ router.get('/:page', function(req, res, next) {
 			})
 		})
     }
-
 })
 
 router.get('/:page/:slug', function(req, res, next) {
