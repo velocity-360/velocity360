@@ -66,7 +66,7 @@ var fetchRecentPosts = function(){
 			posts += '<div class="spost clearfix">'
 			posts += '<div class="entry-c">'
 			posts += '<div class="entry-title">'
-			posts += '<h4><a href="#">'+post.title+'</a></h4>'
+			posts += '<h4><a href="/post/'+post.slug+'">'+post.title+'</a></h4>'
 			posts += '</div>'
 			posts += '<ul class="entry-meta"><li>'+post.dateString+'</li></ul>'
 			posts += '</div></div>'
@@ -75,8 +75,8 @@ var fetchRecentPosts = function(){
 			var index = i+1
 			blog += (index%3==0) ? '<div class="col_one_third col_last">' : '<div class="col_one_third">'
 			blog += '<div style="height:380px" class="feature-box fbox-center fbox-bg fbox-light fbox-effect">'
-			blog += '<div class="fbox-icon"><a href="#"><img src="'+post.image+'=s160-c" /></a></div>'
-			blog += '<a href="#"><h3>'+post.title+'</h3></a>'
+			blog += '<div class="fbox-icon"><a href="/post/'+post.slug+'"><img src="'+post.image+'=s160-c" /></a></div>'
+			blog += '<a href="/post/'+post.slug+'"><h3>'+post.title+'</h3></a>'
 			blog += '<p class="lead" style="color:#333;font-size:16px">'+post.preview+'</p>'
 			blog += '</div></div>'
 		})
