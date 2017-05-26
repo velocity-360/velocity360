@@ -76,7 +76,7 @@ var fetchRecentPosts = function(){
 			blog += (index%3==0) ? '<div class="col_one_third col_last">' : '<div class="col_one_third">'
 			blog += '<div style="height:380px" class="feature-box fbox-center fbox-bg fbox-light fbox-effect">'
 			blog += '<div class="fbox-icon"><a href="/post/'+post.slug+'"><img src="'+post.image+'=s160-c" /></a></div>'
-			blog += '<a href="/post/'+post.slug+'"><h3>'+post.title+'</h3></a>'
+			blog += '<a href="/post/'+post.slug+'"><h3 style="font-weight:600">'+post.title+'</h3></a>'
 			blog += '<p class="lead" style="color:#333;font-size:16px">'+post.preview+'</p>'
 			blog += '</div></div>'
 		})
