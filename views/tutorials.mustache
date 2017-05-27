@@ -11,284 +11,84 @@
 	<title>Become a Full Stack Developer | Velocity 360</title>
 </head>
 
+<body class="stretched" data-loader="11" data-loader-color="#543456" onLoad="fetchTutorials()">
+	<div id="wrapper" class="clearfix">
+		{{>nav}}
 
-<body>
-	<header id="header" class="full-header border-full-header static-sticky sticky-header" data-sticky-class="not-dark" data-sticky-offset="full" data-sticky-offset-negative="100">
-		<div id="header-wrap">
-			<div class="container clearfix" style="padding-right:0px;width:100%">
-				<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-				<div id="logo" style="margin-left:15px">
-					<a href="/" class="standard-logo" data-dark-logo="/images/canvasone-dark.png"><img src="/images/canvasone.png" alt="Turbo 360"></a>
-					<a href="/" class="retina-logo" data-dark-logo="/images/canvasone-dark@2x.png"><img src="/images/canvasone@2x.png" alt="Turbo 360"></a>
-				</div>
-
-				<nav id="primary-menu">
-					<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="65">
-						<li><a href="/"><div>Home</div></a></li>
-						<li><a href="/tutorials"><div>Tutorials</div></a></li>
-						<li><a href="/blog"><div>Blog</div></a></li>
-						<li><a href="/create" style="background:#260354"><div style="color:#fff">Log In</div></a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</header>
-
-	<div class="stretched side-header">
-		<div id="wrapper" class="clearfix">
-			<header id="header" class="no-sticky" style="padding-top:96px">
-				<div id="header-wrap">
+		<section id="content">
+			<div class="content-wrap nopadding">
+				<div id="section-about" class="center page-section" style="padding-top:64px">
 					<div class="container clearfix">
-						<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-						<nav id="primary-menu">
-							<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="0">
-								<li><a href="#" data-href="#wrapper"><div>Home</div></a></li>
-								<li><a href="#" data-href="#section-about"><div>About</div></a></li>
-								<li><a href="#" data-href="#section-works"><div>Works</div></a></li>
-								<li><a href="#" data-href="#section-services"><div>Services</div></a></li>
-								<li><a href="#" data-href="#section-blog"><div>Blog</div></a></li>
-								<li><a href="#" data-href="#section-contact"><div>Contact</div></a></li>
-							</ul>
-						</nav>
-
-						<div class="clearfix visible-md visible-lg">
-	                        <a href="#" class="social-icon si-small si-borderless si-facebook">
-	                            <i class="icon-facebook"></i>
-	                            <i class="icon-facebook"></i>
-	                        </a>
-
-	                        <a href="#" class="social-icon si-small si-borderless si-twitter">
-	                            <i class="icon-twitter"></i>
-	                            <i class="icon-twitter"></i>
-	                        </a>
-
-	                        <a href="#" class="social-icon si-small si-borderless si-gplus">
-	                            <i class="icon-gplus"></i>
-	                            <i class="icon-gplus"></i>
-	                        </a>
-
-	                        <a href="#" class="social-icon si-small si-borderless si-pinterest">
-	                            <i class="icon-pinterest"></i>
-	                            <i class="icon-pinterest"></i>
-	                        </a>
-
-	                        <a href="#" class="social-icon si-small si-borderless si-github">
-	                            <i class="icon-github"></i>
-	                            <i class="icon-github"></i>
-	                        </a>
-	                    </div>
-
+						<h2 class="divcenter bottommargin font-body" style="max-width:700px;font-size:40px;font-family:Pathway Gothic One !important;font-weight:200">Tutorials</h2>
+						<img src="/images/art-3.jpg" />
+						<hr />
+						<div class="clear"></div>
+						<div id="tutorials" class="row topmargin-sm divcenter" style="max-width:1000px"></div>
 					</div>
-
 				</div>
 
-			</header><!-- #header end -->
-
-			<section id="content">
-				<div class="content-wrap nopadding">
-
-					<div id="portfolio" class="portfolio grid-container portfolio-nomargin portfolio-full portfolio-masonry mixed-masonry clearfix">
-
-						<article class="portfolio-item pf-media pf-icons wide">
-							<div class="portfolio-image">
-								<a href="#">
-									<img src="/images/portfolio/mixed/1.jpg" alt="Open Imagination">
-								</a>
-								<div class="portfolio-overlay">
-									<div class="portfolio-desc">
-										<h3><a href="#">Open Imagination</a></h3>
-										<span><a href="#">Media</a>, <a href="#">Icons</a></span>
-									</div>
-								</div>
-							</div>
-						</article>
-
-						<article class="portfolio-item pf-illustrations">
-							<div class="portfolio-image">
-								<a href="#">
-									<img src="/images/portfolio/mixed/2.jpg" alt="Locked Steel Gate">
-								</a>
-								<div class="portfolio-overlay">
-									<div class="portfolio-desc">
-										<h3><a href="#">Locked Steel Gate</a></h3>
-										<span><a href="#">Illustrations</a></span>
-									</div>
-								</div>
-							</div>
-						</article>
-
-						<article class="portfolio-item pf-graphics pf-uielements">
-							<div class="portfolio-image">
-								<a href="#">
-									<img src="/images/portfolio/mixed/3.jpg" alt="Mac Sunglasses">
-								</a>
-								<div class="portfolio-overlay">
-									<div class="portfolio-desc">
-										<h3><a href="#">Mac Sunglasses</a></h3>
-										<span><a href="#">Graphics</a>, <a href="#">UI Elements</a></span>
-									</div>
-								</div>
-							</div>
-						</article>
-
-						<article class="portfolio-item pf-media pf-icons wide">
-							<div class="portfolio-image">
-								<a href="#">
-									<img src="/images/portfolio/mixed/4.jpg" alt="Open Imagination">
-								</a>
-								<div class="portfolio-overlay">
-									<div class="portfolio-desc">
-										<h3><a href="#">Open Imagination</a></h3>
-										<span><a href="#">Media</a>, <a href="#">Icons</a></span>
-									</div>
-								</div>
-							</div>
-						</article>
-
-						<article class="portfolio-item pf-uielements pf-media wide">
-							<div class="portfolio-image">
-								<a href="#">
-									<img src="/images/portfolio/mixed/5.jpg" alt="Console Activity">
-								</a>
-								<div class="portfolio-overlay">
-									<div class="portfolio-desc">
-										<h3><a href="#">Console Activity</a></h3>
-										<span><a href="#">UI Elements</a>, <a href="#">Media</a></span>
-									</div>
-								</div>
-							</div>
-						</article>
-
-						<article class="portfolio-item pf-media pf-icons">
-							<div class="portfolio-image">
-								<a href="#">
-									<img src="/images/portfolio/mixed/6.jpg" alt="Open Imagination">
-								</a>
-								<div class="portfolio-overlay">
-									<div class="portfolio-desc">
-										<h3><a href="#">Open Imagination</a></h3>
-										<span><a href="#">Media</a>, <a href="#">Icons</a></span>
-									</div>
-								</div>
-							</div>
-						</article>
-
-						<article class="portfolio-item pf-uielements pf-icons">
-							<div class="portfolio-image">
-								<a href="#">
-									<img src="/images/portfolio/mixed/7.jpg" alt="Backpack Contents">
-								</a>
-								<div class="portfolio-overlay">
-									<div class="portfolio-desc">
-										<h3><a href="#">Backpack Contents</a></h3>
-										<span><a href="#">UI Elements</a>, <a href="#">Icons</a></span>
-									</div>
-								</div>
-							</div>
-						</article>
-
-					</div><!-- #portfolio end -->
-
-					<div class="section dark notopmargin">
-						<div class="container col-padding center clearfix">
-
-							<div class="emphasis-title">
-								<h2 class="font-body t700" style="font-size: 54px;">We are a Creative Media &amp; Design Agency.</h2>
-								<p class="lead">We specialize in Creating Engaging &amp; Creative Brand Entities for New Startups.</p>
-							</div>
-
-							<a href="#" class="button button-border button-circle button-light">Get Quick Quote</a>
-
-						</div>
+				<div class="row clearfix common-height">
+					<div class="col-md-4 center col-padding hidden-xs" style="background: url('/images/desktop.jpg') center center / cover no-repeat;height:711px">
+						<div>&nbsp;</div>
 					</div>
 
-					<div class="container topmargin-lg bottommargin-lg clearfix">
+					<div class="col-md-8 center col-padding" style="background-color:#f9f9f9;height:711px;">
+						<div>
+							<h2 class="divcenter bottommargin font-body" style="max-width:700px;font-size:40px;font-family:Pathway Gothic One !important">Upcoming Courses</h2>
+							<p class="lead divcenter bottommargin" style="max-width:600px">
+								Join our in-person courses to accelerate your learning. Our classes are small (avg size 8 students) and the pace is tailored for the group as a whole.
+							</p>
 
-						<div class="row common-height grid-border clearfix">
-							<div class="col-md-4 col-sm-6 col-padding">
-								<div class="feature-box fbox-center fbox-dark fbox-plain fbox-small nobottomborder">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-et-mobile"></i></a>
+							<div class="row">
+								<div class="col-md-5 col-md-offset-1 bottommargin-lg">
+									<div class="pricing-box" style="background:#fff">
+										<div class="pricing-features">
+											<img style="border-radius:48px;margin-top:24px;margin-bottom:12px" src="https://media-service.appspot.com/site/images/uphd7w3A?crop=96" />
+											<h3 class="nobottommargin notopmargin" style="color:#333;text-shadow:none;font-weight:400">React Redux Intro</h3>
+											<span>Jul 11th - Aug 31st</span><br />
+											<span>Tues/Thurs, 6pm-9pm</span>
+
+											<p class="nobottommargin" style="padding:24px;margin-top:12px">
+												The React &amp; Redux Intro class builds a full stack web application with React, Redux, ES6, Babel, Webpack, Node, and more. Learn the most modern stack with cutting edge tools as we build and deploy a fully functional app with standard features: user registration/login, image uploading, email notification, and more.
+											</p>
+
+											<button onClick="register(event)" class="button button-border button-circle t500 noleftmargin notopmargin bottommargin-sm" type="submit" name="template-contactform-submit" value="submit">Learn More</button>
+										</div>
 									</div>
-									<h3>Responsive Framework</h3>
 								</div>
-							</div>
-							<div class="col-md-4 col-sm-6 col-padding">
-								<div class="feature-box fbox-center fbox-dark fbox-plain fbox-small nobottomborder">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-et-presentation"></i></a>
+
+								<div class="col-md-5 bottommargin-lg">
+									<div class="pricing-box" style="background:#fff">
+										<div class="pricing-features">
+											<img style="border-radius:48px;margin-top:24px;margin-bottom:12px" src="/images/js.png" />
+											<h3 class="nobottommargin notopmargin" style="color:#333;text-shadow:none;font-weight:400">Intro Web Development</h3>
+											<span>Jul 8th - Aug 26th</span><br />
+											<span>Sat, 10am-4pm</span>
+
+											<p class="nobottommargin" style="padding:24px;margin-top:12px">
+												The Node &amp; React Intro is an 8-week evening (two nights a week) class that covers backend and frontend development using the most up-to-date technologies. Using Node JS, Mongo, Express and React (with ES6), we will create a fully functional website with user registration, image uploading, email notification functionality. 
+											</p>
+
+											<button onClick="register(event)" class="button button-border button-circle t500 noleftmargin notopmargin bottommargin-sm" type="submit" name="template-contactform-submit" value="submit">Learn More</button>
+										</div>
 									</div>
-									<h3>Beautifully Presented</h3>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6 col-padding">
-								<div class="feature-box fbox-center fbox-dark fbox-plain fbox-small nobottomborder">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-et-puzzle"></i></a>
-									</div>
-									<h3>Extensively Extendable</h3>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6 col-padding">
-								<div class="feature-box fbox-center fbox-dark fbox-plain fbox-small nobottomborder">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-et-gears"></i></a>
-									</div>
-									<h3>Powerfully Customizable</h3>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6 col-padding">
-								<div class="feature-box fbox-center fbox-dark fbox-plain fbox-small nobottomborder">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-et-genius"></i></a>
-									</div>
-									<h3>Geniusly Transformable</h3>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6 col-padding">
-								<div class="feature-box fbox-center fbox-dark fbox-plain fbox-small nobottomborder">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-et-hotairballoon"></i></a>
-									</div>
-									<h3>Industrial Support</h3>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</section><!-- #content end -->
 
-			<footer id="footer" class="dark noborder">
+				<div class="topmargin-lg"></div>
+				{{>join}}
 
-				<div id="copyrights">
-					<div class="container topmargin-sm center ls2 uppercase clearfix">
-						Copyright Canvas 2015 | All Rights Reserved
+			</div>
+		</section>
 
-						<div class="center topmargin-sm">
-							<a href="#" class="social-icon inline-block si-borderless si-small si-facebook" title="Facebook">
-								<i class="icon-facebook"></i>
-								<i class="icon-facebook"></i>
-							</a>
-							<a href="#" class="social-icon inline-block si-borderless si-small si-twitter" title="Twitter">
-								<i class="icon-twitter"></i>
-								<i class="icon-twitter"></i>
-							</a>
-							<a href="#" class="social-icon inline-block si-borderless si-small si-github" title="Github">
-								<i class="icon-github"></i>
-								<i class="icon-github"></i>
-							</a>
-							<a href="#" class="social-icon inline-block si-borderless si-small si-pinterest" title="Pinterest">
-								<i class="icon-pinterest"></i>
-								<i class="icon-pinterest"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-			</footer>
-		</div>
+		{{>footer}}
 	</div>
 
 	<script type="text/javascript" src="/dist/js/vendor.min.js"></script>
+	<script src="http://cdn.velocity360.io/dist/turbo.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="/dist/js/app.min.js"></script>
 </body>
-
 </html>
