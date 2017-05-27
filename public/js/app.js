@@ -115,7 +115,7 @@ var fetchTutorials = function(){
 				tutorials += '<a href="/tutorial/'+tutorial.slug+'"><h3 class="nobottommargin notopmargin" style="color:#333;text-shadow:none;font-weight:400">'+tutorial.title+'</h3></a>'
 				tutorials += '<span>'+tutorial.category+'</span><br />'
 				tutorials += '<span>'+price+'</span>'
-				tutorials += '<p class="nobottommargin" style="padding:24px;margin-top:12px">'+truncateText(tutorial.description, 160)+'</p>'
+				tutorials += '<p class="nobottommargin" style="padding:24px;margin-top:12px;height:180px">'+truncateText(tutorial.description, 160)+'</p>'
 				tutorials += '<a href="/tutorial/'+tutorial.slug+'" class="button button-border button-circle t500 noleftmargin notopmargin bottommargin-sm">View</a>'
 				tutorials += '</div></div></div>'
 			})        	
