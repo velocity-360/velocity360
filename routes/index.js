@@ -11,9 +11,19 @@ var utils = require('../utils')
 var staticPages = {
 	landing: 'landing',
 	tutorials: 'tutorials',
+	course: 'course',
 	login: 'login',
 	blog: 'blog',
 	sidenavigation: 'sidenavigation'
+}
+
+var routes = {
+	api: 'api',
+	auth: 'auth',
+	premium: 'premium',
+	stripe: 'stripe',
+	email: 'email',
+	admin: 'admin'
 }
 
 var reactApps = {
@@ -157,13 +167,30 @@ router.get('/:page', function(req, res, next) {
 
 router.get('/:page/:slug', function(req, res, next) {
 	var page = req.params.page
-	if (page == 'api' || page == 'auth' || page=='premium' || page=='stripe' || page=='email' || page=='admin'){
+	
+	// these requests are passed off to the next route:
+	if (routes[page] != null){
 		next()
 		return
 	}
 
-	if (staticPages[page] != null){
-	    res.render(staticPages[page], null)
+	var template = staticPages[page]
+	if (template != null){
+		var slug = req.params.slug
+		var controller = controllers[page] // check for null
+
+		controller.find({slug: req.params.slug})
+		.then(function(results){
+			var data = (results.length == 0) ? null : results[0]
+		    res.render(template, data)
+		})
+		.catch(function(err){
+			res.json({
+				confirmation: 'fail',
+				message: err.message
+			})
+		})
+
 		return
 	}
 
