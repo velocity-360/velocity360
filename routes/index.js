@@ -12,7 +12,8 @@ var staticPages = {
 	landing: 'landing',
 	tutorials: 'tutorials',
 	login: 'login',
-	blog: 'blog'
+	blog: 'blog',
+	sidenavigation: 'sidenavigation'
 }
 
 var reactApps = {
