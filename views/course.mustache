@@ -34,9 +34,10 @@
 						<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
 						<nav id="primary-menu">
 							<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="0">
-								<li><a href="#" data-href="#wrapper"><div>Home</div></a></li>
-								<li><a href="#" data-href="#section-about"><div>About</div></a></li>
-								<li><a href="#" data-href="#section-works"><div>Works</div></a></li>
+								<li><a href="#" data-href="#wrapper"><div>Syllabus</div></a></li>
+								<li><a href="#" data-href="#section-overview"><div>Overview</div></a></li>
+								<li><a href="#" data-href="#section-instructors"><div>Instructors</div></a></li>
+								<li><a href="#" data-href="#section-enroll"><div>Enroll</div></a></li>
 							</ul>
 						</nav>
 
@@ -45,10 +46,94 @@
 				</div>
 			</header>
 
-			<section id="content" style="background:#f9f9f9">
-				<div class="content-wrap nopadding">
+			<section id="slider" class="full-screen slider-parallax-visible" style="height: 367px;">
+				<div class="slider-parallax-inner" style="height: 367px; transform: translateY(0px);">
 
+					<div class="full-screen section nopadding nomargin noborder ohidden" style="background-image: url('/images/hackathon.jpg'); background-size: cover; background-position: center center; height: 367px;">
+
+						<div class="container clearfix">
+							<div class="vertical-middle" style="position: absolute; top: 50%; width: 100%; padding-top: 0px; padding-bottom: 0px; margin-top: -182px; opacity: 1.29272;">
+								<div class="row">
+									<div class="col-md-offset-8 col-md-4 col-sm-6">
+										<div class="panel panel-default" style="border-color: #eee;">
+											<div class="panel-body" style="padding: 30px;">
+												<div class="heading-block nobottomborder bottommargin-sm">
+													<h1 style="font-size: 20px;">{{title}}</h1>
+													<hr />
+													<span style="font-size: 15px;" class="t300 capitalize ls1 notopmargin">{{schedule}}</span>
+													<span style="font-size: 15px;" class="t300 capitalize ls1 notopmargin">{{dates}}</span>
+												</div>
+												<form action="#" class="clearfix">
+													<div class="col_full">
+														<label for="" class="capitalize t600">Full Name</label>
+														<input type="email" id="template-op-form-email" name="template-op-form-email" value="" class="form-control not-dark">
+													</div>
+													<div class="col_full">
+														<label for="" class="capitalize t600">Email</label>
+														<input type="email" id="template-op-form-email" name="template-op-form-email" value="" class="form-control not-dark">
+													</div>
+													<div class="col_full nobottommargin">
+														<button type="submit" class="t400 capitalize button button-border button-circle nomargin" value="submit">Request Syllabus</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+			</section>
+
+			<section id="content" style="background:#f9f9f9">
+
+				<div id="section-overview" class="page-section notoppadding topmargin-lg">
+					<div class="section nobottommargin notopmargin notoppadding">
+						<div class="container clearfix">
+							<h2 class="divcenter nobottommargin font-body velocity-header">Overview</h2>
+
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2">
+									<div class="content-description">{{{description}}}</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div id="section-instructors" class="page-section notoppadding topmargin-lg">
+					<div class="section nobottommargin notopmargin notoppadding">
+						<div class="container clearfix">
+							<h2 class="divcenter nobottommargin font-body velocity-header">Instructors</h2>
+
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2">
+									<div style="padding:24px;background:#fff;border:1px solid #ddd;border-radius:4px;margin-top:16px"></div>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div id="section-enroll" class="page-section notoppadding topmargin-lg">
+					<div class="section nobottommargin notopmargin notoppadding">
+						<div class="container clearfix">
+							<h2 class="divcenter nobottommargin font-body velocity-header">Enroll</h2>
+
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2">
+									<div style="padding:24px;background:#fff;border:1px solid #ddd;border-radius:4px;margin-top:16px"></div>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>				
 
 				{{>join-gray}}
 			</section>

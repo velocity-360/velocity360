@@ -38,6 +38,7 @@ var reactApps = {
 
 var template = (process.env.ENVIRONMENT=='dev') ? 'index-dev' : 'index'
 
+/*
 router.get('/', function(req, res, next) {
 	var initialData = {
 		session:{
@@ -84,6 +85,12 @@ router.get('/', function(req, res, next) {
 			message: err.message
 		})
 	})
+})
+*/
+
+router.get('/', function(req, res, next) {
+    res.render('landing', null)
+	return
 })
 
 
@@ -167,7 +174,7 @@ router.get('/:page', function(req, res, next) {
 
 router.get('/:page/:slug', function(req, res, next) {
 	var page = req.params.page
-	
+
 	// these requests are passed off to the next route:
 	if (routes[page] != null){
 		next()
