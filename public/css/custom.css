@@ -96,5 +96,12 @@
     background-color: #f9f9f9 !important;
     border-radius: 3px;
     font-size: 10px;
+}
 
+.detail-box {
+	padding:24px;
+	background:#fff;
+	border:1px solid #ddd;
+	border-radius:4px;
+	margin-top:16px
 }
