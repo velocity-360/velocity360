@@ -108,12 +108,12 @@ var fetchTutorials = function(){
         	var tutorials = ''
 			response.results.forEach(function(tutorial, i){
 				var index = i+1
-				var price = (tutorial.price==0) ? 'Free' : '$'+tutorial.price
+				var price = (tutorial.price==0) ? 'FREE' : '$'+tutorial.price
 				tutorials += (index % 3==0) ? '<div class="col_one_third col_last">' : '<div class="col_one_third">'
 				tutorials += '<div class="pricing-box" style="background:#fff"><div class="pricing-features" style="border-bottom:none">'
 				tutorials += '<a href="/tutorial/'+tutorial.slug+'"><img style="border-radius:48px;margin-top:24px;margin-bottom:12px" src="https://media-service.appspot.com/site/images/'+tutorial.image+'?crop=96" /></a>'
 				tutorials += '<a href="/tutorial/'+tutorial.slug+'"><h3 class="nobottommargin notopmargin" style="color:#333;text-shadow:none;font-weight:400">'+truncateText(tutorial.title, 24)+'</h3></a>'
-				tutorials += '<span class="tutorial-tag">'+tutorial.category+'</span>'
+				tutorials += '<span class="tutorial-tag">'+tutorial.category.toUpperCase()+'</span>'
 				tutorials += '<span class="tutorial-tag">'+price+'</span>'
 				tutorials += '<p class="nobottommargin tutorial-card">'+truncateText(tutorial.description, 160)+'</p>'
 				tutorials += '<a href="/tutorial/'+tutorial.slug+'" class="button button-border button-circle t500 noleftmargin notopmargin bottommargin-sm">View</a>'
