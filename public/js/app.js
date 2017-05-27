@@ -86,6 +86,43 @@ var fetchRecentPosts = function(){
 	})
 }
 
+var fetchTutorials = function(){
+
+    $.ajax({
+        url: '/api/tutorial',
+        type: 'GET',
+        data: null,
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: true,
+        success: function(response, status) {
+        	// console.log('TUTORIALS: '+JSON.stringify(response.results))
+
+        	var tutorials = ''
+			response.results.forEach(function(tutorial, i){
+				var index = i+1
+				var price = (tutorial.price==0) ? 'Free' : '$'+tutorial.price
+				tutorials += (index % 3==0) ? '<div class="col_one_third col_last">' : '<div class="col_one_third">'
+				tutorials += '<div class="pricing-box" style="background:#fff"><div class="pricing-features" style="border-bottom:none">'
+				tutorials += '<a href="/tutorial/'+tutorial.slug+'"><img style="border-radius:48px;margin-top:24px;margin-bottom:12px" src="https://media-service.appspot.com/site/images/'+tutorial.image+'?crop=96" /></a>'
+				tutorials += '<a href="/tutorial/'+tutorial.slug+'"><h3 class="nobottommargin notopmargin" style="color:#333;text-shadow:none;font-weight:400">'+tutorial.title+'</h3></a>'
+				tutorials += '<span>'+tutorial.category+'</span><br />'
+				tutorials += '<span>'+price+'</span>'
+				tutorials += '<p class="nobottommargin" style="padding:24px;margin-top:12px">'+tutorial.description+'</p>'
+				tutorials += '<a href="/tutorial/'+tutorial.slug+'" class="button button-border button-circle t500 noleftmargin notopmargin bottommargin-sm">View</a>'
+				tutorials += '</div></div></div>'
+			})        	
+
+			$('#tutorials').html(tutorials)
+			return
+        },
+	    error: function(xhr, status, error) { 
+	    	alert('Error: '+error.message)
+			return
+	    }
+    })
+}
+
 var fetchEvents = function(){
 	// Returns list up upcoming events:
 	// https://api.meetup.com/velocity360/events?key=fd12585580517f2f616110c7161c
