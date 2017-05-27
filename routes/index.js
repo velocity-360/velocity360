@@ -189,6 +189,15 @@ router.get('/:page/:slug', function(req, res, next) {
 		controller.find({slug: req.params.slug})
 		.then(function(results){
 			var data = (results.length == 0) ? null : results[0]
+			if (data){
+				data['tags'] = {
+					title: data.title,
+					url: 'https://www.velocity360.io/'+page+'/'+slug,
+					image: 'https://media-service.appspot.com/site/images/'+data.image+'?crop=260',
+					description: data.description
+				}
+			}
+
 		    res.render(template, data)
 		})
 		.catch(function(err){
