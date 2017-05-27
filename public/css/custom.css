@@ -83,4 +83,14 @@
 	border-bottom: none
 }
 
+.tutorial-card {
+	padding: 24px;
+	margin-top: 12px;
+	height: 180px
+}
 
+.tutorial-tag {
+	background: :#f9f9f9;
+	padding: 4px;
+	margin-right: 6px
+}
