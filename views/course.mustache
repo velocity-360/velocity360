@@ -28,7 +28,7 @@
 
 	<div class="stretched side-header">
 		<div id="wrapper" class="clearfix">
-			<header id="header" class="no-sticky" style="padding-top:96px">
+			<header id="header" class="no-sticky hidden-xs" style="padding-top:96px">
 				<div id="header-wrap">
 					<div class="container clearfix">
 						<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
@@ -55,7 +55,7 @@
 							<div class="vertical-middle" style="position: absolute; top: 50%; width: 100%; padding-top: 0px; padding-bottom: 0px; margin-top: -182px; opacity: 1.29272;">
 								<div class="row">
 									<div class="col-md-offset-8 col-md-4 col-sm-6">
-										<div class="panel panel-default" style="border-color: #eee;">
+										<div class="panel panel-default" style="border-color:#eee;">
 											<div class="panel-body" style="padding: 30px;">
 												<div class="heading-block nobottomborder bottommargin-sm">
 													<h1 style="font-size: 20px;">{{title}}</h1>
@@ -63,7 +63,7 @@
 													<span style="font-size: 15px;" class="t300 capitalize ls1 notopmargin">{{schedule}}</span>
 													<span style="font-size: 15px;" class="t300 capitalize ls1 notopmargin">{{dates}}</span>
 												</div>
-												<form action="#" class="clearfix">
+												<form action="#" class="clearfix hidden-xs">
 													<div class="col_full">
 														<label for="" class="capitalize t600">Full Name</label>
 														<input type="email" id="template-op-form-email" name="template-op-form-email" value="" class="form-control not-dark">
@@ -143,7 +143,7 @@
 									<div class="detail-box">
 
 										<div>
-											<img style="border-radius:50px;float:right;width:100px" src="/images/dan-kwon.png" />
+											<img style="border-radius:50px;float:right;width:100px;margin-left:16px" src="/images/dan-kwon.png" />
 
 											<h3 style="font-weight:200;color:#0073e6" class="nobottommargin">Dan Kwon</h3>
 											<hr />
@@ -166,7 +166,7 @@
 										<br /><br />
 
 										<div>
-											<img style="border-radius:50px;float:right;width:100px" src="/images/beaman.jpg" />
+											<img style="border-radius:50px;float:right;width:100px;margin-left:16px" src="/images/beaman.jpg" />
 
 											<h3 style="font-weight:200;color:#0073e6" class="nobottommargin">Roger Beaman</h3>
 											<hr />
@@ -203,6 +203,24 @@
 								<div class="col-md-8 col-md-offset-2">
 									<div class="detail-box">
 
+										<div class="row">
+											<div class="col-md-6">
+												<h3 style="font-weight:200;color:#0073e6;margin-bottom:4px">Deposit</h3>
+												<span style="font-size:16px;font-weight:400">${{deposit}}</span>
+												<p style="margin-top:12px;height:96px">
+													Submit a deposit today to secure a spot. If the class does not run for any reason, your deposit will be fully refunded. The remainder of the tuition is due on the first day.
+												</p>
+												<button class="button button-lg button-blue">Submit Deposit</button>
+											</div>
+											<div class="col-md-6">
+												<h3 style="font-weight:200;color:#0073e6;margin-bottom:4px">Full Tuition</h3>
+												<span style="font-size:16px;font-weight:400">${{tuition}}</span>
+												<p style="margin-top:12px;height:96px">
+													Submit full tuition today and receive a $200 discount. If the course does not run for any reason, your tuition will be fully refunded.
+												</p>
+												<button class="button button-lg button-blue">Submit Tuition</button>
+											</div>
+										</div>
 
 									</div>
 								</div>
