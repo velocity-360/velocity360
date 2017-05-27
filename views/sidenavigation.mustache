@@ -1,16 +1,8 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="author" content="Velocity 360" />
-
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Roboto:300,400,500,700|Pathway+Gothic+One:300,400,500,600,700" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="/dist/css/style.min.css" type="text/css" />
-
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Become a Full Stack Developer | Velocity 360</title>
+	{{>head}}
 </head>
-
 
 <body>
 	<header id="header" class="full-header border-full-header static-sticky sticky-header" data-sticky-class="not-dark" data-sticky-offset="full" data-sticky-offset-negative="100">
@@ -27,7 +19,7 @@
 						<li><a href="/"><div>Home</div></a></li>
 						<li><a href="/tutorials"><div>Tutorials</div></a></li>
 						<li><a href="/blog"><div>Blog</div></a></li>
-						<li><a href="/create" style="background:#260354"><div style="color:#fff">Log In</div></a></li>
+						<li><a href="/login" style="background:#260354"><div style="color:#fff">Log In</div></a></li>
 					</ul>
 				</nav>
 			</div>
@@ -50,43 +42,12 @@
 								<li><a href="#" data-href="#section-contact"><div>Contact</div></a></li>
 							</ul>
 						</nav>
-
-						<div class="clearfix visible-md visible-lg">
-	                        <a href="#" class="social-icon si-small si-borderless si-facebook">
-	                            <i class="icon-facebook"></i>
-	                            <i class="icon-facebook"></i>
-	                        </a>
-
-	                        <a href="#" class="social-icon si-small si-borderless si-twitter">
-	                            <i class="icon-twitter"></i>
-	                            <i class="icon-twitter"></i>
-	                        </a>
-
-	                        <a href="#" class="social-icon si-small si-borderless si-gplus">
-	                            <i class="icon-gplus"></i>
-	                            <i class="icon-gplus"></i>
-	                        </a>
-
-	                        <a href="#" class="social-icon si-small si-borderless si-pinterest">
-	                            <i class="icon-pinterest"></i>
-	                            <i class="icon-pinterest"></i>
-	                        </a>
-
-	                        <a href="#" class="social-icon si-small si-borderless si-github">
-	                            <i class="icon-github"></i>
-	                            <i class="icon-github"></i>
-	                        </a>
-	                    </div>
-
 					</div>
-
 				</div>
-
-			</header><!-- #header end -->
+			</header>
 
 			<section id="content">
 				<div class="content-wrap nopadding">
-
 					<div id="portfolio" class="portfolio grid-container portfolio-nomargin portfolio-full portfolio-masonry mixed-masonry clearfix">
 
 						<article class="portfolio-item pf-media pf-icons wide">
@@ -186,10 +147,9 @@
 								</div>
 							</div>
 						</article>
+					</div>
 
-					</div><!-- #portfolio end -->
-
-					<div class="section dark notopmargin">
+					<div id="section-about" class="section dark notopmargin">
 						<div class="container col-padding center clearfix">
 
 							<div class="emphasis-title">
@@ -256,35 +216,9 @@
 						</div>
 					</div>
 				</div>
-			</section><!-- #content end -->
+			</section>
 
-			<footer id="footer" class="dark noborder">
-
-				<div id="copyrights">
-					<div class="container topmargin-sm center ls2 uppercase clearfix">
-						Copyright Canvas 2015 | All Rights Reserved
-
-						<div class="center topmargin-sm">
-							<a href="#" class="social-icon inline-block si-borderless si-small si-facebook" title="Facebook">
-								<i class="icon-facebook"></i>
-								<i class="icon-facebook"></i>
-							</a>
-							<a href="#" class="social-icon inline-block si-borderless si-small si-twitter" title="Twitter">
-								<i class="icon-twitter"></i>
-								<i class="icon-twitter"></i>
-							</a>
-							<a href="#" class="social-icon inline-block si-borderless si-small si-github" title="Github">
-								<i class="icon-github"></i>
-								<i class="icon-github"></i>
-							</a>
-							<a href="#" class="social-icon inline-block si-borderless si-small si-pinterest" title="Pinterest">
-								<i class="icon-pinterest"></i>
-								<i class="icon-pinterest"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-			</footer>
+			{{>footer}}
 		</div>
 	</div>
 
