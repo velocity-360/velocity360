@@ -36,7 +36,7 @@ var requestSyllabus = function(event){
         dataType: 'json',
         async: true,
         success: function(response, status) {
-        	console.log('RESPONSE: '+JSON.stringify(response.result))
+        	console.log('RESPONSE: '+JSON.stringify(response))
         	alert('Thanks for your interest! Check your email shortly for a syllabus.')
 			return
         },
