@@ -128,3 +128,23 @@
 	margin-bottom: 0px
 }
 
+.slack-box {
+	border: 1px solid #ededed;
+	background: #fff;
+	border-radius: 2px;
+	padding:12px
+}
+
+.slack-box p {
+	margin-top: 8px;
+	margin-bottom: 12px	
+}
+
+.slack-box input {
+	background: #fff;
+	border: none;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 16px;
+	width: 100%;
+	height: 28px;
+}

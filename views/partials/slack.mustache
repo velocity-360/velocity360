@@ -1,10 +1,7 @@
-<div style="border:1px solid #ededed;background:#fff;border-radius:2px;padding:12px;">
+<div class="slack-box">
 	<img src="/images/slack.png">
-	<p style="margin-top:8px;margin-bottom:12px;">
-		Join our Slack channel to ask questions about tutorials and discuss general programming and industry topics:
-	</p>
-	<input type="text" placeholder="Name" style="background:#fff;border:none;border-bottom:1px solid #ddd;margin-bottom:16px;width:100%;height:28px;">
-	<br />
-	<input type="text" placeholder="Email" style="background:#fff;border:none;border-bottom:1px solid #ddd;margin-bottom:16px;width:100%;height:28px;">
-	<a href="#" class="button button-small button-circle button-border button-aqua">Join</a>
+	<p>Join our Slack channel to ask questions about tutorials and discuss general programming and industry topics:</p>
+	<input onChange="updateVisitor(event)" name="name" type="text" placeholder="Name" /><br />
+	<input onChange="updateVisitor(event)" name="email" type="text" placeholder="Email" />
+	<a href="#" onClick="requestSyllabus(event)" id="Slack Invitation" class="button button-small button-circle button-border button-aqua">Join</a>
 </div>

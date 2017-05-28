@@ -53,7 +53,11 @@ var requestSyllabus = function(event){
    //      		console.log('EMAIL SUCCESS: '+JSON.stringify(data))
    //      	})
 
-        	alert('Thanks for your interest! Check your email shortly for a syllabus.')
+    		if (event.target.id.toLowerCase() == 'slack invitation')
+	        	alert('Confirmed! Check your email shortly for a link to our Slack Channel.')
+	        else 
+	        	alert('Thanks for your interest! Check your email shortly for a syllabus.')
+	        
 			return
         },
 	    error: function(xhr, status, error) { 
