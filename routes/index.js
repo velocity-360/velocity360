@@ -115,45 +115,6 @@ router.get('/:page', function(req, res, next) {
 			})
 		})    	
     }
-
-
-  //   if (req.params.page == 'courses'){
-		// var initialData = {
-		// 	session:{
-		// 		page: req.params.page,
-		// 		courses: {
-		// 			selected: 'courses'
-		// 		}
-		// 	}
-		// }
-
-		// controllers.account.currentUser(req)
-		// .then(function(user){
-		// 	initialData['account'] = {currentUser: user}
-		// 	return controllers.course.find({})
-		// })
-		// .then(function(entities){
-		// 	// console.log('COURSES: '+JSON.stringify(entities))
-		// 	initialData['course'] = {all: entities}
-
-		// 	var initialState = store.configureStore(initialData)
-
-		// 	var component = React.createElement(reactApps[req.params.page])
-		// 	var provider = React.createElement(apps.ServerEntry, {component:component, store:initialState})
-
-		//     res.render(template, {
-		//     	react: ReactDOMServer.renderToString(provider),
-		//     	initial: JSON.stringify(initialState.getState()),
-		//     	bundle: req.params.page
-		//     })
-		// })
-		// .catch(function(err){
-		// 	res.json({
-		// 		confirmation: 'fail',
-		// 		message: err.message
-		// 	})
-		// })
-  //   }
 })
 
 router.get('/:page/:slug', function(req, res, next) {
@@ -185,6 +146,7 @@ router.get('/:page/:slug', function(req, res, next) {
 			var entity = (results.length == 0) ? null : results[0]
 			data[page] = entity
 			if (entity){
+				data['currentEntity'] = JSON.stringify(entity)
 				var summary = entity.description || entity.preview || entity.bio || ''
 				data['tags'] = {
 					title: entity.title,
