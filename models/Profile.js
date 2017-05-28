@@ -41,13 +41,6 @@ ProfileSchema.methods.summary = function() {
 		username: this.username,
 		monthlyRate: this.monthlyRate,
 		image: this.image,
-		// promoCode: this.promoCode,
-		// city: this.city,
-		// stripeId:this.stripeId,
-		// about: this.about,
-		// resume: this.resume,
-		// credits: this.credits,
-		// isAdmin: this.isAdmin,
 		timestamp: this.timestamp,
 		id: this._id.toString()
 	}

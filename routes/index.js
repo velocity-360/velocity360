@@ -41,55 +41,6 @@ var reactApps = {
 
 var template = (process.env.ENVIRONMENT=='dev') ? 'index-dev' : 'index'
 
-/*
-router.get('/', function(req, res, next) {
-	var initialData = {
-		session:{
-			page: 'home',
-			home: {
-				selected: req.query.selected || 'tutorials'
-			}
-		}
-	}
-
-	controllers.account.currentUser(req)
-	.then(function(user){
-		initialData['account'] = {currentUser: user}
-		return controllers.tutorial.find(null)
-	})
-	.then(function(tutorials){
-		var tutorialReducer = {
-			all: tutorials
-		}
-
-		initialData['tutorial'] = tutorialReducer
-
-		var initialState = store.configureStore(initialData)
-		// console.log('INITIAL: '+JSON.stringify(initialState.getState()))
-
-		var home = React.createElement(apps.Home)
-		var provider = React.createElement(apps.ServerEntry, {component:home, store:initialState})
-
-	    res.render(template, {
-	    	react: ReactDOMServer.renderToString(provider),
-	    	initial: JSON.stringify(initialState.getState()),
-	    	bundle: 'home',
-			tags: {
-				title: 'Learn Full Stack React, Redux and Node',
-				description: 'Learn Full Stack React, Redux and Node',
-				url: 'https://www.velocity360.io',
-				image: 'https://www.velocity360.io/images/logo_260.png'
-			}
-	    })
-	})
-	.catch(function(err){
-		res.json({
-			confirmation:'fail',
-			message: err.message
-		})
-	})
-})
-*/
 
 router.get('/', function(req, res, next) {
 	var data = {user: null}
@@ -97,6 +48,8 @@ router.get('/', function(req, res, next) {
 	controllers.account.currentUser(req)
 	.then(function(user){
 		data['user'] = user
+		delete user['email']
+		data['currentUser'] = JSON.stringify(user)
 	    res.render('landing', data)
 	})
 	.catch(function(err){
@@ -114,6 +67,8 @@ router.get('/:page', function(req, res, next) {
 		controllers.account.currentUser(req)
 		.then(function(user){
 			data['user'] = user
+			delete user['email']
+			data['currentUser'] = JSON.stringify(user)
 		    res.render(staticPages[req.params.page], data)
 		})
 		.catch(function(err){
@@ -212,6 +167,8 @@ router.get('/:page/:slug', function(req, res, next) {
 		controllers.account.currentUser(req)
 		.then(function(user){
 			data['user'] = user
+			delete user['email']
+			data['currentUser'] = JSON.stringify(user)
 			var controller = controllers[page] // check for null
 			return controller.find({slug: req.params.slug})
 		})
