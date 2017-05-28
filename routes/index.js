@@ -48,8 +48,11 @@ router.get('/', function(req, res, next) {
 	controllers.account.currentUser(req)
 	.then(function(user){
 		data['user'] = user
-		delete user['email']
-		data['currentUser'] = JSON.stringify(user)
+		if (user){
+			delete user['email']
+			data['currentUser'] = JSON.stringify(user)
+		}
+		
 	    res.render('landing', data)
 	})
 	.catch(function(err){
@@ -67,8 +70,11 @@ router.get('/:page', function(req, res, next) {
 		controllers.account.currentUser(req)
 		.then(function(user){
 			data['user'] = user
-			delete user['email']
-			data['currentUser'] = JSON.stringify(user)
+			if (user){
+				delete user['email']
+				data['currentUser'] = JSON.stringify(user)
+			}
+
 		    res.render(staticPages[req.params.page], data)
 		})
 		.catch(function(err){
@@ -167,8 +173,11 @@ router.get('/:page/:slug', function(req, res, next) {
 		controllers.account.currentUser(req)
 		.then(function(user){
 			data['user'] = user
-			delete user['email']
-			data['currentUser'] = JSON.stringify(user)
+			if (user){
+				delete user['email']
+				data['currentUser'] = JSON.stringify(user)
+			}
+
 			var controller = controllers[page] // check for null
 			return controller.find({slug: req.params.slug})
 		})
