@@ -40,10 +40,10 @@ app.use(sessions({
   cookieName: 'session',
   secret: process.env.SESSION_SECRET,
   duration: 24*60*60*1000, // 1 day
-  activeDuration:30*60*1000,
-  cookie: {
-    domain: (process.env.ENVIRONMENT=='dev') ? 'localhost' : '.velocity360.io'
-  }  
+  activeDuration:30*60*1000
+  // cookie: {
+  //   domain: (process.env.ENVIRONMENT=='dev') ? 'localhost' : '.velocity360.io'
+  // }  
 }))
 app.use(express.static(path.join(__dirname, 'public')))
 
