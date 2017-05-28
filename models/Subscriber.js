@@ -5,7 +5,8 @@ var SubscriberSchema = new mongoose.Schema({
 	email: {type:String, trim:true, default:''},
 	score: {type:Number, default:0},
 	survey: {type:Array, default:[]},
-	workshop: {type:String, trim:true, lowercase:true, default:''},
+	cta: {type:String, trim:true, lowercase:true, default:''},
+	// workshop: {type:String, trim:true, lowercase:true, default:''},
 	timestamp: {type:Date, default:Date.now},
 })
 
@@ -15,10 +16,11 @@ SubscriberSchema.methods.summary = function() {
 		'email':this.email,
 		'score':this.score,
 		'survey':this.survey,
-		'workshop':this.workshop,
+		'cta':this.cta,
 		'timestamp':this.timestamp,
-		'id':this._id
+		'id':this._id.toString()
 	}
+
 	return summary
 }
 

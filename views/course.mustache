@@ -65,15 +65,15 @@
 												</div>
 												<form action="#" class="clearfix hidden-xs">
 													<div class="col_full">
-														<label for="" class="capitalize t600">Full Name</label>
-														<input type="email" id="template-op-form-email" name="template-op-form-email" value="" class="form-control not-dark">
+														<label class="capitalize t600">Full Name</label>
+														<input type="text" onChange="updateVisitor(event)" id="template-op-form-email" name="name" class="form-control not-dark">
 													</div>
 													<div class="col_full">
-														<label for="" class="capitalize t600">Email</label>
-														<input type="email" id="template-op-form-email" name="template-op-form-email" value="" class="form-control not-dark">
+														<label class="capitalize t600">Email</label>
+														<input type="email" onChange="updateVisitor(event)" id="template-op-form-email" name="email" class="form-control not-dark">
 													</div>
 													<div class="col_full nobottommargin">
-														<button type="submit" class="t400 capitalize button button-border button-circle nomargin" value="submit">Request Syllabus</button>
+														<a href="#" onClick="requestSyllabus(event)" class="t400 capitalize button button-border button-circle nomargin">Request Syllabus</a>
 													</div>
 												</form>
 											</div>
@@ -231,12 +231,9 @@
 											<a style="color:red" target="_blank" href="https://www.google.com/maps/place/1460+Broadway,+New+York,+NY+10036">1460 Broadway</a>
 										</h3>
 										<h3 style="font-weight:200">NYC 10036</h3>
-
-
 									</div>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -248,7 +245,7 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src="/dist/js/vendor.min.js"></script>
+	{{>imports}}
 </body>
 
 </html>

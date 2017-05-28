@@ -27,6 +27,24 @@ var requestSyllabus = function(event){
 	}
 
 	console.log('requestSyllabus: '+JSON.stringify(visitor))
+	visitor['cta'] = 'syllabus request'
+    $.ajax({
+        url: '/auth/subscribe',
+        type: 'POST',
+        data: JSON.stringify(visitor),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: true,
+        success: function(response, status) {
+        	console.log('RESPONSE: '+JSON.stringify(response.result))
+        	alert('Thanks for your interest! Check your email shortly for a syllabus.')
+			return
+        },
+	    error: function(xhr, status, error) { 
+	    	alert('Error: '+error.message)
+			return
+	    }
+    })	
 }
 
 var register = function(event){
