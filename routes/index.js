@@ -192,11 +192,12 @@ router.get('/:page/:slug', function(req, res, next) {
 		.then(function(results){
 			var data = (results.length == 0) ? null : results[0]
 			if (data){
+				var summary = data.description || data.preview || data.bio || ''
 				data['tags'] = {
 					title: data.title,
 					url: 'https://www.velocity360.io/'+page+'/'+slug,
 					image: 'https://media-service.appspot.com/site/images/'+data.image+'?crop=260',
-					description: data.description
+					description: utils.TextUtils.truncateText(summary, 220)
 				}
 			}
 
