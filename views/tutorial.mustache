@@ -80,9 +80,12 @@
 											<p class="nobottommargin">
 												{{description}}
 
-												<div style="height:200px;marginTop:12px">
-													<object style="width:220px;height:180px" data="https://www.youtube.com/embed/{{youtube}}"></object>
+												{{#youtube}}
+												<div style="height:180px;marginTop:12px">
+													<object style="width:240px;height:180px" data="https://www.youtube.com/embed/{{youtube}}"></object>
 												</div>
+												{{/youtube}}
+
 											</p>
 										</div>
 										{{/posts}}
