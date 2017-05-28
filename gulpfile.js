@@ -57,7 +57,7 @@ gulp.task('copy-et-line', function(){
     return gulp.src(
             ['./public/css/et-line/**']
         )
-        .pipe(gulp.dest('./dist/css/et-line'))
+        .pipe(gulp.dest('./public/dist/css/et-line'))
 })
 
 gulp.task('copy-sharekit', function(){
