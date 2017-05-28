@@ -37,23 +37,6 @@ var requestSyllabus = function(event){
         dataType: 'json',
         async: true,
         success: function(response, status) {
-			// var emailParams = {
-			// 	fromemail: 'katrina@velocity360.io', // email has to be authorized 
-			// 	fromname: 'Turbo',
-			// 	recipient: 'dkwon@velocity360.io',
-			// 	subject: 'Turbo Lib Test',
-			// 	content: 'This is the turbo lib test'
-			// }
-
-   //      	turbo.sendEmail(emailParams, function(err, data){
-   //      		if (err){
-   //      			console.log('EMAIL ERROR: '+err.message)
-   //      			return
-   //      		}
-
-   //      		console.log('EMAIL SUCCESS: '+JSON.stringify(data))
-   //      	})
-
     		if (event.target.id.toLowerCase() == 'slack invitation')
 	        	alert('Confirmed! Check your email shortly for a link to our Slack Channel.')
 	        else 
@@ -227,7 +210,6 @@ var fetchTutorials = function(){
         async: true,
         success: function(response, status) {
         	// console.log('TUTORIALS: '+JSON.stringify(response.results))
-
         	var tutorials = ''
 			response.results.forEach(function(tutorial, i){
 				var index = i+1
@@ -244,6 +226,7 @@ var fetchTutorials = function(){
 			})        	
 
 			$('#tutorials').html(tutorials)
+			fetchRecentPosts()
 			return
         },
 	    error: function(xhr, status, error) { 
