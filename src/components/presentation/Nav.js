@@ -17,6 +17,7 @@ export default (props) => {
 						<ul className="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="65">
 							<li><a href="/"><div>Home</div></a></li>
 							<li><a href="/tutorials"><div>Tutorials</div></a></li>
+							<li><a href="/#section-courses"><div>Courses</div></a></li>
 							<li><a href="/blog"><div>Blog</div></a></li>
 							<li><a href="/account" style={{background:'#260354'}}><div style={{color:'#fff'}}>Account</div></a></li>
 						</ul>
