@@ -166,7 +166,7 @@ var fetchRecentPosts = function(){
 			return
 		}
 
-		// console.log('RECENT POSTS: '+JSON.stringify(response.results))
+		console.log('RECENT POSTS: '+JSON.stringify(response.results))
 		var posts = ''
 		var blog = ''
 		response.results.forEach(function(post, i){
