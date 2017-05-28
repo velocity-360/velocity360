@@ -160,3 +160,10 @@
 .content-description ol, ul {
 	list-style-type: disc
 }
+
+.right-sidebar {
+	padding-top: 146px;
+	background: rgba(0,0,0,0);
+	border: none;
+	z-index: 1000
+}
