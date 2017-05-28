@@ -65,12 +65,98 @@ var requestSyllabus = function(event){
 	    	alert('Error: '+error.message)
 			return
 	    }
-    })	
+    })
 }
 
 var register = function(event){
 	event.preventDefault()
-	console.log('register: '+JSON.stringify(visitor))
+	if (visitor.name.length == 0){
+		alert('Please Enter Your Name')
+		return
+	}
+
+	if (visitor.email.length == 0){
+		alert('Please Enter Your Email')
+		return
+	}
+
+	if (visitor.password == null){
+		alert('Please Enter Your Password')
+		return
+	}
+
+	var parts = visitor.name.split(' ')
+	var credentials = {
+		firstName: parts[0],
+		lastName: parts[parts.length-1],
+		email: visitor.email,
+		password: visitor.password
+	}
+
+	// console.log('register: '+JSON.stringify(credentials))
+    $.ajax({
+        url: '/auth/register',
+        type: 'POST',
+        data: JSON.stringify(credentials),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: true,
+        success: function(response, status) {
+        	if (response.confirmation != 'success'){
+        		alert(response.message)
+        		return
+        	}
+
+        	// console.log('LOGGED IN: '+JSON.stringify(response))
+        	window.location.href = '/account'
+			return
+        },
+	    error: function(xhr, status, error) {
+	    	alert('Error: '+error.message)
+			return
+	    }
+    })}
+
+var login = function(event){
+	event.preventDefault()
+	if (visitor.email.length == 0){
+		alert('Please Enter Your Email')
+		return
+	}
+
+	if (visitor.password == null){
+		alert('Please Enter Your Password')
+		return
+	}
+
+	var credentials = {
+		email: visitor.email,
+		password: visitor.password
+	}
+
+	// console.log('login: '+JSON.stringify(credentials))
+    $.ajax({
+        url: '/auth/login',
+        type: 'POST',
+        data: JSON.stringify(credentials),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: true,
+        success: function(response, status) {
+        	if (response.confirmation != 'success'){
+        		alert(response.message)
+        		return
+        	}
+
+        	// console.log('LOGGED IN: '+JSON.stringify(response))
+        	window.location.href = '/account'
+			return
+        },
+	    error: function(xhr, status, error) {
+	    	alert('Error: '+error.message)
+			return
+	    }
+    })
 }
 
 var renderEvents = function(){
@@ -91,7 +177,6 @@ var renderEvents = function(){
 }
 
 var fetchRecentPosts = function(){
-	// console.log('fetchRecentPosts: ')
 	turbo.fetch('post', null, function(err, response){
 		if (err){
 			console.log('ERROR: '+err.message)
@@ -133,7 +218,6 @@ var truncateText = function(str, limit){
 }
 
 var fetchTutorials = function(){
-
     $.ajax({
         url: '/api/tutorial',
         type: 'GET',
