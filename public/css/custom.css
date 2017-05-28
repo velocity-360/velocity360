@@ -118,6 +118,10 @@
 	font-size: 16px;
 }
 
+.post-box a {
+	color: red;
+}
+
 .post-box h2, h3 {
 	font-weight: 200;
 	color: #0073e6;
