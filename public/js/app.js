@@ -5,7 +5,8 @@ var turbo = Turbo({
 
 var visitor = {
 	name: '',
-	email: ''
+	email: '',
+	accountType: 'basic'
 }
 
 var events = []
@@ -57,7 +58,7 @@ var requestSyllabus = function(event){
 	        	alert('Confirmed! Check your email shortly for a link to our Slack Channel.')
 	        else 
 	        	alert('Thanks for your interest! Check your email shortly for a syllabus.')
-	        
+
 			return
         },
 	    error: function(xhr, status, error) { 
