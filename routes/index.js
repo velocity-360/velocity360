@@ -12,6 +12,7 @@ var staticPages = {
 	landing: 'landing',
 	tutorials: 'tutorials',
 	course: 'course',
+	post: 'post',
 	login: 'login',
 	blog: 'blog',
 	sidenavigation: 'sidenavigation'
