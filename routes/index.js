@@ -13,6 +13,7 @@ var staticPages = {
 	tutorials: 'tutorials',
 	course: 'course',
 	post: 'post',
+	register: 'register',
 	login: 'login',
 	blog: 'blog',
 	sidenavigation: 'sidenavigation'
