@@ -156,3 +156,7 @@
 .pricing-features li {
 	font-size: 16px;
 }
+
+.content-description ol, ul {
+	list-style-type: disc
+}
