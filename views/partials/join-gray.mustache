@@ -8,13 +8,13 @@
 			</p>
 
 			<div class="pricing nobottommargin clearfix row">
-				<div class="col-md-3" style="padding:12px">
+				<div class="col-md-4 col-md-offset-2" style="padding:12px">
 					<div class="pricing-box">
 						<div class="pricing-title" style="background:#f1f4f9">
 							<h3>Basic</h3>
 						</div>
 						<div class="pricing-price" style="font-size:48px">Free</div>
-						<div class="pricing-features" style="height:240px">
+						<div class="pricing-features" style="height:240px;border:none">
 							<ul>
 								<li>Access to Free Tutorials</li>
 								<li>Downloadable Code Samples</li>
@@ -22,11 +22,11 @@
 								<li>Q &amp; A Forum Access</li>
 							</ul>
 						</div>
-
+						<a class="button button-blue button-circle t500 noleftmargin notopmargin bottommargin-sm" type="submit" href="/login">Join</a>
 					</div>
 				</div>
 
-				<div class="col-md-3" style="padding:12px">
+				<div class="col-md-4" style="padding:12px">
 					<div class="pricing-box">
 						<div class="pricing-title" style="background:#f1f4f9">
 							<h3>Premium</h3>
@@ -34,7 +34,7 @@
 						<div class="pricing-price" style="font-size:48px">
 							<span class="price-unit">$</span>14.99<span class="price-tenure">/mo</span>
 						</div>
-						<div class="pricing-features" style="height:240px">
+						<div class="pricing-features" style="height:240px;border:none">
 							<ul>
 								<li>Access to <i>ALL</i> Tutorials</li>
 								<li>Downloadable Code Samples</li>
@@ -44,44 +44,10 @@
 								<li>Cross-Premium Membership to <a style="color:red" target="_blank" href="http://www.turbo360.co/landing">Turbo</a></li>
 							</ul>
 						</div>
+						<button onClick="register(event)" class="button button-blue button-circle t500 noleftmargin notopmargin bottommargin-sm" type="submit" name="template-contactform-submit" value="submit">Join</button>
 					</div>
 				</div>
 
-				<div class="col-md-5">
-					<form style="padding:16px" class="nobottommargin" name="template-contactform" method="post">
-						<div class="form-process"></div>
-
-						<div class="col_full col_last">
-							<input onChange="updateVisitor(event)" type="text" name="name" class="sm-form-control border-form-control" placeholder="Full Name" />
-						</div>
-
-						<div class="clear"></div>
-
-						<div class="col_full col_last">
-							<input onChange="updateVisitor(event)" type="text" name="email" class="sm-form-control border-form-control" placeholder="Email" />
-						</div>
-
-						<div class="clear"></div>
-
-						<div class="col_full col_last">
-							<input onChange="updateVisitor(event)" type="password" name="password" class="sm-form-control border-form-control" placeholder="Password" />
-						</div>
-
-						<div class="clear"></div>
-
-						<div class="col_full col_last">
-							<select name="accountType" onChange="updateVisitor(event)" class="sm-form-control border-form-control">
-								<option value="basic">Basic</option>
-								<option value="premium">Premium</option>
-							</select>
-						</div>
-
-						<div class="col_full">
-							<button onClick="register(event)" class="button button-border button-circle t500 noleftmargin topmargin-sm" type="submit" name="template-contactform-submit" value="submit">Join</button>
-							<br>
-						</div>
-					</form>
-				</div>
 			</div>
 		</div>
 	</div>
