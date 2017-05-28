@@ -58,10 +58,10 @@
 										<div class="panel panel-default" style="border-color:#eee;">
 											<div class="panel-body" style="padding: 30px;">
 												<div class="heading-block nobottomborder bottommargin-sm">
-													<h1 style="font-size:20px;font-weight:400">{{title}}</h1>
+													<h1 style="font-size:20px;font-weight:400">{{course.title}}</h1>
 													<hr />
-													<span style="font-size: 15px;" class="t300 capitalize ls1 notopmargin">{{dates}}</span>
-													<span style="font-size: 15px;" class="t300 capitalize ls1 notopmargin">{{schedule}}</span>
+													<span style="font-size: 15px;" class="t300 capitalize ls1 notopmargin">{{course.dates}}</span>
+													<span style="font-size: 15px;" class="t300 capitalize ls1 notopmargin">{{course.schedule}}</span>
 												</div>
 												<form action="#" class="clearfix hidden-xs">
 													<div class="col_full">
@@ -73,7 +73,7 @@
 														<input type="email" onChange="updateVisitor(event)" id="template-op-form-email" name="email" class="form-control not-dark">
 													</div>
 													<div class="col_full nobottommargin">
-														<a href="#" id="{{title}}" onClick="requestSyllabus(event)" class="t400 capitalize button button-border button-circle nomargin">Request Syllabus</a>
+														<a href="#" id="{{course.title}}" onClick="requestSyllabus(event)" class="t400 capitalize button button-border button-circle nomargin">Request Syllabus</a>
 													</div>
 												</form>
 											</div>
@@ -93,12 +93,12 @@
 						<div class="container clearfix">
 							<h2 class="divcenter nobottommargin font-body velocity-header">Overview</h2>
 							<div style="text-align:center;padding:16px;">
-								<img style="border-radius:80px" src="https://media-service.appspot.com/site/images/{{image}}?crop=160" />
+								<img style="border-radius:80px" src="https://media-service.appspot.com/site/images/{{course.image}}?crop=160" />
 							</div>
 
 							<div class="row">
 								<div class="col-md-8 col-md-offset-2">
-									<div class="content-description">{{{description}}}</div>
+									<div class="content-description">{{{course.description}}}</div>
 								</div>
 							</div>
 
@@ -115,14 +115,14 @@
 								<div class="col-md-8 col-md-offset-2">
 									<div class="detail-box">
 
-										{{#units}}
+										{{#course.units}}
 										<div class="bottommargin-sm">
 											<h3 style="font-weight:200;color:#0073e6" class="nobottommargin">{{topic}}</h3>
 											<p class="nobottommargin">
 												{{description}}
 											</p>
 										</div>
-										{{/units}}
+										{{/course.units}}
 
 									</div>
 
@@ -206,19 +206,19 @@
 										<div class="row">
 											<div class="col-md-6">
 												<h3 style="font-weight:200;color:#0073e6;margin-bottom:4px">Deposit</h3>
-												<span style="font-size:16px;font-weight:400">${{deposit}}</span>
+												<span style="font-size:16px;font-weight:400">${{course.deposit}}</span>
 												<p style="margin-top:12px;height:96px">
 													Submit a deposit today to secure a spot. If the class does not run for any reason, your deposit will be fully refunded. The remainder of the tuition is due on the first day.
 												</p>
-												<button onClick="openPaypalWindow('{{discountPaypalLink}}')" class="button button-lg button-blue">Submit Deposit</button>
+												<button onClick="openPaypalWindow('{{course.discountPaypalLink}}')" class="button button-lg button-blue">Submit Deposit</button>
 											</div>
 											<div class="col-md-6">
 												<h3 style="font-weight:200;color:#0073e6;margin-bottom:4px">Full Tuition</h3>
-												<span style="font-size:16px;font-weight:400">${{tuition}}</span>
+												<span style="font-size:16px;font-weight:400">${{course.tuition}}</span>
 												<p style="margin-top:12px;height:96px">
 													Submit full tuition today and receive a $200 discount. If the course does not run for any reason, your tuition will be fully refunded.
 												</p>
-												<button onClick="openPaypalWindow('{{paypalLink}}')" class="button button-lg button-blue">Submit Tuition</button>
+												<button onClick="openPaypalWindow('{{course.paypalLink}}')" class="button button-lg button-blue">Submit Tuition</button>
 											</div>
 										</div>
 

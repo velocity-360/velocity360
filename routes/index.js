@@ -92,14 +92,34 @@ router.get('/', function(req, res, next) {
 */
 
 router.get('/', function(req, res, next) {
-    res.render('landing', null)
+	var data = {user: null}
+
+	controllers.account.currentUser(req)
+	.then(function(user){
+		data['user'] = user
+	    res.render('landing', data)
+	})
+	.catch(function(err){
+	    res.render('landing', null)
+	})
+
 	return
 })
 
 
 router.get('/:page', function(req, res, next) {
 	if (staticPages[req.params.page] != null){
-	    res.render(staticPages[req.params.page], null)
+		var data = {user: null}
+
+		controllers.account.currentUser(req)
+		.then(function(user){
+			data['user'] = user
+		    res.render(staticPages[req.params.page], data)
+		})
+		.catch(function(err){
+		    res.render(staticPages[req.params.page], null)
+		})
+
 		return
 	}
 
@@ -187,23 +207,29 @@ router.get('/:page/:slug', function(req, res, next) {
 	var template = staticPages[page]
 	if (template != null){
 		var slug = req.params.slug
-		var controller = controllers[page] // check for null
 
-		controller.find({slug: req.params.slug})
+		var data = {user: null}
+		controllers.account.currentUser(req)
+		.then(function(user){
+			data['user'] = user
+			var controller = controllers[page] // check for null
+			return controller.find({slug: req.params.slug})
+		})
 		.then(function(results){
-			var data = (results.length == 0) ? null : results[0]
-			if (data){
-				var summary = data.description || data.preview || data.bio || ''
+			var entity = (results.length == 0) ? null : results[0]
+			data[page] = entity
+			if (entity){
+				var summary = entity.description || entity.preview || entity.bio || ''
 				data['tags'] = {
-					title: data.title,
+					title: entity.title,
 					url: 'https://www.velocity360.io/'+page+'/'+slug,
-					image: 'https://media-service.appspot.com/site/images/'+data.image+'?crop=260',
+					image: 'https://media-service.appspot.com/site/images/'+entity.image+'?crop=260',
 					description: utils.TextUtils.truncateText(summary, 220)
 				}
 			}
 
 		    res.render(template, data)
-		})
+		})		
 		.catch(function(err){
 			res.json({
 				confirmation: 'fail',

@@ -19,7 +19,12 @@
 						<li><a href="/"><div>Home</div></a></li>
 						<li><a href="/tutorials"><div>Tutorials</div></a></li>
 						<li><a href="/blog"><div>Blog</div></a></li>
+						{{#user}}
+						<li><a href="/account" style="background:#260354"><div style="color:#fff">Account</div></a></li>
+						{{/user}}
+						{{^user}}
 						<li><a href="/login" style="background:#260354"><div style="color:#fff">Log In</div></a></li>
+						{{/user}}
 					</ul>					
 				</nav>
 			</div>
@@ -45,13 +50,13 @@
 							<div class="row">
 								<div class="col-md-10 col-md-offset-1">
 									<div class="post-box" style="padding:36px !important">
-										<h1 class="divcenter nobottommargin font-body velocity-header">{{title}}</h1>
+										<h1 class="divcenter nobottommargin font-body velocity-header">{{post.title}}</h1>
 										<div style="text-align:center;padding:16px;">
-											<img src="{{image}}=s420" />
+											<img src="{{post.image}}=s420" />
 										</div>
 										<hr />
 
-										{{{text}}}
+										{{{post.text}}}
 									</div>
 								</div>
 							</div>

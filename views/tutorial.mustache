@@ -52,12 +52,12 @@
 						<div class="container clearfix">
 							<h2 class="divcenter nobottommargin font-body velocity-header">Overview</h2>
 							<div style="text-align:center;padding:16px;">
-								<img style="border-radius:80px" src="https://media-service.appspot.com/site/images/{{image}}?crop=160" />
+								<img style="border-radius:80px" src="https://media-service.appspot.com/site/images/{{tutorial.image}}?crop=160" />
 							</div>
 
 							<div class="row">
 								<div class="col-md-8 col-md-offset-2">
-									<div class="content-description">{{{description}}}</div>
+									<div class="content-description">{{{tutorial.description}}}</div>
 								</div>
 							</div>
 
@@ -74,7 +74,7 @@
 								<div class="col-md-8 col-md-offset-2">
 									<div class="detail-box">
 
-										{{#posts}}
+										{{#tutorial.posts}}
 										<div class="bottommargin-sm">
 											<h3 style="font-weight:200;color:#0073e6" class="nobottommargin">{{title}}</h3>
 											<p class="nobottommargin">
@@ -88,7 +88,7 @@
 
 											</p>
 										</div>
-										{{/posts}}
+										{{/tutorial.posts}}
 
 									</div>
 
@@ -110,7 +110,7 @@
 										<div class="row">
 											<div class="col-md-6">
 												<h3 style="font-weight:200;color:#0073e6;margin-bottom:4px">Deposit</h3>
-												<span style="font-size:16px;font-weight:400">${{deposit}}</span>
+												<span style="font-size:16px;font-weight:400">${{tutorial.deposit}}</span>
 												<p style="margin-top:12px;height:96px">
 													Submit a deposit today to secure a spot. If the class does not run for any reason, your deposit will be fully refunded. The remainder of the tuition is due on the first day.
 												</p>
@@ -118,7 +118,7 @@
 											</div>
 											<div class="col-md-6">
 												<h3 style="font-weight:200;color:#0073e6;margin-bottom:4px">Full Tuition</h3>
-												<span style="font-size:16px;font-weight:400">${{tuition}}</span>
+												<span style="font-size:16px;font-weight:400">${{tutorial.price}}</span>
 												<p style="margin-top:12px;height:96px">
 													Submit full tuition today and receive a $200 discount. If the course does not run for any reason, your tuition will be fully refunded.
 												</p>
