@@ -68,7 +68,7 @@ var fetchRecentPosts = function(){
 			posts += '<div class="entry-title">'
 			posts += '<h4><a href="/post/'+post.slug+'">'+post.title+'</a></h4>'
 			posts += '</div>'
-			posts += '<ul class="entry-meta"><li>'+post.dateString+'</li></ul>'
+			posts += '<ul class="entry-meta" style="padding-left:0px"><li>'+post.dateString+'</li></ul>'
 			posts += '</div></div>'
 
 			// blog page:
