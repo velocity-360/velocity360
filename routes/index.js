@@ -11,6 +11,7 @@ var utils = require('../utils')
 var staticPages = {
 	landing: 'landing',
 	tutorials: 'tutorials',
+	tutorial: 'tutorial',
 	course: 'course',
 	post: 'post',
 	register: 'register',

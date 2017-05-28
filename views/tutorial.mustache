@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+	{{>head}}
+</head>
+
+<body>
+	<header id="header" class="full-header border-full-header static-sticky sticky-header" data-sticky-class="not-dark" data-sticky-offset="full" data-sticky-offset-negative="100">
+		<div id="header-wrap">
+			<div class="container clearfix" style="padding-right:0px;width:100%">
+				<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+				<div id="logo" style="margin-left:15px">
+					<a href="/" class="standard-logo" data-dark-logo="/images/canvasone-dark.png"><img src="/images/canvasone.png" alt="Turbo 360"></a>
+					<a href="/" class="retina-logo" data-dark-logo="/images/canvasone-dark@2x.png"><img src="/images/canvasone@2x.png" alt="Turbo 360"></a>
+				</div>
+
+				<nav id="primary-menu">
+					<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="65">
+						<li><a href="/"><div>Home</div></a></li>
+						<li><a href="/tutorials"><div>Tutorials</div></a></li>
+						<li><a href="/blog"><div>Blog</div></a></li>
+						<li><a href="/login" style="background:#260354"><div style="color:#fff">Log In</div></a></li>
+					</ul>					
+				</nav>
+			</div>
+		</div>
+	</header>
+
+	<div class="stretched side-header">
+		<div id="wrapper" class="clearfix">
+			<header id="header" class="no-sticky hidden-xs" style="padding-top:96px">
+				<div id="header-wrap">
+					<div class="container clearfix">
+						<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+						<nav id="primary-menu">
+							<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="0">
+								<li><a href="#" data-href="#section-overview"><div>Overview</div></a></li>
+								<li><a href="#" data-href="#section-units"><div>Units</div></a></li>
+								<li><a href="#" data-href="#section-instructors"><div>Instructors</div></a></li>
+								<li><a href="#" data-href="#section-enroll"><div>Enroll</div></a></li>
+							</ul>
+						</nav>
+
+						{{>slack}}
+					</div>
+				</div>
+			</header>
+
+			<section id="content" style="background:#f9f9f9">
+				<div id="section-overview" class="page-section notoppadding topmargin-lg nobottompadding">
+					<div class="section nobottommargin notopmargin notoppadding">
+						<div class="container clearfix">
+							<h2 class="divcenter nobottommargin font-body velocity-header">Overview</h2>
+							<div style="text-align:center;padding:16px;">
+								<img style="border-radius:80px" src="https://media-service.appspot.com/site/images/{{image}}?crop=160" />
+							</div>
+
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2">
+									<div class="content-description">{{{description}}}</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div id="section-units" class="page-section notoppadding nobottompadding">
+					<div class="section nobottommargin notopmargin notoppadding">
+						<div class="container clearfix">
+							<h2 class="divcenter nobottommargin font-body velocity-header">Units</h2>
+
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2">
+									<div class="detail-box">
+
+										{{#posts}}
+										<div class="bottommargin-sm">
+											<h3 style="font-weight:200;color:#0073e6" class="nobottommargin">{{title}}</h3>
+											<p class="nobottommargin">
+												{{description}}
+											</p>
+										</div>
+										{{/posts}}
+
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div id="section-enroll" class="page-section notoppadding">
+					<div class="section nobottommargin notopmargin notoppadding">
+						<div class="container clearfix">
+							<h2 class="divcenter nobottommargin font-body velocity-header">Enroll</h2>
+
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2">
+									<div class="detail-box">
+
+										<div class="row">
+											<div class="col-md-6">
+												<h3 style="font-weight:200;color:#0073e6;margin-bottom:4px">Deposit</h3>
+												<span style="font-size:16px;font-weight:400">${{deposit}}</span>
+												<p style="margin-top:12px;height:96px">
+													Submit a deposit today to secure a spot. If the class does not run for any reason, your deposit will be fully refunded. The remainder of the tuition is due on the first day.
+												</p>
+												<button onClick="openPaypalWindow('{{discountPaypalLink}}')" class="button button-lg button-blue">Submit Deposit</button>
+											</div>
+											<div class="col-md-6">
+												<h3 style="font-weight:200;color:#0073e6;margin-bottom:4px">Full Tuition</h3>
+												<span style="font-size:16px;font-weight:400">${{tuition}}</span>
+												<p style="margin-top:12px;height:96px">
+													Submit full tuition today and receive a $200 discount. If the course does not run for any reason, your tuition will be fully refunded.
+												</p>
+												<button onClick="openPaypalWindow('{{paypalLink}}')" class="button button-lg button-blue">Submit Tuition</button>
+											</div>
+										</div>
+
+										<hr />
+										<img style="padding:3px;border:1px solid #ddd;width:50%" src="/images/wework.jpg" />
+										<p style="margin-top:16px;margin-bottom:0px">
+											All courses, demonstrations, and workshops take place at our centrally located WeWork space:
+										</p>
+										<h3 class="notopmargin nobottommargin" style="font-weight:200">
+											<a style="color:red" target="_blank" href="https://www.google.com/maps/place/1460+Broadway,+New+York,+NY+10036">1460 Broadway</a>
+										</h3>
+										<h3 style="font-weight:200">NYC 10036</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{{>join-gray}}
+			</section>
+
+			{{>footer}}
+		</div>
+	</div>
+
+	{{>imports}}
+</body>
+
+</html>
