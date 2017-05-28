@@ -300,3 +300,7 @@ var selectMember = function(event){
 	$('#selected-quote').html(member.quote)
 	$('#selected-location').html(member.location.toUpperCase())
 }
+
+var openPaypalWindow = function(url){
+	window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes')
+}
