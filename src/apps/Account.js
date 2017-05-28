@@ -269,8 +269,8 @@ class Account extends Component {
 		const selected = this.props.session.account.selected
 		const menuItems = [
 			{name:'profile', page:'account', selected:(selected=='profile')},
-			{name:'tutorials', page:'account', selected:(selected=='tutorials')},
-			{name:'projects', page:'account', selected:(selected=='projects')}
+			{name:'tutorials', page:'account', selected:(selected=='tutorials')}
+			// {name:'projects', page:'account', selected:(selected=='projects')}
 		]
 
 		const list = this.props.tutorials.all || []
@@ -344,7 +344,6 @@ class Account extends Component {
 							)}
 						</div>
 					</div>
-
 				</div>
 			)
 		}
@@ -352,47 +351,48 @@ class Account extends Component {
 		return (
 			<div>
 				<Nav user={this.props.user} />
-				<div id="wrapper" className="clearfix">
-					<SidebarContainer withSlack={false} items={menuItems} />
+				<div className="stretched side-header">
+					<div id="wrapper" className="clearfix">
+						<SidebarContainer withSlack={false} items={menuItems} />
 
-					<section id="content" style={{background:'#f9f9f9'}}>
-						<div className="content-wrap">
-							<div className="container clearfix">
-								<div className="col_three_fourth postcontent nobottommargin clearfix">
+						<section id="content" style={{background:'#f9f9f9'}}>
+							<div className="content-wrap">
+								<div className="container clearfix">
+									<div className="col_three_fourth postcontent nobottommargin clearfix">
 
-									<div id="posts" className="events small-thumbs">
-										<div className="entry-title">
-											<h1>{ TextUtils.capitalize(selected) }</h1>
+										<div id="posts" className="events small-thumbs">
+											<div className="entry-title">
+												<h1 style={{fontFamily:'Pathway Gothic One', fontWeight:100}}>{ TextUtils.capitalize(selected) }</h1>
+											</div>
+											<hr />
+
+											{ content }
 										</div>
-										<hr />
 
-										{ content }
 									</div>
-
 								</div>
 							</div>
-						</div>
 
-					</section>
-					<Footer />
+						</section>
+						<Footer />
+					</div>
+
+	                <Modal bsSize="sm" show={this.state.showModal} onHide={this.toggleModal.bind(this)}>
+	                    <Modal.Body style={localStyle.modal}>
+	                        <div style={{textAlign:'center'}}>
+	                            <img style={localStyle.logo} src='/images/logo-dark.png' />
+	                            <hr />
+	                            <h4>Set Password</h4>
+	                        </div>
+
+	                        <input id="password1" onChange={this.updatePassword.bind(this)} className={localStyle.textField.className} style={localStyle.textField} type="password" placeholder="Password" />
+	                        <input id="password2" onChange={this.updatePassword.bind(this)} className={localStyle.textField.className} style={localStyle.textField} type="password" placeholder="Repeat Password" />
+	                        <div style={localStyle.btnLoginContainer}>
+	                            <a href="#" onClick={this.submitPassword.bind(this)} className={localStyle.btnLogin.className}><i className="icon-lock3"></i>Update Password</a>
+	                        </div>
+	                    </Modal.Body>
+	                </Modal>
 				</div>
-
-
-                <Modal bsSize="sm" show={this.state.showModal} onHide={this.toggleModal.bind(this)}>
-                    <Modal.Body style={localStyle.modal}>
-                        <div style={{textAlign:'center'}}>
-                            <img style={localStyle.logo} src='/images/logo-dark.png' />
-                            <hr />
-                            <h4>Set Password</h4>
-                        </div>
-
-                        <input id="password1" onChange={this.updatePassword.bind(this)} className={localStyle.textField.className} style={localStyle.textField} type="password" placeholder="Password" />
-                        <input id="password2" onChange={this.updatePassword.bind(this)} className={localStyle.textField.className} style={localStyle.textField} type="password" placeholder="Repeat Password" />
-                        <div style={localStyle.btnLoginContainer}>
-                            <a href="#" onClick={this.submitPassword.bind(this)} className={localStyle.btnLogin.className}><i className="icon-lock3"></i>Update Password</a>
-                        </div>
-                    </Modal.Body>
-                </Modal>				
 			</div>
 		)
 	}

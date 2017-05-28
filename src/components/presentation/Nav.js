@@ -2,33 +2,27 @@ import React, { Component } from 'react'
 
 export default (props) => {
 
-	return (
-		<div id="page-menu">
-			<div id="page-menu-wrap">
-				<div className="container clearfix" style={{width:98+'%'}}>
-					<div style={{fontFamily:'Pathway Gothic One',fontSize:30,fontWeight:100}} className="menu-title">
-						<a style={{color:'#fff'}} href="/">Velocity 360</a>
+	return (	
+		<header id="header" className="full-header border-full-header static-sticky sticky-header" data-sticky-className="not-dark" data-sticky-offset="full" data-sticky-offset-negative="100">
+			<div id="header-wrap">
+				<div className="container clearfix" style={{paddingRight:0, width:100+'%'}}>
+
+					<div id="primary-menu-trigger"><i className="icon-reorder"></i></div>
+					<div id="logo" style={{marginLeft:15}}>
+						<a href="/" className="standard-logo" data-dark-logo="/images/canvasone-dark.png"><img src="/images/canvasone.png" alt="Canvas Logo" /></a>
+						<a href="/" className="retina-logo" data-dark-logo="/images/canvasone-dark@2x.png"><img src="/images/canvasone@2x.png" alt="Canvas Logo" /></a>
 					</div>
 
-					<nav className="one-page-menu">
-						<ul className="hidden-xs">
-							<li><a href="http://www.turbo360.co/landing"><div>Turbo</div></a></li>
-							<li><a href="/courses"><div>Courses</div></a></li>
-							<li><a href="/"><div>Tutorials</div></a></li>
-							<li>
-								{ (props.user) ? <a href="/account"><div>{ props.user.username }</div></a> : <a href="/login"><div>Login</div></a> }
-							</li>
-							
-						</ul>
-
-						<ul className="visible-xs" style={{background:'#000'}}>
-							<li><a href="#" data-href="#header"><div>Test</div></a></li>
+					<nav id="primary-menu">
+						<ul className="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="65">
+							<li><a href="/"><div>Home</div></a></li>
+							<li><a href="/tutorials"><div>Tutorials</div></a></li>
+							<li><a href="/blog"><div>Blog</div></a></li>
+							<li><a href="/account" style={{background:'#260354'}}><div style={{color:'#fff'}}>Account</div></a></li>
 						</ul>
 					</nav>
-
-					<div id="page-submenu-trigger"><i className="icon-reorder"></i></div>
 				</div>
 			</div>
-		</div>
+		</header>
 	)
 }
