@@ -27,7 +27,7 @@ var requestSyllabus = function(event){
 		return
 	}
 
-	console.log('requestSyllabus: '+JSON.stringify(visitor))
+	// console.log('requestSyllabus: '+JSON.stringify(visitor))
 	visitor['cta'] = 'STYLLABUS REQUEST: '+event.target.id
     $.ajax({
         url: '/auth/subscribe',
@@ -166,7 +166,7 @@ var fetchRecentPosts = function(){
 			return
 		}
 
-		console.log('RECENT POSTS: '+JSON.stringify(response.results))
+		// console.log('RECENT POSTS: '+JSON.stringify(response.results))
 		var posts = ''
 		var blog = ''
 		response.results.forEach(function(post, i){
