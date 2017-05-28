@@ -4,7 +4,23 @@
 	{{>head}}
 </head>
 
-<body class="stretched" data-loader="11" data-loader-color="#543456" onLoad="fetchEvents()">
+<body class="stretched side-push-panel" data-loader="11" data-loader-color="#543456" onLoad="fetchEvents()">
+	<div id="side-panel" class="dark">
+		<div id="side-panel-trigger-close" class="side-panel-trigger">
+			<a href="#"><i class="icon-line-cross"></i></a>
+		</div>
+
+		<div class="side-panel-wrap">
+			<div class="widget widget_links clearfix">
+				<h4 id="selected-name">About Canvas</h4>
+				<div style="font-size:14px; line-height:1.7">
+					<p id="selected-quote" style="line-height:1.7;font-weight:100"></p>
+					<div class="clear topmargin-sm"></div>
+					<abbr id="selected-location" title="Phone Number"></abbr>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div id="wrapper" class="clearfix">
 		{{>nav}}
@@ -13,41 +29,29 @@
 
 			<div class="slider-parallax-inner">
 
-				<div class="full-screen section nopadding nomargin noborder ohidden" style="background-image: url('/images/keyboard.jpg'); background-size: cover; background-position: center center;">
+				<div class="full-screen section nopadding nomargin noborder ohidden" style="background-image: url('/images/code.jpg'); background-size: cover; background-position: center center;">
 
 					<div class="container clearfix">
 						<div class="vertical-middle">
 							<div class="row">
 								<div class="col-md-offset-1 col-md-5 col-sm-6">
 									<div class="visible-lg visible-md topmargin"></div>
-									<h2>Client's Confidence:</h2>
 									<div class="fslider testimonial testimonials-lg nobg noborder noshadow nopadding" data-animation="fade" data-arrows="false" data-pagi="false">
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div class="slide">
 													<div class="testi-content">
-														<p>Similique fugit repellendus expedita excepturi iure perferendis provident quia eaque. Repellendus, vero numquam?</p>
-														<div class="testi-meta">
-															Steve Jobs
-															<span>Apple Inc.</span>
+														<p>After spending several days going through Velocity 360 tutorials, I was building full stack web applications from scratch using the MERN stack. With that in hand, I was offered UI Developer internship at Solarwinds in Austin, TX.</p>
+														<div class="testi-meta" style="color:#333">
+															Jimmy Hong<span>Austin, TX</span>
 														</div>
 													</div>
 												</div>
 												<div class="slide">
 													<div class="testi-content">
-														<p>Natus voluptatum enim quod necessitatibus quis expedita harum provident eos obcaecati id culpa corporis molestias.</p>
-														<div class="testi-meta">
-															Collis Ta'eed
-															<span>Envato Inc.</span>
-														</div>
-													</div>
-												</div>
-												<div class="slide">
-													<div class="testi-content">
-														<p>Incidunt deleniti blanditiis quas aperiam recusandae consequatur ullam quibusdam cum libero illo rerum!</p>
-														<div class="testi-meta">
-															John Doe
-															<span>XYZ Inc.</span>
+														<p>Just two months after finishing the React Redux Course, I am consulting with three companies with hourly rates ranging from $50 to $125. I was immediately able to apply the skills and techniques professionally.</p>
+														<div class="testi-meta" style="color:#333">
+															Rob Ungar<span>New York, NY</span>
 														</div>
 													</div>
 												</div>
@@ -66,15 +70,15 @@
 											<form action="#" class="clearfix">
 												<div class="col_full">
 													<label for="" class="capitalize t600">Full Name</label>
-													<input type="email" name="name"class="form-control not-dark" />
+													<input onChange="updateVisitor(event)" type="email" name="name"class="form-control not-dark" />
 												</div>
 												<div class="col_full">
 													<label for="" class="capitalize t600">Email</label>
-													<input type="email" name="email"class="form-control not-dark" />
+													<input onChange="updateVisitor(event)" type="email" name="email"class="form-control not-dark" />
 												</div>
 												<div class="col_full">
 													<label for="" class="capitalize t600">Password</label>
-													<input type="password" name="password" class="form-control not-dark" />
+													<input onChange="updateVisitor(event)" type="password" name="password" class="form-control not-dark" />
 												</div>
 												<div class="col_full nobottommargin">
 													<button type="submit" class="t400 capitalize button button-border button-circle nomargin" value="submit">Log In</button>
@@ -88,7 +92,7 @@
 					</div>
 
 					<div class="video-wrap" style="z-index:1;">
-						<div class="video-overlay" style="background: rgba(255,255,255,0.8);"></div>
+						<div class="video-overlay" style="background: rgba(255,255,255,0.6);"></div>
 					</div>
 				</div>
 			</div>
@@ -97,108 +101,60 @@
 		<section id="content">
 			<div class="content-wrap nopadding">
 				<div id="section-about" class="center page-section">
-
 					<div class="container clearfix">
+						<h2 class="divcenter bottommargin font-body" style="max-width:700px;font-size:40px;font-family:Pathway Gothic One !important;font-weight:400">Meet The Community</h2>
 
-						<h2 class="divcenter bottommargin font-body" style="max-width: 700px; font-size: 40px;">A digital web studio creating stunning &amp; engaging online experiences</h2>
-
-						<p class="lead divcenter bottommargin" style="max-width: 800px;">Ford Foundation reduce child mortality fight against oppression refugee disruption pursue these aspirations effect. Free-speech Nelson Mandela change liberal; challenges of our times sustainability institutions.</p>
-
-						<p class="bottommargin" style="font-size: 16px;"><a href="#" data-scrollto="#section-services" data-easing="easeInOutExpo" data-speed="1250" data-offset="70" class="more-link">Learn more <i class="icon-angle-right"></i></a></p>
+						<p class="lead divcenter bottommargin" style="max-width:800px;">
+							Our members range from students to currently working professionals. Some have taken our live courses while others are online members. Above all, everyone here loves to code and strives to be better every day.
+						</p>
 
 						<div class="clear"></div>
 
 						<div class="row topmargin-lg divcenter" style="max-width: 1000px;">
 
 							<div class="col-sm-4 bottommargin">
-
 								<div class="team">
-									<div class="team-image">
-										<img src="images/team/1.jpg" alt="John Doe">
-										<div class="team-overlay">
-											<div class="team-social-icons">
-												<a href="#" class="social-icon si-borderless si-small si-facebook" title="Facebook">
-													<i class="icon-facebook"></i>
-													<i class="icon-facebook"></i>
-												</a>
-												<a href="#" class="social-icon si-borderless si-small si-twitter" title="Twitter">
-													<i class="icon-twitter"></i>
-													<i class="icon-twitter"></i>
-												</a>
-												<a href="#" class="social-icon si-borderless si-small si-github" title="Github">
-													<i class="icon-github"></i>
-													<i class="icon-github"></i>
-												</a>
-											</div>
-										</div>
-									</div>
+									<img style="width:120px;border-radius:60px;margin:auto" src="/images/rob.png" alt="Velocity 360" />
 									<div class="team-desc team-desc-bg">
-										<div class="team-title"><h4>John Doe</h4><span>CEO</span></div>
+										<div class="team-title">
+											<h4>Rob Ungar</h4>
+											<span style="text-transform:none">Just two months after finishing the React Redux Course, I am freelancing for three companies with hourly rates ranging from $50 to $125...</span><br />
+											<div class="side-panel-trigger"><a id="0" onClick="selectMember(event)" href="#">Read More...</a></div>
+										</div>
+
 									</div>
 								</div>
-
 							</div>
 
 							<div class="col-sm-4 bottommargin">
-
 								<div class="team">
-									<div class="team-image">
-										<img src="images/team/2.jpg" alt="Josh Clark">
-										<div class="team-overlay">
-											<div class="team-social-icons">
-												<a href="#" class="social-icon si-borderless si-small si-twitter" title="Twitter">
-													<i class="icon-twitter"></i>
-													<i class="icon-twitter"></i>
-												</a>
-												<a href="#" class="social-icon si-borderless si-small si-linkedin" title="LinkedIn">
-													<i class="icon-linkedin"></i>
-													<i class="icon-linkedin"></i>
-												</a>
-												<a href="#" class="social-icon si-borderless si-small si-flickr" title="Flickr">
-													<i class="icon-flickr"></i>
-													<i class="icon-flickr"></i>
-												</a>
-											</div>
+									<img style="width:120px;border-radius:60px;margin:auto" src="/images/jimmyhong.jpg" alt="Velocity 360" />
+									<div class="team-desc team-desc-bg">
+										<div class="team-title">
+											<h4>Jimmy Hong</h4>
+											<span style="text-transform:none">Towards the end of my coding boot camp, I was struggling in understanding React and Redux. I tried using different boilerplates and went through various tutorials...</span><br />
+											<div class="side-panel-trigger"><a id="1" onClick="selectMember(event)" href="#">Read More...</a></div>
 										</div>
 									</div>
-									<div class="team-desc team-desc-bg">
-										<div class="team-title"><h4>Mary Jane</h4><span>Co-Founder</span></div>
-									</div>
 								</div>
-
 							</div>
 
 							<div class="col-sm-4 bottommargin">
-
 								<div class="team">
-									<div class="team-image">
-										<img src="images/team/3.jpg" alt="Mary Jane">
-										<div class="team-overlay">
-											<div class="team-social-icons">
-												<a href="#" class="social-icon si-borderless si-small si-twitter" title="Twitter">
-													<i class="icon-twitter"></i>
-													<i class="icon-twitter"></i>
-												</a>
-												<a href="#" class="social-icon si-borderless si-small si-vimeo" title="Vimeo">
-													<i class="icon-vimeo"></i>
-													<i class="icon-vimeo"></i>
-												</a>
-												<a href="#" class="social-icon si-borderless si-small si-instagram" title="Instagram">
-													<i class="icon-instagram"></i>
-													<i class="icon-instagram"></i>
-												</a>
-											</div>
-										</div>
-									</div>
+									<img style="width:120px;border-radius:60px;margin:auto" src="/images/ryanbyrne.jpg" alt="Velocity 360" />
 									<div class="team-desc team-desc-bg">
-										<div class="team-title"><h4>Josh Clark</h4><span>Sales</span></div>
+										<div class="team-title">
+											<h4>Ryan Byrne</h4>
+											<span>CEO</span><br />
+											<div class="side-panel-trigger"><a id="2" onClick="selectMember(event)" href="#">Read More...</a></div>
+										</div>
 									</div>
 								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
-				
 			</div>
 		</section>
 
