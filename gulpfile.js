@@ -53,6 +53,13 @@ gulp.task('copy-fonts', function(){
         .pipe(gulp.dest('./public/dist/css/fonts/'))
 })
 
+gulp.task('copy-et-line', function(){
+    return gulp.src(
+            ['./public/css/et-line/**']
+        )
+        .pipe(gulp.dest('./dist/css/et-line'))
+})
+
 gulp.task('copy-sharekit', function(){
     return gulp.src(
             ['./public/css/social-share-kit/fonts/**']
@@ -67,7 +74,8 @@ gulp.task('copy-images', function(){
         .pipe(gulp.dest('./public/dist/css/images/'))
 })
 
-gulp.task('style', ['css', 'copy-fonts', 'copy-sharekit', 'copy-images'], function(){})
+gulp.task('copy', ['copy-fonts', 'copy-et-line', 'copy-sharekit', 'copy-images'], function(){})
+gulp.task('style', ['css', 'copy'], function(){})
 
 gulp.task('app', function(){
     return gulp.src(
