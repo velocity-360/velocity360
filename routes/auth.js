@@ -72,8 +72,7 @@ router.post('/:action', function(req, res, next) {
 	}
 
 	if (action == 'register') {
-		controllers.profile
-		.create(req.body)
+		controllers.profile.create(req.body)
 		.then(function(profile){
 			req.session.user = profile.id // install cookie with profile id set to 'user'
 			Turbo.sendEmail({

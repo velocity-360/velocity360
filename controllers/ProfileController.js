@@ -102,6 +102,14 @@ module.exports = {
 
 				if (profiles.length > 0){ // profile with email already exists - send it back
 					var profile = profiles[0]
+
+					// update profile with new params:
+					var keys = Object.keys(params)
+					keys.forEach(function(key, i){
+						profile[key] = params[key]
+					})
+
+					profile.save()
 					resolve(profile)
 					return
 				}

@@ -51,7 +51,9 @@ var requestSyllabus = function(event){
 }
 
 var register = function(event){
-	event.preventDefault()
+	if (event)
+		event.preventDefault()
+
 	if (visitor.name.length == 0){
 		alert('Please Enter Your Name')
 		return
@@ -97,7 +99,8 @@ var register = function(event){
 	    	alert('Error: '+error.message)
 			return
 	    }
-    })}
+    })
+}
 
 var login = function(event){
 	event.preventDefault()
@@ -305,8 +308,35 @@ var stripeSubscriptionHandler = turbo.loadStripeHandler(subscriptionParams, func
 	// CARD: {"confirmation":"success","card":{"lastFour":"xxx","exp_month":1,"exp_year":3030,"brand":"Visa"},
 	// "customer":{"id":"xxx-xxx","email":"lebronjames@gmail.com","name":"LeBron James","firstName":"LeBron",
 	// "lastName":"James"}}
+	// alert('Stripe Card Registered')
 
-	alert('Stripe Card Registered')
+	// register user
+	var credentials = data.customer
+	credentials['accountType'] = 'premium'
+	credentials['monthlyRate'] = 14.99
+
+    $.ajax({
+        url: '/auth/register',
+        type: 'POST',
+        data: JSON.stringify(credentials),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: true,
+        success: function(response, status) {
+        	if (response.confirmation != 'success'){
+        		alert(response.message)
+        		return
+        	}
+
+        	// console.log('LOGGED IN: '+JSON.stringify(response))
+        	window.location.href = '/account'
+			return
+        },
+	    error: function(xhr, status, error) {
+	    	alert('Error: '+error.message)
+			return
+	    }
+    })
 })
 
 var showStripeModal = function(event, modal){
