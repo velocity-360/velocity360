@@ -1,7 +1,6 @@
+
 var app_id = '58da2bc0d644e40011da467c'
-var turbo = Turbo({
-	site_id: app_id
-})
+var turbo = Turbo({site_id: app_id})
 
 var visitor = {
 	name: '',
@@ -287,3 +286,35 @@ var selectMember = function(event){
 var openPaypalWindow = function(url){
 	window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes')
 }
+
+// turbo.loadStripeHandler(params, callback)...
+var subscriptionParams = {
+	key: 'pk_live_yKFwKJsJXwOxC0yZob29rIN5',
+	image: 'https://velocity-staging.herokuapp.com/images/logo_260.png',
+	label: 'Premium: $14.99/month',
+	action: 'card'
+}
+
+var stripeSubscriptionHandler = turbo.loadStripeHandler(subscriptionParams, function(err, data){
+	if (err){
+		alert(err.message)
+		return
+	}
+
+	console.log('CARD: '+JSON.stringify(data))
+	alert('Stripe Card Registered')
+})
+
+var showStripeModal = function(event, modal){
+	if (event)
+		event.preventDefault()
+
+	if (modal == 'subscription'){
+	    stripeSubscriptionHandler.open({
+		    name: 'Velocity 360',
+		    description: 'Premium Subscription'
+	    })
+	}
+}
+
+
