@@ -411,9 +411,14 @@ var configureEntity = function(currentEntity){
 		var user = window.__CURRENT_USER__
 		if (user != null){
 			if (user.accountType == 'premium'){ // premium member
-				updateEntity(tutorial, {subscribers: tutorial.subscribers.concat([user.id])}, function(){
-		        	window.location.href = '/account?selected=tutorials'
-				})
+				subscribeTutorial = function(event){
+					if (event)
+						event.preventDefault()
+
+					updateEntity(tutorial, {subscribers: tutorial.subscribers.concat([user.id])}, function(){
+			        	window.location.href = '/account?selected=tutorials'
+					})
+				}
 				return
 			}
 		}
