@@ -302,6 +302,10 @@ var stripeSubscriptionHandler = turbo.loadStripeHandler(subscriptionParams, func
 	}
 
 	console.log('CARD: '+JSON.stringify(data))
+	// CARD: {"confirmation":"success","card":{"lastFour":"xxx","exp_month":1,"exp_year":3030,"brand":"Visa"},
+	// "customer":{"id":"xxx-xxx","email":"lebronjames@gmail.com","name":"LeBron James","firstName":"LeBron",
+	// "lastName":"James"}}
+
 	alert('Stripe Card Registered')
 })
 
