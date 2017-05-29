@@ -94,9 +94,7 @@
 											</p>
 										</div>
 										{{/tutorial.posts}}
-
 									</div>
-
 								</div>
 							</div>
 
@@ -111,25 +109,13 @@
 
 							<div class="row">
 								<div class="col-md-8 col-md-offset-2">
-									<div class="detail-box">
-										<div class="row">
-											<div class="col-md-6">
-												<h3 style="font-weight:200;color:#0073e6;margin-bottom:4px">Deposit</h3>
-												<span style="font-size:16px;font-weight:400">${{tutorial.deposit}}</span>
-												<p style="margin-top:12px;height:96px">
-													Submit a deposit today to secure a spot. If the class does not run for any reason, your deposit will be fully refunded. The remainder of the tuition is due on the first day.
-												</p>
-												<button onClick="openPaypalWindow('{{discountPaypalLink}}')" class="button button-lg button-blue">Submit Deposit</button>
-											</div>
-											<div class="col-md-6">
-												<h3 style="font-weight:200;color:#0073e6;margin-bottom:4px">Full Tuition</h3>
-												<span style="font-size:16px;font-weight:400">${{tutorial.price}}</span>
-												<p style="margin-top:12px;height:96px">
-													Submit full tuition today and receive a $200 discount. If the course does not run for any reason, your tuition will be fully refunded.
-												</p>
-												<button onClick="openPaypalWindow('{{paypalLink}}')" class="button button-lg button-blue">Submit Tuition</button>
-											</div>
-										</div>
+									<div class="detail-box" style="text-align:center">
+										<p style="margin-top:12px;font-size:16px">
+											Click the button below to subscribe to this tutorial.<br />
+											Premium members can subscribe for free.
+										</p>
+										<button onClick="subscribeTutorial()" class="button button-lg button-blue">Subscribe</button>
+
 									</div>
 
 								</div>

@@ -351,4 +351,118 @@ var showStripeModal = function(event, modal){
 	}
 }
 
+var updateEntity = function(entity, params, completion){
+    $.ajax({
+        url: '/api/'+entity.schema+'/'+entity.id,
+        type: 'PUT',
+        data: JSON.stringify(params),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: true,
+        success: function(response, status) {
+        	if (response.confirmation != 'success'){
+        		alert(response.message)
+        		return
+        	}
+
+        	completion()
+			return
+        },
+	    error: function(xhr, status, error) {
+	    	alert('Error: '+error.message)
+			return
+	    }
+    })
+}
+
+var subscribeTutorial = null
+var stripeTutorialHandler = null
+
+var configureEntity = function(currentEntity){
+	if (currentEntity == null)
+		return
+
+	if (currentEntity.schema == 'tutorial'){
+		var tutorial = currentEntity
+
+		// FREE TUTUROAL:
+		if (tutorial.price == 0){
+			subscribeTutorial = function(event){
+				var user = window.__CURRENT_USER__
+				if (user == null){
+					alert('Please log in or register to subscribe to this tutorial.')
+					return
+				}
+
+				// already subscribed:
+				if (tutorial.subscribers.indexOf(user.id) > -1){
+					window.location.href = '/account?selected=tutorials'
+					return
+				}
+
+				updateEntity(tutorial, {subscribers: tutorial.subscribers.concat([user.id])}, function(){
+		        	window.location.href = '/account?selected=tutorials'
+				})
+			}
+			return
+		}
+
+		// NON FREE TUTORIAL
+		var user = window.__CURRENT_USER__
+		if (user != null){
+			if (user.accountType == 'premium'){ // premium member
+				updateEntity(tutorial, {subscribers: tutorial.subscribers.concat([user.id])}, function(){
+		        	window.location.href = '/account?selected=tutorials'
+				})
+				return
+			}
+		}
+
+		var tutorialParams = {
+			key: 'pk_live_yKFwKJsJXwOxC0yZob29rIN5',
+			image: 'https://velocity-staging.herokuapp.com/images/logo_260.png',
+			label: '$'+tutorial.price,
+			action: 'charge'
+		}
+
+		stripeTutorialHandler = turbo.loadStripeHandler(tutorialParams, function(err, data){
+			if (err){
+				alert(err.message)
+				return
+			}
+
+			var customer = data.customer
+
+			// check if customer is new or already registered:
+			var currentUser = window.__CURRENT_USER__
+			if (currentUser == null){ 
+				// TODO: sign up
+
+				return
+			}
+
+			// UPDATE
+			updateEntity(tutorial, {subscribers: tutorial.subscribers.concat([user.id])}, function(){
+	        	window.location.href = '/account?selected=tutorials'
+			})
+		})
+
+		subscribeTutorial = function(event){
+			if (event)
+				event.preventDefault()
+
+			if (stripeTutorialHandler == null)
+				return
+
+		    stripeTutorialHandler.open({
+			    name: 'Velocity 360',
+			    description: tutorial.title+', $'+tutorial.price
+		    })
+		}
+
+		return
+	}
+}
+
+configureEntity(window.__CURRENT_ENTITY__)
 
