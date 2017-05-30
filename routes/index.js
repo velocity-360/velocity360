@@ -53,6 +53,13 @@ router.get('/', function(req, res, next) {
 			data['currentUser'] = JSON.stringify(user)
 		}
 		
+		data['tags'] = {
+			title: 'Become A Full Stack Developer',
+			url: 'https://www.velocity360.io/',
+			image: 'https://www.velocity360.io/images/logo_260.png',
+			description: 'Learn React, Redux, and Node JS in our part time evening courses.'
+		}
+
 	    res.render('landing', data)
 	})
 	.catch(function(err){
