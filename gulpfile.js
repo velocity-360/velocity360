@@ -90,6 +90,7 @@ gulp.task('app', function(){
 gulp.task('js', ['app'], function(){
     return gulp.src(
             [
+                './public/js/moment.js',
                 './public/js/jquery.js',
                 './public/js/plugins.js',
                 './public/js/components/bs-datatable.js',

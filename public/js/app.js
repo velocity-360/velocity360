@@ -145,18 +145,6 @@ var login = function(event){
     })
 }
 
-var formatTimestamp = function(unix_timestamp){
-	var date = new Date(unix_timestamp*1000)
-	var month = months[date.getMonth()+1]
-	var day = date.getDay()
-	var hours = date.getHours()
-	var minutes = '0' + date.getMinutes()
-
-	// Will display time in 10:30:23 format
-	var formattedTime = month+' '+day+', '+hours + ':' + minutes.substr(-2) 
-	return formattedTime
-}
-
 var renderEvents = function(){
 	// console.log('RenderEvents: '+JSON.stringify(events))
 	if (events.length == 0){
@@ -167,7 +155,7 @@ var renderEvents = function(){
 	var rows = ''
 	events.forEach(function(meetup, i){
 		rows += '<tr><td>'
-		rows += '<div class="meetup" style="padding:24px"><span style="float:right">'+formatTimestamp(meetup.time)+'</span><h2>'+meetup.name+'</h2>'+meetup.description.substring(0, 360)+'...<br /><br /><a style="margin-left:0px" class="button button-lg button-red button-circle" target="_blank" href="'+meetup.link+'">Learn More</a>'+'</div>'
+		rows += '<div class="meetup" style="padding:24px"><span style="float:right">'+moment(meetup.time).format("MMM DD, hh:mm a")+'</span><h2>'+meetup.name+'</h2>'+meetup.description.substring(0, 360)+'...<br /><br /><a style="margin-left:0px" class="button button-lg button-red button-circle" target="_blank" href="'+meetup.link+'">Learn More</a>'+'</div>'
 		rows += '</td></tr>'
 	})
 
