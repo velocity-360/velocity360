@@ -293,7 +293,7 @@ var openPaypalWindow = function(url){
 // turbo.loadStripeHandler(params, callback)...
 var subscriptionParams = {
 	key: 'pk_live_yKFwKJsJXwOxC0yZob29rIN5',
-	image: 'https://velocity-staging.herokuapp.com/images/logo_260.png',
+	image: '/images/logo_260.png',
 	label: 'Premium: $14.99/month',
 	action: 'card'
 }
@@ -425,7 +425,7 @@ var configureEntity = function(currentEntity){
 
 		var tutorialParams = {
 			key: 'pk_live_yKFwKJsJXwOxC0yZob29rIN5',
-			image: 'https://velocity-staging.herokuapp.com/images/logo_260.png',
+			image: '/images/logo_260.png',
 			label: 'Subscribe - $'+tutorial.price,
 			amount: tutorial.price,
 			description: tutorial.title,
