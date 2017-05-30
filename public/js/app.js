@@ -410,7 +410,7 @@ var configureEntity = function(currentEntity){
 		// NON FREE TUTORIAL
 		var user = window.__CURRENT_USER__
 		if (user != null){
-			if (user.accountType == 'premium'){ // premium member
+			if (user.accountType == 'premium'){ // premium member, go ahead and let it through
 				subscribeTutorial = function(event){
 					if (event)
 						event.preventDefault()
@@ -442,12 +442,6 @@ var configureEntity = function(currentEntity){
 				alert(data.message)
 				return
 			}
-
-			// console.log('DATA: '+JSON.stringify(data))
-			// {"confirmation":"success",
-			// "charge":{"charge":{"id":"ch_1AOxXeC5b8QCRB75rwHbXyD1","object":"charge","amount":500,"amount_refunded":0,"application":null,"application_fee":null,"balance_transaction":"txn_1AOxXfC5b8QCRB752yESQL55","captured":true,"created":1496101494,"currency":"usd","customer":null,"description":"Premium Tutorial","destination":null,"dispute":null,"failure_code":null,"failure_message":null,"fraud_details":{},"invoice":null,"livemode":true,"metadata":{},"on_behalf_of":null,"order":null,"outcome":{"network_status":"approved_by_network","reason":null,"risk_level":"normal","seller_message":"Payment complete.","type":"authorized"},"paid":true,"receipt_email":null,"receipt_number":null,"refunded":false,"refunds":{"object":"list","data":[],"has_more":false,"total_count":0,"url":"/v1/charges/ch_1AOxXeC5b8QCRB75rwHbXyD1/refunds"},"review":null,"shipping":null,"source":{"id":"card_1AOxXaC5b8QCRB75bPB3TTg4","object":"card","address_city":"Woodcliff Lake","address_country":"United States","address_line1":"12 Lyons Court","address_line1_check":"pass","address_line2":null,"address_state":"NJ","address_zip":"07677","address_zip_check":"pass","brand":"Visa","country":"US","customer":null,"cvc_check":"pass","dynamic_last4":null,"exp_month":6,"exp_year":2020,"fingerprint":"hltRklDPg2R0e0Tx","funding":"debit","last4":"9072","metadata":{},"name":"Denny Kwon","tokenization_method":null},"source_transfer":null,"statement_descriptor":null,"status":"succeeded","transfer_group":null},
-			// "customer":{"email":"dennykwon2@gmail.com","name":"Denny Kwon","firstName":"Denny","lastName":"Kwon"}}}
-			// var customer = data.customer
 
 			// check if customer is new or already registered:
 			var currentUser = window.__CURRENT_USER__
