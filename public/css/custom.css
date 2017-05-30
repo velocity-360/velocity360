@@ -51,6 +51,12 @@
 	max-width: 320px
 }
 
+.meetup h2 {
+	font-family: 'Pathway Gothic One';
+	font-weight: 200;
+	margin-bottom: 12px;
+}
+
 .content-description {
 	margin-top: 16px;
 	font-size: 16px;
