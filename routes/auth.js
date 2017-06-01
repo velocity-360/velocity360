@@ -43,6 +43,19 @@ router.get('/:action', function(req, res, next) {
 		return
 	}
 
+	if (action == 'unsubscribe') {
+		var email = req.query.email
+		Turbo.sendEmail({
+			content: 'Unsubscribe: '+email,
+			fromemail: process.env.BASE_EMAIL,
+			fromname: 'Velocity 360',
+			recipient: 'dkwon@velocity360.io',
+			subject: 'Unsubscribe: '+email
+		})
+
+		res.send('You Are Unsubscribed.')
+	}
+
 	res.json({
 		confirmation:'fail',
 		message: 'Invalid Action'
