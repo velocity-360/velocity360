@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var Promise = require('bluebird')
-var Microservice = require('turbo360')({site_id:process.env.SITE_ID})
+var Turbo = require('turbo360')({site_id:process.env.SITE_ID})
 var controllers = require('../controllers')
 
 function createProfile(name, email){
@@ -24,7 +24,7 @@ router.post('/:resource', function(req, res, next) {
 		var prod = null
 
 		var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-		Microservice.createStripeCharge({ // charge for new people, unregistered customers
+		Turbo.createStripeCharge({ // charge for new people, unregistered customers
 			stripeRef: stripe,
 			description: 'Velocity 360: '+req.body.description,
 			amount: req.body.amount,
@@ -61,11 +61,11 @@ router.post('/:resource', function(req, res, next) {
 				prod.save()
 			}
 
-			Microservice.sendEmail({
+			Turbo.sendEmail({
 				content: customerName + ' purchased ' + prod.title,
 				fromemail: process.env.BASE_EMAIL,
 				fromname: 'Velocity 360',
-				recipient: 'dkwon@velocity360.io',
+				recipients: ['dkwon@velocity360.io'],
 				subject: type.toUpperCase()+' Purchase'
 			})
 
@@ -115,7 +115,7 @@ router.post('/:resource', function(req, res, next) {
 		})
 		.then(function(profile){
 			var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-			return Microservice.createStripeAccount({ // requires stripeRef, client, stripeToken values
+			return Turbo.createStripeAccount({ // requires stripeRef, client, stripeToken values
 				stripeRef: stripe,
 				client: profile,
 				stripeToken: stripeToken
@@ -135,11 +135,11 @@ router.post('/:resource', function(req, res, next) {
 			req.session.user = profile._id.toString() // login as user
 			res.json({confirmation:'success', user:profile.summary()})
 
-			Microservice.sendEmail({
+			Turbo.sendEmail({
 				content: JSON.stringify(profile.summary()),
 				fromemail: process.env.BASE_EMAIL,
 				fromname: 'Velocity 360',
-				recipient: 'dkwon@velocity360.io',
+				recipients: ['dkwon@velocity360.io'],
 				subject: 'New Premium Subscriber'
 			})
 
