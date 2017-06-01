@@ -93,7 +93,7 @@ router.post('/:action', function(req, res, next) {
 				content: JSON.stringify(req.body),
 				fromemail: process.env.BASE_EMAIL,
 				fromname: 'Velocity 360',
-				recipient: 'dkwon@velocity360.io',
+				recipients: ['dkwon@velocity360.io'],
 				subject: 'New Registration'
 			})
 
@@ -122,7 +122,7 @@ router.post('/:action', function(req, res, next) {
 				content: JSON.stringify(req.body),
 				fromemail: process.env.BASE_EMAIL,
 				fromname: 'Velocity 360',
-				recipient: 'dkwon@velocity360.io',
+				recipients: ['dkwon@velocity360.io'],
 				subject: req.body.cta || 'Slack Invitation Request'
 			})
 		})
