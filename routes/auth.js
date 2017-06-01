@@ -117,7 +117,8 @@ router.post('/:action', function(req, res, next) {
 		controllers.subscriber.create(req.body)
 		.then(function(result){
 			subscriber = result
-			// REQUIRED PARAMS: content, fromemail, fromname, recipient, subject
+			
+			// REQUIRED PARAMS: content, fromemail, fromname, recipients, subject
 			return Turbo.sendEmail({
 				content: JSON.stringify(req.body),
 				fromemail: process.env.BASE_EMAIL,
