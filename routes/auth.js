@@ -49,11 +49,12 @@ router.get('/:action', function(req, res, next) {
 			content: 'Unsubscribe: '+email,
 			fromemail: process.env.BASE_EMAIL,
 			fromname: 'Velocity 360',
-			recipient: 'dkwon@velocity360.io',
+			recipients: ['dkwon@velocity360.io'],
 			subject: 'Unsubscribe: '+email
 		})
 
 		res.send('You Are Unsubscribed.')
+		return
 	}
 
 	res.json({
