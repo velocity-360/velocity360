@@ -48,8 +48,7 @@
 }
 
 .meetup img {
-    float: right;
-    margin-left: 16px;
+    margin-left: 0px;
     max-width: 240px;
 }
 

@@ -155,7 +155,7 @@ var renderEvents = function(){
 	var rows = ''
 	events.forEach(function(meetup, i){
 		rows += '<tr><td>'
-		rows += '<div class="meetup" style="padding:24px"><span style="float:right">'+moment(meetup.time).format("MMM DD, hh:mm a")+'</span><a target="_blank" href="'+meetup.link+'"><h2>'+meetup.name+'</h2></a>'+meetup.description.substring(0, 360)+'...<br /><br /><a style="margin-left:0px" class="button button-lg button-red button-circle" target="_blank" href="'+meetup.link+'">Learn More</a>'+'</div>'
+		rows += '<div class="meetup" style="padding:24px"><span>'+moment(meetup.time).format("MMM DD, hh:mm a")+'</span><br /><a target="_blank" href="'+meetup.link+'"><h2>'+meetup.name+'</h2></a>'+meetup.description.substring(0, 360)+'...<br /><br /><a style="margin-left:0px" class="button button-lg button-red button-circle" target="_blank" href="'+meetup.link+'">Learn More</a>'+'</div>'
 		rows += '</td></tr>'
 	})
 
