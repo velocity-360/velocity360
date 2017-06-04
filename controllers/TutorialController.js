@@ -55,16 +55,21 @@ module.exports = {
 		})
 	},
 
-	create: function(params, completion){
-		params['slug'] = TextUtils.slugVersion(params.title)
-		Tutorial.create(params, function(err, tutorial){
-			if (err){
-				completion({confirmation:'fail', message:err.message}, null)
-				return
-			}
+	create: function(params, token){
+		return new Promise(function(resolve, reject){
+
+			if (params.title != null)
+				params['slug'] = TextUtils.slugVersion(params.title)
 			
-			completion(null, tutorial.summary())
-			return
+			Tutorial.create(params, function(err, tutorial){
+				if (err){
+					reject(err)
+					return
+				}
+				
+				resolve(tutorial.summary())
+				return
+			})
 		})
 	},
 
