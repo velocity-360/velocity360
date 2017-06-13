@@ -14,7 +14,6 @@ var ProfileSchema = new mongoose.Schema({
 	stripeId: {type:String, trim:true, default:''},
 	creditCard: {type:mongoose.Schema.Types.Mixed, default:{}},
 	resume: {type:String, trim:true, default:''},
-	// about: {type:String, trim:true, default:''},
 	tags: {type:Array, default:[]},
 	password: {type:String, default:''},
 	bio: {type:String, default:''},
