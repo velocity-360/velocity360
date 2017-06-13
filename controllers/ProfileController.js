@@ -104,12 +104,13 @@ module.exports = {
 					var profile = profiles[0]
 
 					// update profile with new params:
-					var keys = Object.keys(params)
-					keys.forEach(function(key, i){
-						profile[key] = params[key]
-					})
-
-					profile.save()
+					// var keys = Object.keys(params)
+					// keys.forEach(function(key, i){
+					// 	if (key != 'password') // do not re-update password
+					// 		profile[key] = params[key]
+					// })
+					// profile.save()
+					
 					resolve(profile)
 					return
 				}
