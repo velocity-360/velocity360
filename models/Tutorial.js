@@ -19,7 +19,7 @@ var TutorialSchema = new mongoose.Schema({
 })
 
 TutorialSchema.methods.summary = function() {
-	var type = this.price > 0) ? 'premium' : 'free'
+	var type = (this.price > 0) ? 'premium' : 'free'
 
 	var summary = {
 		title: this.title,
