@@ -2,6 +2,44 @@ var express = require('express')
 var router = express.Router()
 var controllers = require('../controllers')
 var utils = require('../utils')
+var Base64 = require('js-base64').Base64
+
+router.get('/:hash', function(req, res, next) {
+	var decoded = Base64.decode(req.params.hash)
+	var parsed = JSON.parse(decoded) // {"id":"12322312312"}
+
+	if (parsed.id == null){
+		res.json({
+			confirmation: 'fail'
+		})
+		return
+	}
+
+	if (parsed.resource == null){
+		res.json({
+			confirmation: 'fail'
+		})
+		return
+	}
+
+	var controller = controllers[parsed.resource]
+	controller.findById(parsed.id, true)
+	.then(function(entity){
+		if (entity == null){
+			throw new Error('Not Found')
+			return
+		}
+
+		res.redirect(entity.link)
+	})
+	.catch(function(err){
+		console.log('ERROR: ' + err.message)
+		res.json({
+			confirmation: 'fail',
+			message: err.message
+		})
+	})
+})
 
 router.get('/:resource/:id', function(req, res, next) {
 	var resource = req.params.resource

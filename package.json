@@ -32,6 +32,7 @@
     "gulp-uglify": "^2.1.2",
     "hjs": "~0.0.6",
     "hogan-middleware": "^0.2.2",
+    "js-base64": "^2.1.9",
     "jsonwebtoken": "^7.3.0",
     "moment": "^2.18.1",
     "mongoose": "^4.9.2",
